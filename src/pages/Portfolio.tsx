@@ -3,120 +3,140 @@ import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import { useLang } from "@/i18n/LangContext";
+import type { Lang } from "@/i18n/translations";
 
-const CATEGORIES = [
-  { id: "all", label: "Все" },
-  { id: "landing", label: "Лендинги" },
-  { id: "shop", label: "Магазины" },
-  { id: "corp", label: "Корпоративные" },
-  { id: "seo", label: "Продвижение" },
-];
+type Localized = Record<Lang, string>;
 
-type Project = {
-  title: string;
-  client: string;
+type RawProject = {
+  title: Localized;
+  client: Localized;
   category: string;
-  tags: string[];
-  result: string;
-  metric: { value: string; label: string };
+  tags: Localized[];
+  result: Localized;
+  metric: { value: string; label: Localized };
   gradient: string;
   accent: string;
   emoji: string;
   icon: string;
 };
 
-const PROJECTS: Project[] = [
+const RAW_PROJECTS: RawProject[] = [
   {
-    title: "Сайт для стоматологии",
-    client: "Клиника «Улыбка»",
+    title: { ru: "Сайт для стоматологии", zh: "牙科诊所网站" },
+    client: { ru: "Клиника «Улыбка»", zh: "「微笑」诊所" },
     category: "corp",
-    tags: ["Корпоративный", "SEO"],
-    result: "ТОП-3 Яндекса по 12 запросам",
-    metric: { value: "×4", label: "рост заявок" },
+    tags: [
+      { ru: "Корпоративный", zh: "企业网站" },
+      { ru: "SEO", zh: "SEO" },
+    ],
+    result: { ru: "ТОП-3 Яндекса по 12 запросам", zh: "Yandex 12个关键词进入前3" },
+    metric: { value: "×4", label: { ru: "рост заявок", zh: "申请增长" } },
     gradient: "from-[#34d399] via-[#22d3ee] to-[#60a5fa]",
     accent: "#0891b2",
     icon: "Briefcase",
     emoji: "🦷",
   },
   {
-    title: "Лендинг курса по фитнесу",
-    client: "Тренер Мария Кузнецова",
+    title: { ru: "Лендинг курса по фитнесу", zh: "健身课程落地页" },
+    client: { ru: "Тренер Мария Кузнецова", zh: "教练 Maria Kuznetsova" },
     category: "landing",
-    tags: ["Лендинг", "Дизайн"],
-    result: "120 заявок в первую неделю",
-    metric: { value: "8%", label: "конверсия" },
+    tags: [
+      { ru: "Лендинг", zh: "落地页" },
+      { ru: "Дизайн", zh: "设计" },
+    ],
+    result: { ru: "120 заявок в первую неделю", zh: "首周120份申请" },
+    metric: { value: "8%", label: { ru: "конверсия", zh: "转化率" } },
     gradient: "from-[#a78bfa] via-[#818cf8] to-[#60a5fa]",
     accent: "#7c3aed",
     icon: "Layout",
     emoji: "💪",
   },
   {
-    title: "Интернет-магазин косметики",
-    client: "GlowShop",
+    title: { ru: "Интернет-магазин косметики", zh: "化妆品电商" },
+    client: { ru: "GlowShop", zh: "GlowShop" },
     category: "shop",
-    tags: ["Магазин", "1С"],
-    result: "Каталог 800+ товаров",
-    metric: { value: "+220%", label: "оборот" },
+    tags: [
+      { ru: "Магазин", zh: "电商" },
+      { ru: "1С", zh: "1С" },
+    ],
+    result: { ru: "Каталог 800+ товаров", zh: "800+ 商品目录" },
+    metric: { value: "+220%", label: { ru: "оборот", zh: "营业额" } },
     gradient: "from-[#f472b6] via-[#e879f9] to-[#a78bfa]",
     accent: "#db2777",
     icon: "ShoppingBag",
     emoji: "💄",
   },
   {
-    title: "Продвижение автосервиса",
-    client: "СТО «Гараж 47»",
+    title: { ru: "Продвижение автосервиса", zh: "汽修店推广" },
+    client: { ru: "СТО «Гараж 47»", zh: "汽修「Garage 47」" },
     category: "seo",
-    tags: ["SEO", "Яндекс.Директ"],
-    result: "Сокращение цены заявки в 3 раза",
-    metric: { value: "TOP-5", label: "Яндекс" },
+    tags: [
+      { ru: "SEO", zh: "SEO" },
+      { ru: "Яндекс.Директ", zh: "Yandex Direct" },
+    ],
+    result: { ru: "Сокращение цены заявки в 3 раза", zh: "申请成本降低3倍" },
+    metric: { value: "TOP-5", label: { ru: "Яндекс", zh: "Yandex" } },
     gradient: "from-[#fbbf24] via-[#fb923c] to-[#f87171]",
     accent: "#ea580c",
     icon: "TrendingUp",
     emoji: "🚗",
   },
   {
-    title: "Сайт строительной компании",
-    client: "СтройМастер",
+    title: { ru: "Сайт строительной компании", zh: "建筑公司网站" },
+    client: { ru: "СтройМастер", zh: "StroyMaster" },
     category: "corp",
-    tags: ["Корпоративный", "Каталог"],
-    result: "Запуск за 12 дней",
-    metric: { value: "60", label: "проектов" },
+    tags: [
+      { ru: "Корпоративный", zh: "企业网站" },
+      { ru: "Каталог", zh: "目录" },
+    ],
+    result: { ru: "Запуск за 12 дней", zh: "12天上线" },
+    metric: { value: "60", label: { ru: "проектов", zh: "项目数" } },
     gradient: "from-[#34d399] via-[#22d3ee] to-[#60a5fa]",
     accent: "#0891b2",
     icon: "Briefcase",
     emoji: "🏗️",
   },
   {
-    title: "Лендинг свадебного фотографа",
-    client: "Анна Соколова",
+    title: { ru: "Лендинг свадебного фотографа", zh: "婚礼摄影师落地页" },
+    client: { ru: "Анна Соколова", zh: "Anna Sokolova" },
     category: "landing",
-    tags: ["Лендинг", "Портфолио"],
-    result: "Запись на 4 месяца вперёд",
-    metric: { value: "×6", label: "обращений" },
+    tags: [
+      { ru: "Лендинг", zh: "落地页" },
+      { ru: "Портфолио", zh: "作品集" },
+    ],
+    result: { ru: "Запись на 4 месяца вперёд", zh: "预订排到4个月后" },
+    metric: { value: "×6", label: { ru: "обращений", zh: "咨询" } },
     gradient: "from-[#a78bfa] via-[#818cf8] to-[#60a5fa]",
     accent: "#7c3aed",
     icon: "Layout",
     emoji: "📸",
   },
   {
-    title: "Магазин детских товаров",
-    client: "MiniKid",
+    title: { ru: "Магазин детских товаров", zh: "儿童用品商店" },
+    client: { ru: "MiniKid", zh: "MiniKid" },
     category: "shop",
-    tags: ["Магазин", "amoCRM"],
-    result: "Средний чек +35%",
-    metric: { value: "2 500", label: "товаров" },
+    tags: [
+      { ru: "Магазин", zh: "电商" },
+      { ru: "amoCRM", zh: "amoCRM" },
+    ],
+    result: { ru: "Средний чек +35%", zh: "客单价 +35%" },
+    metric: { value: "2 500", label: { ru: "товаров", zh: "商品" } },
     gradient: "from-[#f472b6] via-[#e879f9] to-[#a78bfa]",
     accent: "#db2777",
     icon: "ShoppingBag",
     emoji: "🧸",
   },
   {
-    title: "SEO продвижение юр. компании",
-    client: "Право и Партнёры",
+    title: { ru: "SEO продвижение юр. компании", zh: "律所SEO推广" },
+    client: { ru: "Право и Партнёры", zh: "「法律与伙伴」" },
     category: "seo",
-    tags: ["SEO", "Контент"],
-    result: "ТОП-10 по 47 запросам",
-    metric: { value: "×5", label: "трафика" },
+    tags: [
+      { ru: "SEO", zh: "SEO" },
+      { ru: "Контент", zh: "内容" },
+    ],
+    result: { ru: "ТОП-10 по 47 запросам", zh: "47个关键词进入前10" },
+    metric: { value: "×5", label: { ru: "трафика", zh: "流量" } },
     gradient: "from-[#fbbf24] via-[#fb923c] to-[#f87171]",
     accent: "#ea580c",
     icon: "TrendingUp",
@@ -124,19 +144,60 @@ const PROJECTS: Project[] = [
   },
 ];
 
-const STATS = [
-  { value: "150+", label: "Проектов", icon: "Folder", gradient: "from-[#a78bfa] to-[#818cf8]" },
-  { value: "94%", label: "Клиентов остаются", icon: "Heart", gradient: "from-[#f472b6] to-[#e879f9]" },
-  { value: "7 дней", label: "Средний срок", icon: "Zap", gradient: "from-[#34d399] to-[#22d3ee]" },
-  { value: "5 лет", label: "На рынке", icon: "Award", gradient: "from-[#fbbf24] to-[#fb923c]" },
-];
-
 export default function Portfolio() {
   const [filter, setFilter] = useState("all");
+  const { t, lang } = useLang();
 
-  const filtered = filter === "all"
-    ? PROJECTS
-    : PROJECTS.filter((p) => p.category === filter);
+  const CATEGORIES = [
+    { id: "all", label: t.portfolio.filters.all },
+    { id: "landing", label: t.portfolio.filters.landing },
+    { id: "shop", label: t.portfolio.filters.shop },
+    { id: "corp", label: t.portfolio.filters.corp },
+    { id: "seo", label: t.portfolio.filters.seo },
+  ];
+
+  const STATS = [
+    {
+      value: "150+",
+      label: t.portfolio.stats.projects,
+      icon: "Folder",
+      gradient: "from-[#a78bfa] to-[#818cf8]",
+    },
+    {
+      value: "94%",
+      label: t.portfolio.stats.clients,
+      icon: "Heart",
+      gradient: "from-[#f472b6] to-[#e879f9]",
+    },
+    {
+      value: lang === "zh" ? "7天" : "7 дней",
+      label: t.portfolio.stats.avgTime,
+      icon: "Zap",
+      gradient: "from-[#34d399] to-[#22d3ee]",
+    },
+    {
+      value: lang === "zh" ? "5年" : "5 лет",
+      label: t.portfolio.stats.years,
+      icon: "Award",
+      gradient: "from-[#fbbf24] to-[#fb923c]",
+    },
+  ];
+
+  const projects = RAW_PROJECTS.map((p) => ({
+    title: p.title[lang],
+    client: p.client[lang],
+    category: p.category,
+    tags: p.tags.map((tag) => tag[lang]),
+    result: p.result[lang],
+    metric: { value: p.metric.value, label: p.metric.label[lang] },
+    gradient: p.gradient,
+    accent: p.accent,
+    emoji: p.emoji,
+    icon: p.icon,
+  }));
+
+  const filtered =
+    filter === "all" ? projects : projects.filter((p) => p.category === filter);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -150,14 +211,14 @@ export default function Portfolio() {
 
           <div className="relative max-w-3xl mx-auto">
             <p className="text-xs font-bold text-accent uppercase tracking-widest mb-4">
-              Портфолио
+              {t.portfolio.label}
             </p>
             <h1 className="font-black tracking-tight text-foreground text-center text-[56px]">
-              Сделали — <span className="text-accent">показываем</span>
+              {t.portfolio.titlePre}{" "}
+              <span className="text-accent">{t.portfolio.titleHi}</span>
             </h1>
             <p className="text-base md:text-lg text-foreground/65 max-w-lg mx-auto mt-6 leading-relaxed">
-              150+ сайтов и проектов продвижения для бизнеса по всей России.
-              Каждый — с реальным результатом и довольным клиентом.
+              {t.portfolio.subtitle}
             </p>
 
             {/* STATS */}
@@ -214,7 +275,9 @@ export default function Portfolio() {
               className="group relative bg-white rounded-3xl overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 cursor-pointer"
             >
               {/* Цветное превью */}
-              <div className={`relative aspect-[4/3] bg-gradient-to-br ${p.gradient} flex items-center justify-center overflow-hidden`}>
+              <div
+                className={`relative aspect-[4/3] bg-gradient-to-br ${p.gradient} flex items-center justify-center overflow-hidden`}
+              >
                 <div className="pointer-events-none absolute -top-10 -right-10 w-48 h-48 rounded-full bg-white/30 blur-3xl" />
                 <div className="pointer-events-none absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-white/20 blur-3xl" />
 
@@ -222,7 +285,6 @@ export default function Portfolio() {
                   {p.emoji}
                 </span>
 
-                {/* Теги */}
                 <div className="absolute top-4 left-4 flex gap-2 flex-wrap">
                   {p.tags.map((tag) => (
                     <span
@@ -234,12 +296,10 @@ export default function Portfolio() {
                   ))}
                 </div>
 
-                {/* Иконка услуги */}
                 <div className="absolute top-4 right-4 w-10 h-10 rounded-2xl bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
                   <Icon name={p.icon} fallback="Circle" size={18} style={{ color: p.accent }} />
                 </div>
 
-                {/* Метрика */}
                 <div className="absolute bottom-4 right-4 bg-white rounded-2xl px-4 py-2.5 text-right shadow-xl group-hover:scale-110 transition-transform">
                   <p className="text-xl font-black leading-tight" style={{ color: p.accent }}>
                     {p.metric.value}
@@ -250,7 +310,6 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              {/* Низ карточки */}
               <div className="relative p-6">
                 <div
                   className={`absolute -top-10 -right-10 w-40 h-40 rounded-full bg-gradient-to-br ${p.gradient} opacity-0 blur-3xl group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`}
@@ -288,7 +347,7 @@ export default function Portfolio() {
             <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-secondary flex items-center justify-center">
               <Icon name="SearchX" size={28} className="text-foreground/40" />
             </div>
-            <p className="text-foreground/65 font-medium">В этой категории пока пусто</p>
+            <p className="text-foreground/65 font-medium">{t.portfolio.empty}</p>
           </div>
         )}
       </section>
@@ -299,23 +358,23 @@ export default function Portfolio() {
           <div className="pointer-events-none absolute -top-10 -right-10 w-80 h-80 rounded-full bg-yellow-400/20 blur-3xl" />
           <div className="relative max-w-2xl mx-auto">
             <h2 className="text-[56px] leading-[1.1] font-black mb-4">
-              Хотите так же?
+              {t.portfolio.ctaTitle}
             </h2>
             <p className="text-white/70 mb-10 text-base md:text-lg">
-              Расскажите о своём проекте — соберём команду и запустим сайт за 7 дней.
+              {t.portfolio.ctaSubtitle}
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link
                 to="/#contacts"
                 className="px-7 py-4 bg-yellow-400 text-yellow-900 text-sm font-bold rounded-full hover:opacity-90 transition-opacity"
               >
-                Обсудить проект
+                {t.portfolio.ctaDiscuss}
               </Link>
               <Link
                 to="/#pricing"
                 className="px-7 py-4 bg-white/10 hover:bg-white/20 text-white text-sm font-bold rounded-full transition-colors"
               >
-                Посмотреть тарифы
+                {t.portfolio.ctaPricing}
               </Link>
             </div>
           </div>

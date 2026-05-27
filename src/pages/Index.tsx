@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import { SERVICES } from "@/data/services";
+import { getLocalizedServices } from "@/data/services";
 import { useLang } from "@/i18n/LangContext";
 
 const PROCESS_STEPS = [
@@ -337,7 +337,8 @@ export default function Index() {
   const servicesSection = useInView(0.1);
   const pricingSection = useInView(0.1);
   const contactsSection = useInView(0.1);
-  const { t } = useLang();
+  const { t, lang } = useLang();
+  const SERVICES = getLocalizedServices(lang);
 
   return (
     <div className="min-h-screen bg-background text-foreground">

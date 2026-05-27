@@ -4,18 +4,20 @@ import Icon from "@/components/ui/icon";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import OrderModal from "@/components/OrderModal";
-import { SERVICES, getServiceBySlug } from "@/data/services";
+import { getLocalizedServices, getServiceBySlug } from "@/data/services";
+import { useLang } from "@/i18n/LangContext";
 
 export default function ServicePage() {
   const { slug } = useParams<{ slug: string }>();
-  const service = slug ? getServiceBySlug(slug) : undefined;
+  const { t, lang } = useLang();
+  const service = slug ? getServiceBySlug(slug, lang) : undefined;
   const [modalOpen, setModalOpen] = useState(false);
 
   if (!service) {
     return <Navigate to="/" replace />;
   }
 
-  const otherServices = SERVICES.filter((s) => s.slug !== service.slug);
+  const otherServices = getLocalizedServices(lang).filter((s) => s.slug !== service.slug);
   const openModal = () => setModalOpen(true);
 
   return (
@@ -29,7 +31,7 @@ export default function ServicePage() {
           className="inline-flex items-center gap-1.5 text-sm text-foreground/60 hover:text-foreground mb-4 font-medium transition-colors"
         >
           <Icon name="ArrowLeft" size={16} />
-          Все услуги
+          {t.service.backToAll}
         </Link>
 
         <div
@@ -55,23 +57,23 @@ export default function ServicePage() {
                   onClick={openModal}
                   className="px-7 py-4 bg-white text-foreground text-sm font-bold rounded-full hover:scale-105 transition-transform shadow-xl"
                 >
-                  Заказать {service.price}
+                  {t.service.orderFor} {service.price}
                 </button>
                 <button
                   onClick={openModal}
                   className="px-7 py-4 bg-white/15 backdrop-blur-sm text-white text-sm font-bold rounded-full hover:bg-white/25 transition-colors border border-white/20"
                 >
-                  Бесплатная консультация
+                  {t.service.freeConsult}
                 </button>
               </div>
 
               <div className="flex flex-wrap gap-6 text-white/90 animate-fade-up delay-300">
                 <div>
-                  <p className="text-[11px] uppercase tracking-widest font-bold opacity-70 mb-0.5">Срок</p>
+                  <p className="text-[11px] uppercase tracking-widest font-bold opacity-70 mb-0.5">{t.service.term}</p>
                   <p className="text-xl font-bold">{service.duration}</p>
                 </div>
                 <div>
-                  <p className="text-[11px] uppercase tracking-widest font-bold opacity-70 mb-0.5">Цена</p>
+                  <p className="text-[11px] uppercase tracking-widest font-bold opacity-70 mb-0.5">{t.service.price}</p>
                   <p className="text-xl font-bold">{service.price}</p>
                 </div>
               </div>
@@ -89,10 +91,10 @@ export default function ServicePage() {
       {/* INCLUDES */}
       <section className="py-12 px-4 max-w-7xl mx-auto">
         <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
-          Что входит
+          {t.service.includesLabel}
         </p>
         <h2 className="text-[44px] md:text-[56px] font-black text-center mb-12 text-foreground">
-          В стоимость включено
+          {t.service.includesTitle}
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -123,19 +125,19 @@ export default function ServicePage() {
           <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
             <div>
               <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3">
-                Полный список
+                {t.service.fullListLabel}
               </p>
               <h2 className="text-[44px] font-black mb-4 text-foreground leading-[1.1]">
-                Все возможности услуги
+                {t.service.fullListTitle}
               </h2>
               <p className="text-[15px] text-foreground/65 mb-8 leading-relaxed">
-                Никаких скрытых платежей. Всё, что нужно для запуска, уже в цене.
+                {t.service.fullListDesc}
               </p>
               <button
                 onClick={openModal}
                 className="inline-flex items-center gap-2 px-6 py-3.5 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity"
               >
-                Обсудить проект
+                {t.service.discussProject}
                 <Icon name="ArrowRight" size={16} />
               </button>
             </div>
@@ -166,10 +168,10 @@ export default function ServicePage() {
       <section className="py-12 px-4 max-w-7xl mx-auto">
         <div className="bg-gradient-to-br from-[#d6d8f7] via-[#e3e5fa] to-[#ecdcf2] rounded-[2rem] px-6 md:px-16 py-16">
           <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
-            Процесс
+            {t.service.processLabel}
           </p>
           <h2 className="text-[44px] md:text-[56px] font-black mb-12 text-center text-foreground">
-            Этапы работы
+            {t.service.processTitle}
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -220,23 +222,23 @@ export default function ServicePage() {
           <div className="pointer-events-none absolute -top-20 -right-20 w-96 h-96 rounded-full bg-white/30 blur-3xl" />
           <div className="relative max-w-2xl mx-auto text-white">
             <h2 className="text-[44px] md:text-[56px] font-black mb-4 leading-[1.1]">
-              Готовы начать?
+              {t.service.ctaTitle}
             </h2>
             <p className="text-white/90 text-base md:text-lg mb-10 leading-relaxed">
-              Расскажите о своём проекте — пришлём смету и план работ в течение часа.
+              {t.service.ctaDesc}
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <button
                 onClick={openModal}
                 className="px-7 py-4 bg-white text-foreground text-sm font-bold rounded-full hover:scale-105 transition-transform shadow-xl"
               >
-                Заказать {service.title.toLowerCase()}
+                {t.service.ctaOrder} {service.title}
               </button>
               <Link
                 to="/#pricing"
                 className="px-7 py-4 bg-white/15 backdrop-blur-sm text-white text-sm font-bold rounded-full hover:bg-white/25 transition-colors border border-white/20"
               >
-                Смотреть тарифы
+                {t.service.ctaPricing}
               </Link>
             </div>
           </div>
@@ -246,10 +248,10 @@ export default function ServicePage() {
       {/* OTHER SERVICES */}
       <section className="py-12 px-4 max-w-7xl mx-auto">
         <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
-          Другие услуги
+          {t.service.otherLabel}
         </p>
         <h2 className="text-[44px] md:text-[56px] font-black text-center mb-12 text-foreground">
-          Может быть интересно
+          {t.service.otherTitle}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -286,7 +288,7 @@ export default function ServicePage() {
               <div className="relative flex items-center justify-between pt-5 border-t border-secondary">
                 <div>
                   <p className="text-[10px] text-foreground/50 uppercase tracking-wider font-bold mb-0.5">
-                    Цена
+                    {t.service.price}
                   </p>
                   <p className="text-sm font-bold text-foreground">{f.price}</p>
                 </div>

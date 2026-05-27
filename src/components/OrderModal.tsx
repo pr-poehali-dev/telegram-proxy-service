@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
+import { useLang } from "@/i18n/LangContext";
 
 type OrderModalProps = {
   open: boolean;
@@ -12,10 +13,12 @@ type OrderModalProps = {
 export default function OrderModal({
   open,
   onClose,
-  serviceName = "сайт",
+  serviceName,
   servicePrice,
   gradient = "from-[#a78bfa] via-[#818cf8] to-[#60a5fa]",
 }: OrderModalProps) {
+  const { t } = useLang();
+  const finalServiceName = serviceName ?? t.hero.site;
   const [form, setForm] = useState({ name: "", phone: "", message: "" });
   const [sent, setSent] = useState(false);
 
@@ -75,14 +78,14 @@ export default function OrderModal({
             <Icon name="X" size={18} className="text-white" />
           </button>
           <p className="text-[11px] uppercase tracking-widest font-bold opacity-80 mb-2 relative">
-            Заявка на услугу
+            {t.modal.title}
           </p>
           <h3 className="relative text-2xl md:text-3xl font-black leading-tight pr-10">
-            Заказать «{serviceName}»
+            {t.modal.orderFor} «{finalServiceName}»
           </h3>
           {servicePrice && (
             <p className="relative text-white/85 text-sm font-medium mt-2">
-              Цена: {servicePrice} · Ответим за пару минут
+              {t.modal.priceHint}: {servicePrice} · {t.modal.replyHint}
             </p>
           )}
         </div>
@@ -93,20 +96,18 @@ export default function OrderModal({
             <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
               <Icon name="Check" size={32} className="text-green-600" />
             </div>
-            <h4 className="text-2xl font-black text-foreground mb-2">Заявка отправлена!</h4>
-            <p className="text-foreground/65 text-[15px]">
-              Свяжемся с вами в течение нескольких минут.
-            </p>
+            <h4 className="text-2xl font-black text-foreground mb-2">{t.modal.sentTitle}</h4>
+            <p className="text-foreground/65 text-[15px]">{t.modal.sentDesc}</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="px-7 py-6 space-y-3">
             <div>
               <label className="block text-xs text-foreground/60 mb-1.5 font-bold uppercase tracking-wider">
-                Ваше имя
+                {t.modal.nameLabel}
               </label>
               <input
                 type="text"
-                placeholder="Иван Иванов"
+                placeholder={t.modal.nameLabel}
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 required
@@ -115,7 +116,7 @@ export default function OrderModal({
             </div>
             <div>
               <label className="block text-xs text-foreground/60 mb-1.5 font-bold uppercase tracking-wider">
-                Телефон
+                {t.modal.phoneLabel}
               </label>
               <input
                 type="tel"
@@ -128,10 +129,10 @@ export default function OrderModal({
             </div>
             <div>
               <label className="block text-xs text-foreground/60 mb-1.5 font-bold uppercase tracking-wider">
-                О проекте (необязательно)
+                {t.modal.messageLabel}
               </label>
               <textarea
-                placeholder="Кратко опишите задачу..."
+                placeholder={t.modal.messagePlaceholder}
                 rows={3}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -143,10 +144,10 @@ export default function OrderModal({
               disabled={!form.name.trim() || !form.phone.trim()}
               className="w-full py-4 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed transition-opacity mt-2"
             >
-              Отправить заявку
+              {t.modal.submitBtn}
             </button>
             <p className="text-[11px] text-foreground/50 text-center pt-1">
-              Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
+              {t.modal.consent}
             </p>
           </form>
         )}
