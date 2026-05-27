@@ -72,6 +72,9 @@ const PLANS = [
     btnLabel: "Заказать лендинг",
     btnSub: null as string | null,
     highlight: false,
+    icon: "Sparkles",
+    gradient: "from-[#a78bfa] to-[#818cf8]",
+    accent: "#7c3aed",
     features: [
       "Уникальный дизайн",
       "Адаптив под мобильные",
@@ -88,6 +91,9 @@ const PLANS = [
     btnLabel: "Заказать комплекс",
     btnSub: "+ продвижение в подарок" as string | null,
     highlight: true,
+    icon: "Rocket",
+    gradient: "from-yellow-400 to-yellow-300",
+    accent: "#facc15",
     features: [
       "Всё из тарифа «Лендинг»",
       "SEO-оптимизация",
@@ -105,6 +111,9 @@ const PLANS = [
     btnLabel: "Заказать магазин",
     btnSub: null as string | null,
     highlight: false,
+    icon: "ShoppingBag",
+    gradient: "from-[#f472b6] to-[#e879f9]",
+    accent: "#db2777",
     features: [
       "Каталог товаров",
       "Корзина и оплата онлайн",
@@ -151,23 +160,62 @@ function useInView(threshold = 0.15) {
   return { ref, inView };
 }
 
-function FaqItem({ q, a }: { q: string; a: string }) {
+function FaqItem({ q, a, idx }: { q: string; a: string; idx: number }) {
   const [open, setOpen] = useState(false);
+  const gradients = [
+    "from-[#a78bfa] to-[#818cf8]",
+    "from-[#f472b6] to-[#e879f9]",
+    "from-[#34d399] to-[#22d3ee]",
+    "from-[#fbbf24] to-[#fb923c]",
+  ];
+  const accents = ["#7c3aed", "#db2777", "#059669", "#ea580c"];
+  const gradient = gradients[idx % gradients.length];
+  const accent = accents[idx % accents.length];
+
   return (
-    <div className="bg-white rounded-2xl overflow-hidden">
+    <div
+      className={`group relative bg-white rounded-3xl overflow-hidden transition-all duration-500 ${
+        open ? "shadow-2xl" : "hover:shadow-lg"
+      }`}
+    >
+      <div
+        className={`absolute -top-12 -right-12 w-40 h-40 rounded-full bg-gradient-to-br ${gradient} blur-3xl transition-opacity duration-500 ${
+          open ? "opacity-25" : "opacity-0 group-hover:opacity-15"
+        }`}
+      />
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
+        className="relative w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
       >
-        <span className="font-bold text-foreground text-base md:text-lg">{q}</span>
-        <Icon
-          name="Plus"
-          size={20}
-          className={`text-muted-foreground transition-transform shrink-0 ${open ? "rotate-45" : ""}`}
-        />
+        <div className="flex items-center gap-4 flex-1">
+          <div
+            className={`w-11 h-11 shrink-0 rounded-2xl bg-gradient-to-br ${gradient} text-white flex items-center justify-center font-black text-sm shadow-md transition-transform duration-500 ${
+              open ? "scale-110 rotate-6" : "group-hover:scale-105"
+            }`}
+          >
+            ?
+          </div>
+          <span className="font-bold text-foreground text-base md:text-lg leading-snug">
+            {q}
+          </span>
+        </div>
+        <div
+          className={`w-9 h-9 rounded-full flex items-center justify-center transition-all shrink-0 ${
+            open ? "rotate-45" : ""
+          }`}
+          style={{ background: open ? accent : "transparent", border: open ? "none" : "1px solid hsl(var(--border))" }}
+        >
+          <Icon
+            name="Plus"
+            size={16}
+            className={open ? "text-white" : "text-foreground/60"}
+          />
+        </div>
       </button>
       {open && (
-        <div className="px-6 pb-5 text-[15px] text-foreground/70 leading-relaxed animate-fade-up">{a}</div>
+        <div className="relative px-6 pb-6 pl-[88px] text-[15px] text-foreground/70 leading-relaxed animate-fade-up">
+          {a}
+        </div>
       )}
     </div>
   );
@@ -192,7 +240,7 @@ function FaqSection() {
             style={{ animationDelay: `${i * 100}ms` }}
             className={inView ? "animate-fade-up" : "opacity-0"}
           >
-            <FaqItem q={item.q} a={item.a} />
+            <FaqItem q={item.q} a={item.a} idx={i} />
           </div>
         ))}
       </div>
@@ -450,47 +498,74 @@ export default function Index() {
               <div
                 key={plan.name}
                 style={{ animationDelay: `${idx * 130}ms` }}
-                className={`rounded-3xl p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300 ${
+                className={`group relative rounded-3xl p-8 flex flex-col overflow-hidden hover:-translate-y-2 transition-all duration-500 ${
                   plan.highlight
                     ? "bg-[#2d3a9e] text-white shadow-2xl md:scale-105 z-10"
-                    : "bg-white hover:shadow-lg"
+                    : "bg-white hover:shadow-2xl"
                 } ${pricingSection.inView ? "animate-fade-up" : "opacity-0"}`}
               >
-                {plan.badge && (
-                  <span className="self-start mb-4 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-yellow-400 text-yellow-900">
-                    {plan.badge}
-                  </span>
-                )}
+                {/* Градиентное пятно */}
+                <div
+                  className={`absolute -top-16 -right-16 w-48 h-48 rounded-full bg-gradient-to-br ${plan.gradient} blur-3xl pointer-events-none transition-all duration-500 ${
+                    plan.highlight ? "opacity-30" : "opacity-15 group-hover:opacity-30 group-hover:scale-125"
+                  }`}
+                />
+
+                {/* Верх — иконка и бейдж */}
+                <div className="relative flex items-start justify-between mb-6">
+                  <div
+                    className={`w-14 h-14 flex items-center justify-center rounded-2xl bg-gradient-to-br ${plan.gradient} text-white shadow-lg group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500`}
+                  >
+                    <Icon name={plan.icon} fallback="Sparkles" size={24} />
+                  </div>
+                  {plan.badge && (
+                    <span className="px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-yellow-400 text-yellow-900 shadow-lg">
+                      {plan.badge}
+                    </span>
+                  )}
+                </div>
 
                 <p
-                  className={`text-xs uppercase tracking-widest font-bold mb-2 ${
-                    plan.highlight ? "text-white/60" : "text-muted-foreground"
+                  className={`relative text-[11px] uppercase tracking-widest font-bold mb-1 ${
+                    plan.highlight ? "text-white/60" : "text-foreground/50"
                   }`}
                 >
                   {plan.desc}
                 </p>
 
-                <p className={`text-4xl font-black mb-1 ${plan.highlight ? "text-white" : "text-foreground"}`}>
+                <p className={`relative text-3xl font-black mb-4 ${plan.highlight ? "text-white" : "text-foreground"}`}>
                   {plan.name}
                 </p>
 
-                <p className={`text-5xl font-black mt-3 mb-1 ${plan.highlight ? "text-white" : "text-foreground"}`}>
-                  {plan.price} <span className="text-2xl font-bold">₽</span>
-                </p>
+                {/* Цена в стеклянной плашке */}
+                <div
+                  className={`relative rounded-2xl p-4 mb-5 ${
+                    plan.highlight ? "bg-white/10 backdrop-blur-sm border border-white/20" : "bg-secondary"
+                  }`}
+                >
+                  <p className={`text-4xl font-black ${plan.highlight ? "text-white" : "text-foreground"}`}>
+                    {plan.price}{" "}
+                    <span className={`text-lg font-bold ${plan.highlight ? "text-white/70" : "text-foreground/60"}`}>
+                      ₽
+                    </span>
+                  </p>
+                  <p className={`text-xs mt-1 ${plan.highlight ? "text-white/60" : "text-foreground/60"}`}>
+                    {plan.subprice}
+                  </p>
+                </div>
 
-                <p className={`text-sm mb-6 mt-1 ${plan.highlight ? "text-white/60" : "text-muted-foreground"}`}>
-                  {plan.subprice}
-                </p>
-
-                <ul className="space-y-2 mb-8">
+                <ul className="relative space-y-2.5 mb-8">
                   {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm">
-                      <Icon
-                        name="Check"
-                        size={16}
-                        className={`mt-0.5 shrink-0 ${plan.highlight ? "text-yellow-400" : "text-accent"}`}
-                      />
-                      <span className={plan.highlight ? "text-white/85" : "text-muted-foreground"}>
+                    <li key={f} className="flex items-start gap-3 text-sm">
+                      <div
+                        className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                          plan.highlight ? "bg-yellow-400" : ""
+                        }`}
+                        style={!plan.highlight ? { background: plan.accent } : undefined}
+                      >
+                        <Icon name="Check" size={12} className={plan.highlight ? "text-yellow-900" : "text-white"} />
+                      </div>
+                      <span className={`text-[14px] ${plan.highlight ? "text-white/85" : "text-foreground/75"}`}>
                         {f}
                       </span>
                     </li>
@@ -498,15 +573,15 @@ export default function Index() {
                 </ul>
 
                 <button
-                  className={`w-full py-4 rounded-full text-sm font-bold transition-opacity mt-auto ${
+                  className={`relative w-full py-4 rounded-full text-sm font-bold transition-all duration-300 mt-auto group-hover:scale-[1.02] ${
                     plan.highlight
-                      ? "bg-yellow-400 text-yellow-900 hover:opacity-90"
-                      : "bg-secondary text-foreground hover:opacity-80"
+                      ? "bg-yellow-400 text-yellow-900 hover:shadow-2xl hover:shadow-yellow-400/40"
+                      : "bg-foreground text-background hover:shadow-xl"
                   }`}
                 >
                   <span className="block">{plan.btnLabel}</span>
                   {plan.btnSub && (
-                    <span className={`block text-xs font-normal mt-0.5 ${plan.highlight ? "text-yellow-800" : "text-muted-foreground"}`}>
+                    <span className={`block text-xs font-normal mt-0.5 ${plan.highlight ? "text-yellow-800" : "text-background/70"}`}>
                       {plan.btnSub}
                     </span>
                   )}
@@ -516,28 +591,33 @@ export default function Index() {
           </div>
 
           {/* Промо-блок */}
-          <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white rounded-3xl px-6 py-5">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center shrink-0">
-                <Icon name="Gift" size={20} className="text-foreground" />
+          <div className="group relative mt-4 overflow-hidden flex flex-col sm:flex-row items-center justify-between gap-4 bg-white rounded-3xl px-6 py-6 hover:shadow-2xl transition-all duration-500">
+            <div className="absolute -top-16 -left-16 w-48 h-48 rounded-full bg-gradient-to-br from-[#34d399] to-[#22d3ee] opacity-15 blur-3xl group-hover:opacity-30 group-hover:scale-125 transition-all duration-500 pointer-events-none" />
+            <div className="relative flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#34d399] to-[#22d3ee] text-white flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500">
+                <Icon name="Gift" size={22} />
               </div>
               <div>
-                <p className="text-xs uppercase tracking-widest font-bold text-muted-foreground mb-0.5">
+                <p className="text-[11px] uppercase tracking-widest font-bold text-[#059669] mb-0.5">
                   Не уверены, что нужен сайт?
                 </p>
-                <p className="font-bold text-foreground text-base">Бесплатный аудит вашего сайта</p>
-                <p className="text-xs text-muted-foreground mt-0.5">
+                <p className="font-bold text-foreground text-lg leading-tight">Бесплатный аудит вашего сайта</p>
+                <p className="text-xs text-foreground/60 mt-1">
                   Покажем точки роста и план по продвижению
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-4 shrink-0">
-              <p className="text-3xl font-black text-foreground">0 ₽</p>
+            <div className="relative flex items-center gap-4 shrink-0">
+              <div className="text-right">
+                <p className="text-[10px] uppercase tracking-widest font-bold text-foreground/50">Цена</p>
+                <p className="text-3xl font-black text-foreground leading-none">0 ₽</p>
+              </div>
               <a
                 href="#contacts"
-                className="px-6 py-3.5 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity whitespace-nowrap"
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity whitespace-nowrap group-hover:scale-105"
               >
                 Получить аудит
+                <Icon name="ArrowRight" size={16} />
               </a>
             </div>
           </div>
@@ -568,18 +648,45 @@ export default function Index() {
 
                 <div className="space-y-4">
                   {[
-                    { icon: "Mail", label: "Email", value: "hello@sitecraft.ru" },
-                    { icon: "MessageCircle", label: "Telegram", value: "@sitecraft_team" },
-                    { icon: "Phone", label: "Телефон", value: "+7 (495) 000-00-00" },
-                    { icon: "Clock", label: "Время работы", value: "Пн–Пт, 10:00–20:00 МСК" },
+                    {
+                      icon: "Mail",
+                      label: "Email",
+                      value: "hello@sitecraft.ru",
+                      gradient: "from-[#a78bfa] to-[#818cf8]",
+                    },
+                    {
+                      icon: "Phone",
+                      label: "Телефон",
+                      value: "+7 (495) 000-00-00",
+                      gradient: "from-[#34d399] to-[#22d3ee]",
+                    },
+                    {
+                      icon: "MapPin",
+                      label: "Офис",
+                      value: "Москва, ул. Тверская, 7",
+                      gradient: "from-[#f472b6] to-[#e879f9]",
+                    },
+                    {
+                      icon: "Clock",
+                      label: "Время работы",
+                      value: "Пн–Пт, 10:00–20:00 МСК",
+                      gradient: "from-[#fbbf24] to-[#fb923c]",
+                    },
                   ].map((c) => (
-                    <div key={c.label} className="flex items-start gap-3">
-                      <div className="w-10 h-10 flex items-center justify-center bg-secondary rounded-2xl mt-0.5 shrink-0">
-                        <Icon name={c.icon} fallback="Circle" size={16} className="text-foreground" />
+                    <div
+                      key={c.label}
+                      className="group flex items-center gap-4 p-3 rounded-2xl hover:bg-secondary/60 transition-colors"
+                    >
+                      <div
+                        className={`w-12 h-12 flex items-center justify-center bg-gradient-to-br ${c.gradient} text-white rounded-2xl shrink-0 shadow-md group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500`}
+                      >
+                        <Icon name={c.icon} fallback="Circle" size={18} />
                       </div>
-                      <div>
-                        <p className="text-xs text-muted-foreground mb-0.5 font-bold uppercase tracking-wider">{c.label}</p>
-                        <p className="text-sm font-bold text-foreground">{c.value}</p>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[10px] text-foreground/50 mb-0.5 font-bold uppercase tracking-widest">
+                          {c.label}
+                        </p>
+                        <p className="text-sm font-bold text-foreground truncate">{c.value}</p>
                       </div>
                     </div>
                   ))}
@@ -633,25 +740,30 @@ export default function Index() {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 bg-secondary hover:bg-secondary/70 rounded-2xl px-5 py-4 transition-colors group"
+                    className="group relative flex items-center gap-4 bg-white border-2 border-secondary hover:border-transparent hover:shadow-2xl rounded-2xl px-5 py-4 transition-all duration-500 overflow-hidden"
                   >
                     <div
-                      className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 bg-gradient-to-br ${s.color}`}
+                      className={`absolute -top-12 -right-12 w-32 h-32 rounded-full bg-gradient-to-br ${s.color} opacity-0 blur-2xl group-hover:opacity-30 transition-opacity duration-500`}
+                    />
+                    <div
+                      className={`relative w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 bg-gradient-to-br ${s.color} shadow-md group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500`}
                     >
                       <Icon name={s.icon} fallback="MessageCircle" size={20} className={s.iconColor} />
                     </div>
-                    <div className="flex-1 min-w-0">
+                    <div className="relative flex-1 min-w-0">
                       <p className="font-bold text-foreground text-base leading-tight">{s.name}</p>
-                      <p className="text-xs text-muted-foreground mt-0.5">{s.desc}</p>
+                      <p className="text-xs text-foreground/55 mt-0.5">{s.desc}</p>
                     </div>
-                    <div className="hidden sm:block text-right">
-                      <p className="text-sm font-bold text-foreground">{s.handle}</p>
+                    <div className="relative hidden sm:block text-right">
+                      <p className="text-sm font-bold text-foreground/80">{s.handle}</p>
                     </div>
-                    <Icon
-                      name="ArrowUpRight"
-                      size={18}
-                      className="text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
-                    />
+                    <div className="relative w-9 h-9 rounded-full bg-secondary group-hover:bg-foreground flex items-center justify-center shrink-0 transition-colors">
+                      <Icon
+                        name="ArrowUpRight"
+                        size={16}
+                        className="text-foreground group-hover:text-background transition-colors"
+                      />
+                    </div>
                   </a>
                 ))}
               </div>
