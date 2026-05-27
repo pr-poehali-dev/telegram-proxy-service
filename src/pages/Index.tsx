@@ -6,12 +6,60 @@ import SiteFooter from "@/components/SiteFooter";
 import { SERVICES } from "@/data/services";
 
 const PROCESS_STEPS = [
-  { num: "01", title: "Бриф", desc: "Узнаём задачу, целевую аудиторию и пожелания." },
-  { num: "02", title: "Прототип", desc: "Согласуем структуру и логику страниц." },
-  { num: "03", title: "Дизайн", desc: "Создаём уникальный визуал в фирменном стиле." },
-  { num: "04", title: "Разработка", desc: "Верстаем адаптивно, подключаем функции." },
-  { num: "05", title: "Запуск", desc: "Размещаем на хостинге, настраиваем аналитику." },
-  { num: "06", title: "Продвижение", desc: "Выводим в ТОП Яндекса и приводим клиентов." },
+  {
+    num: "01",
+    title: "Бриф",
+    desc: "Узнаём задачу, целевую аудиторию и пожелания.",
+    icon: "FileText",
+    duration: "1 день",
+    gradient: "from-[#a78bfa] to-[#818cf8]",
+    accent: "#7c3aed",
+  },
+  {
+    num: "02",
+    title: "Прототип",
+    desc: "Согласуем структуру и логику страниц.",
+    icon: "LayoutGrid",
+    duration: "1 день",
+    gradient: "from-[#60a5fa] to-[#22d3ee]",
+    accent: "#0284c7",
+  },
+  {
+    num: "03",
+    title: "Дизайн",
+    desc: "Создаём уникальный визуал в фирменном стиле.",
+    icon: "Palette",
+    duration: "2 дня",
+    gradient: "from-[#f472b6] to-[#e879f9]",
+    accent: "#db2777",
+  },
+  {
+    num: "04",
+    title: "Разработка",
+    desc: "Верстаем адаптивно, подключаем функции.",
+    icon: "Code2",
+    duration: "2 дня",
+    gradient: "from-[#34d399] to-[#22d3ee]",
+    accent: "#059669",
+  },
+  {
+    num: "05",
+    title: "Запуск",
+    desc: "Размещаем на хостинге, настраиваем аналитику.",
+    icon: "Rocket",
+    duration: "1 день",
+    gradient: "from-[#fbbf24] to-[#fb923c]",
+    accent: "#ea580c",
+  },
+  {
+    num: "06",
+    title: "Продвижение",
+    desc: "Выводим в ТОП Яндекса и приводим клиентов.",
+    icon: "TrendingUp",
+    duration: "От 1 мес",
+    gradient: "from-[#f87171] to-[#fb7185]",
+    accent: "#e11d48",
+  },
 ];
 
 const PLANS = [
@@ -171,11 +219,60 @@ function ProcessSection() {
             <div
               key={step.num}
               style={{ animationDelay: `${i * 100}ms` }}
-              className={`bg-white rounded-3xl p-7 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 ${inView ? "animate-fade-up" : "opacity-0"}`}
+              className={`group relative bg-white rounded-3xl p-7 hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 overflow-hidden ${inView ? "animate-fade-up" : "opacity-0"}`}
             >
-              <p className="text-3xl font-black text-accent mb-3">{step.num}</p>
-              <p className="font-bold text-lg mb-1 text-foreground">{step.title}</p>
-              <p className="text-[15px] text-foreground/65 leading-relaxed">{step.desc}</p>
+              {/* Огромный номер на фоне */}
+              <span
+                className="absolute -top-6 -right-2 text-[140px] font-black leading-none select-none pointer-events-none opacity-[0.06] group-hover:opacity-[0.12] transition-opacity"
+                style={{ color: step.accent }}
+              >
+                {step.num}
+              </span>
+
+              {/* Градиентное пятно */}
+              <div
+                className={`absolute -bottom-20 -left-10 w-48 h-48 rounded-full bg-gradient-to-br ${step.gradient} opacity-[0.08] blur-3xl group-hover:opacity-20 transition-opacity duration-500`}
+              />
+
+              {/* Верх: иконка и шаг */}
+              <div className="relative flex items-start justify-between mb-6">
+                <div
+                  className={`w-14 h-14 flex items-center justify-center rounded-2xl bg-gradient-to-br ${step.gradient} text-white shadow-lg group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500`}
+                >
+                  <Icon name={step.icon} fallback="Circle" size={24} />
+                </div>
+                <div className="text-right">
+                  <p
+                    className="text-[11px] uppercase tracking-widest font-bold mb-0.5"
+                    style={{ color: step.accent }}
+                  >
+                    Шаг {step.num}
+                  </p>
+                  <div className="inline-flex items-center gap-1 px-2.5 py-1 bg-secondary rounded-full">
+                    <Icon name="Clock" size={11} className="text-foreground/60" />
+                    <span className="text-[11px] font-bold text-foreground/70">
+                      {step.duration}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <h3 className="relative font-bold text-xl mb-2 text-foreground leading-tight">
+                {step.title}
+              </h3>
+              <p className="relative text-[15px] text-foreground/65 leading-relaxed mb-5">
+                {step.desc}
+              </p>
+
+              {/* Прогресс-полоска */}
+              <div className="relative h-1.5 bg-secondary rounded-full overflow-hidden">
+                <div
+                  className={`h-full bg-gradient-to-r ${step.gradient} rounded-full transition-all duration-700`}
+                  style={{
+                    width: `${((i + 1) / PROCESS_STEPS.length) * 100}%`,
+                  }}
+                />
+              </div>
             </div>
           ))}
         </div>
