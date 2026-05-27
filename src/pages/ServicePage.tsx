@@ -1,18 +1,22 @@
+import { useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import OrderModal from "@/components/OrderModal";
 import { SERVICES, getServiceBySlug } from "@/data/services";
 
 export default function ServicePage() {
   const { slug } = useParams<{ slug: string }>();
   const service = slug ? getServiceBySlug(slug) : undefined;
+  const [modalOpen, setModalOpen] = useState(false);
 
   if (!service) {
     return <Navigate to="/" replace />;
   }
 
   const otherServices = SERVICES.filter((s) => s.slug !== service.slug);
+  const openModal = () => setModalOpen(true);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -47,18 +51,18 @@ export default function ServicePage() {
               </p>
 
               <div className="flex flex-wrap gap-3 mb-8 animate-fade-up delay-200">
-                <Link
-                  to="/#contacts"
+                <button
+                  onClick={openModal}
                   className="px-7 py-4 bg-white text-foreground text-sm font-bold rounded-full hover:scale-105 transition-transform shadow-xl"
                 >
                   Заказать {service.price}
-                </Link>
-                <Link
-                  to="/#contacts"
+                </button>
+                <button
+                  onClick={openModal}
                   className="px-7 py-4 bg-white/15 backdrop-blur-sm text-white text-sm font-bold rounded-full hover:bg-white/25 transition-colors border border-white/20"
                 >
                   Бесплатная консультация
-                </Link>
+                </button>
               </div>
 
               <div className="flex flex-wrap gap-6 text-white/90 animate-fade-up delay-300">
@@ -124,13 +128,13 @@ export default function ServicePage() {
               <p className="text-[15px] text-foreground/65 mb-8 leading-relaxed">
                 Никаких скрытых платежей. Всё, что нужно для запуска, уже в цене.
               </p>
-              <Link
-                to="/#contacts"
+              <button
+                onClick={openModal}
                 className="inline-flex items-center gap-2 px-6 py-3.5 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity"
               >
                 Обсудить проект
                 <Icon name="ArrowRight" size={16} />
-              </Link>
+              </button>
             </div>
 
             <div className="space-y-3">
@@ -203,12 +207,12 @@ export default function ServicePage() {
               Расскажите о своём проекте — пришлём смету и план работ в течение часа.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <Link
-                to="/#contacts"
+              <button
+                onClick={openModal}
                 className="px-7 py-4 bg-white text-foreground text-sm font-bold rounded-full hover:scale-105 transition-transform shadow-xl"
               >
                 Заказать {service.title.toLowerCase()}
-              </Link>
+              </button>
               <Link
                 to="/#pricing"
                 className="px-7 py-4 bg-white/15 backdrop-blur-sm text-white text-sm font-bold rounded-full hover:bg-white/25 transition-colors border border-white/20"
@@ -256,6 +260,14 @@ export default function ServicePage() {
           ))}
         </div>
       </section>
+
+      <OrderModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        serviceName={service.title}
+        servicePrice={service.price}
+        gradient={service.gradient}
+      />
 
       <SiteFooter />
     </div>
