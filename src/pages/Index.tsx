@@ -444,42 +444,75 @@ export default function Index() {
                 </div>
               </div>
 
-              <form className="space-y-3">
-                {[
-                  { name: "name", label: "Имя", placeholder: "Иван Иванов", type: "text" },
-                  { name: "phone", label: "Телефон", placeholder: "+7 (___) ___-__-__", type: "tel" },
-                ].map((field) => (
-                  <div key={field.name}>
-                    <label className="block text-xs text-muted-foreground mb-1.5 font-bold uppercase tracking-wider">
-                      {field.label}
-                    </label>
-                    <input
-                      type={field.type}
-                      placeholder={field.placeholder}
-                      className="w-full bg-secondary rounded-2xl px-5 py-3.5 text-sm outline-none focus:ring-2 focus:ring-accent/40 transition text-foreground placeholder:text-muted-foreground/60"
-                    />
-                  </div>
-                ))}
-                <div>
-                  <label className="block text-xs text-muted-foreground mb-1.5 font-bold uppercase tracking-wider">
-                    Опишите задачу
-                  </label>
-                  <textarea
-                    placeholder="Хочу лендинг под услугу..."
-                    rows={4}
-                    className="w-full bg-secondary rounded-2xl px-5 py-3.5 text-sm outline-none focus:ring-2 focus:ring-accent/40 transition text-foreground placeholder:text-muted-foreground/60 resize-none"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-4 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity"
-                >
-                  Отправить заявку
-                </button>
-                <p className="text-xs text-muted-foreground text-center">
-                  Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
+              <div className="space-y-3">
+                <p className="text-xs text-muted-foreground mb-3 font-bold uppercase tracking-wider">
+                  Напишите в удобном мессенджере
                 </p>
-              </form>
+                {[
+                  {
+                    name: "MAX",
+                    handle: "@sitecraft",
+                    desc: "Российский мессенджер",
+                    icon: "MessagesSquare",
+                    color: "from-[#ffe27a] to-[#facc15]",
+                    iconColor: "text-yellow-900",
+                    href: "https://max.ru/sitecraft",
+                  },
+                  {
+                    name: "Telegram",
+                    handle: "@sitecraft_team",
+                    desc: "Ответим за пару минут",
+                    icon: "Send",
+                    color: "from-[#74c0fc] to-[#339af0]",
+                    iconColor: "text-white",
+                    href: "https://t.me/sitecraft_team",
+                  },
+                  {
+                    name: "VK",
+                    handle: "vk.com/sitecraft",
+                    desc: "Сообщения сообщества",
+                    icon: "MessageCircle",
+                    color: "from-[#5181b8] to-[#2a5885]",
+                    iconColor: "text-white",
+                    href: "https://vk.com/sitecraft",
+                  },
+                  {
+                    name: "WeChat",
+                    handle: "sitecraft_cn",
+                    desc: "Работаем с Китаем",
+                    icon: "MessageSquare",
+                    color: "from-[#7bed9f] to-[#2ed573]",
+                    iconColor: "text-white",
+                    href: "#",
+                  },
+                ].map((s) => (
+                  <a
+                    key={s.name}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 bg-secondary hover:bg-secondary/70 rounded-2xl px-5 py-4 transition-colors group"
+                  >
+                    <div
+                      className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 bg-gradient-to-br ${s.color}`}
+                    >
+                      <Icon name={s.icon} fallback="MessageCircle" size={20} className={s.iconColor} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-bold text-foreground text-base leading-tight">{s.name}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{s.desc}</p>
+                    </div>
+                    <div className="hidden sm:block text-right">
+                      <p className="text-sm font-bold text-foreground">{s.handle}</p>
+                    </div>
+                    <Icon
+                      name="ArrowUpRight"
+                      size={18}
+                      className="text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
+                    />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
