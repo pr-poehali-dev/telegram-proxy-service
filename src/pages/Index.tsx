@@ -1,30 +1,9 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-
-const SERVICES = [
-  {
-    icon: "Layout",
-    title: "Лендинги под ключ",
-    desc: "Продающая одностраничная посадка с дизайном, текстами и формами.",
-  },
-  {
-    icon: "ShoppingBag",
-    title: "Интернет-магазины",
-    desc: "Каталог, корзина, оплата, интеграция с CRM и 1С.",
-  },
-  {
-    icon: "Briefcase",
-    title: "Корпоративные сайты",
-    desc: "Многостраничные сайты для компаний и услуг с понятной структурой.",
-  },
-  {
-    icon: "TrendingUp",
-    title: "Продвижение в Яндексе",
-    desc: "SEO под Яндекс, Директ, аналитика. Поднимаем в ТОП-10.",
-  },
-];
+import { SERVICES } from "@/data/services";
 
 const PROCESS_STEPS = [
   { num: "01", title: "Бриф", desc: "Узнаём задачу, целевую аудиторию и пожелания." },
@@ -293,17 +272,55 @@ export default function Index() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {SERVICES.map((f, i) => (
-              <div
-                key={f.title}
+              <Link
+                key={f.slug}
+                to={`/services/${f.slug}`}
                 style={{ animationDelay: `${i * 120}ms` }}
-                className={`bg-white rounded-3xl p-7 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 ${servicesSection.inView ? "animate-fade-up" : "opacity-0"}`}
+                className={`group relative bg-white rounded-3xl p-7 hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 overflow-hidden ${servicesSection.inView ? "animate-fade-up" : "opacity-0"}`}
               >
-                <div className="w-12 h-12 flex items-center justify-center mb-5 rounded-2xl bg-secondary text-accent">
-                  <Icon name={f.icon} fallback="Circle" size={22} />
+                {/* Градиентное пятно в углу */}
+                <div
+                  className={`absolute -top-16 -right-16 w-40 h-40 rounded-full bg-gradient-to-br ${f.gradient} opacity-20 blur-2xl group-hover:opacity-40 group-hover:scale-125 transition-all duration-500`}
+                />
+
+                {/* Бейдж */}
+                <div className="relative flex items-start justify-between mb-6">
+                  <div
+                    className={`w-14 h-14 flex items-center justify-center rounded-2xl bg-gradient-to-br ${f.gradient} text-white shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}
+                  >
+                    <Icon name={f.icon} fallback="Circle" size={24} />
+                  </div>
+                  <span
+                    className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider"
+                    style={{ background: `${f.accent}15`, color: f.accent }}
+                  >
+                    {f.badge}
+                  </span>
                 </div>
-                <h3 className="font-bold text-lg mb-2 text-foreground">{f.title}</h3>
-                <p className="text-[15px] text-foreground/65 leading-relaxed">{f.desc}</p>
-              </div>
+
+                <h3 className="relative font-bold text-xl mb-2 text-foreground leading-tight">
+                  {f.title}
+                </h3>
+                <p className="relative text-[15px] text-foreground/65 leading-relaxed mb-6">
+                  {f.desc}
+                </p>
+
+                {/* Цена и срок */}
+                <div className="relative flex items-center justify-between pt-5 border-t border-secondary">
+                  <div>
+                    <p className="text-[10px] text-foreground/50 uppercase tracking-wider font-bold mb-0.5">
+                      Цена
+                    </p>
+                    <p className="text-sm font-bold text-foreground">{f.price}</p>
+                  </div>
+                  <div
+                    className="w-9 h-9 rounded-full flex items-center justify-center group-hover:translate-x-1 transition-transform"
+                    style={{ background: f.accent }}
+                  >
+                    <Icon name="ArrowRight" size={16} className="text-white" />
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
