@@ -229,48 +229,67 @@ export default function Index() {
           style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
           className={heroSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
         >
-          <span className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground border border-border rounded-full px-3 py-1 mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
-            Все серверы работают
-          </span>
+          <div className="relative rounded-[2rem] overflow-hidden px-6 py-20 md:py-28 text-center bg-gradient-to-br from-[#cfd1f5] via-[#dfe1f9] to-[#e8d9f0]">
+            {/* Декоративное светлое пятно */}
+            <div className="pointer-events-none absolute -top-10 -right-10 w-72 h-72 rounded-full bg-yellow-200/60 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-20 -left-10 w-72 h-72 rounded-full bg-white/40 blur-3xl" />
 
-          <h1 className="text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight mb-6">
-            Прокси без
-            <br />
-            <span className="text-primary">компромиссов</span>
-          </h1>
+            <div className="relative max-w-3xl mx-auto">
+              <h1 className="text-4xl md:text-6xl font-black leading-[1.1] tracking-tight mb-6 text-[#1a2452]">
+                Один <span className="text-[#2952ff]">клик</span> — и сервер ваш.
+              </h1>
 
-          <p className="text-lg text-muted-foreground max-w-md mb-10 leading-relaxed">
-            Резидентные и дата-центровые прокси для бизнеса и личных задач.
-            Попробуйте бесплатно — без регистрации.
-          </p>
+              <p className="text-base md:text-lg text-[#3b4382] max-w-lg mx-auto mb-10 leading-relaxed">
+                Оформите доступ — сервер будет готов к работе через пару минут.
+                Инструкции по подключению придут сразу.
+              </p>
 
-          <div className="flex flex-wrap gap-3 mb-16">
-            <a
-              href="#pricing"
-              className="px-6 py-3 bg-primary text-primary-foreground text-sm font-medium rounded-md hover:opacity-90 transition-opacity"
-            >
-              Выбрать тариф
-            </a>
-            <a
-              href="#test"
-              className="px-6 py-3 border border-border text-foreground text-sm font-medium rounded-md hover:border-primary/50 transition-colors"
-            >
-              Тест бесплатно
-            </a>
+              <div className="flex flex-wrap justify-center gap-3 mb-12">
+                <a
+                  href="#pricing"
+                  className="px-7 py-4 bg-[#1a2452] text-white text-sm font-bold rounded-full hover:opacity-90 transition-opacity shadow-lg shadow-[#1a2452]/20"
+                >
+                  Купить от 190 ₽/мес
+                </a>
+                <a
+                  href="#pricing"
+                  className="px-7 py-4 bg-white text-[#1a2452] text-sm font-bold rounded-full hover:bg-white/90 transition-colors shadow-lg shadow-black/5"
+                >
+                  Попробовать за 10 ₽
+                </a>
+              </div>
+
+              <p className="text-[11px] uppercase tracking-widest font-bold text-[#5a64a8]/70 mb-4">
+                Принимаем к оплате
+              </p>
+              <div className="flex flex-wrap justify-center gap-2">
+                {["VISA", "MC", "МИР", "CRYPTO"].map((m) => (
+                  <span
+                    key={m}
+                    className="px-4 py-2 bg-white rounded-xl text-xs font-bold text-[#1a2452] shadow-sm"
+                  >
+                    {m}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div className="flex flex-wrap gap-x-8 gap-y-3">
+          {/* Нижние ссылки-плашки */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
             {[
-              ["200+", "стран"],
-              ["99.9%", "uptime"],
-              ["< 20 мс", "задержка"],
-              ["24/7", "поддержка"],
-            ].map(([val, label]) => (
-              <div key={label}>
-                <p className="text-2xl font-bold text-foreground">{val}</p>
-                <p className="text-xs text-muted-foreground">{label}</p>
-              </div>
+              "Пользовательское соглашение",
+              "Политика конфиденциальности",
+              "Статус узлов",
+            ].map((label) => (
+              <a
+                key={label}
+                href="#"
+                className="flex items-center justify-between px-5 py-4 bg-[#eef0fb] hover:bg-[#e4e7f7] rounded-full text-sm font-medium text-[#1a2452] transition-colors"
+              >
+                <span>{label}</span>
+                <Icon name="ArrowRight" size={16} className="text-[#1a2452]/40" />
+              </a>
             ))}
           </div>
         </div>
