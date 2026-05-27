@@ -307,7 +307,7 @@ export default function Index() {
           <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3 text-center">
             Возможности
           </p>
-          <h2 className="text-3xl md:text-5xl font-black text-center mb-12 text-foreground">
+          <h2 className="text-[56px] leading-[1.1] font-black text-center mb-12 text-foreground">
             Всё уже включено
           </h2>
 
@@ -334,7 +334,7 @@ export default function Index() {
           <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">
             Проверить прокси
           </p>
-          <h2 className="text-3xl md:text-4xl font-black mb-3 text-foreground">
+          <h2 className="text-[56px] leading-[1.1] font-black mb-3 text-foreground">
             Протестируйте до покупки
           </h2>
           <p className="text-base text-muted-foreground mb-10 max-w-md mx-auto">
@@ -359,7 +359,7 @@ export default function Index() {
           <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3 text-center">
             Тарифы
           </p>
-          <h2 className="text-3xl md:text-5xl font-black mb-3 text-center text-foreground">
+          <h2 className="text-[56px] leading-[1.1] font-black mb-3 text-center text-foreground">
             Простые цены
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-md mx-auto">
@@ -462,7 +462,7 @@ export default function Index() {
                 <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">
                   Контакты
                 </p>
-                <h2 className="text-3xl md:text-4xl font-black mb-4 text-foreground">Напишите нам</h2>
+                <h2 className="text-[56px] leading-[1.1] font-black mb-4 text-foreground">Напишите нам</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-8">
                   Ответим в течение нескольких минут в рабочее время.
                   Для срочных вопросов — Telegram.
