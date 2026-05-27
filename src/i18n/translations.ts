@@ -1,0 +1,136 @@
+export type Lang = "ru" | "zh";
+
+export const translations = {
+  ru: {
+    nav: {
+      services: "Услуги",
+      pricing: "Тарифы",
+      portfolio: "Портфолио",
+      faq: "FAQ",
+      order: "Заказать",
+      buy: "Купить",
+    },
+    hero: {
+      ready: "Готовый",
+      site: "сайт",
+      inDays: "за 7 дней",
+      subtitle: "Создаём сайты под ключ и продвигаем в Яндексе. Дизайн, разработка и первые клиенты — за одну неделю.",
+      orderBtn: "Заказать сайт от 29 000 ₽",
+      consultBtn: "Бесплатная консультация",
+      workWith: "Работаем с",
+    },
+    services: {
+      label: "Услуги",
+      title: "Что мы делаем",
+      price: "Цена",
+    },
+    process: {
+      label: "Процесс",
+      title: "Как мы работаем",
+      step: "Шаг",
+    },
+    pricing: {
+      label: "Тарифы",
+      title: "Простые цены",
+      subtitle: "Фиксированная цена в договоре. Никаких скрытых платежей.",
+      promoSmall: "Не уверены, что нужен сайт?",
+      promoTitle: "Бесплатный аудит вашего сайта",
+      promoDesc: "Покажем точки роста и план по продвижению",
+      promoBtn: "Получить аудит",
+      free: "0 ₽",
+    },
+    faq: {
+      label: "FAQ",
+      title: "Часто спрашивают",
+    },
+    contacts: {
+      label: "Контакты",
+      title: "Напишите нам",
+      subtitle: "Расскажите о задаче — мы вернёмся с предложением и сроками в течение нескольких минут.",
+      writeIn: "Напишите в удобном мессенджере",
+      emailLabel: "Email",
+      phoneLabel: "Телефон",
+      officeLabel: "Офис",
+      hoursLabel: "Время работы",
+      hours: "Пн–Пт, 10:00–20:00 МСК",
+      office: "Москва, ул. Тверская, 7",
+    },
+    footer: {
+      terms: "Пользовательское соглашение",
+      privacy: "Политика конфиденциальности",
+      portfolio: "Портфолио",
+      rights: "Все права защищены",
+    },
+    common: {
+      ru: "RU",
+      zh: "中文",
+    },
+  },
+  zh: {
+    nav: {
+      services: "服务",
+      pricing: "价格",
+      portfolio: "作品集",
+      faq: "常见问题",
+      order: "下单",
+      buy: "购买",
+    },
+    hero: {
+      ready: "现成的",
+      site: "网站",
+      inDays: "7天内交付",
+      subtitle: "我们提供网站建设和Yandex推广一站式服务。设计、开发和首批客户 — 一周内完成。",
+      orderBtn: "订购网站 29 000 ₽起",
+      consultBtn: "免费咨询",
+      workWith: "合作平台",
+    },
+    services: {
+      label: "服务",
+      title: "我们的服务",
+      price: "价格",
+    },
+    process: {
+      label: "流程",
+      title: "工作流程",
+      step: "步骤",
+    },
+    pricing: {
+      label: "价格",
+      title: "简单透明的价格",
+      subtitle: "合同中固定价格。没有隐藏费用。",
+      promoSmall: "不确定是否需要网站？",
+      promoTitle: "免费网站审核",
+      promoDesc: "我们会展示增长点和推广计划",
+      promoBtn: "获取审核",
+      free: "0 ₽",
+    },
+    faq: {
+      label: "常见问题",
+      title: "常见问答",
+    },
+    contacts: {
+      label: "联系我们",
+      title: "联系我们",
+      subtitle: "告诉我们您的需求 — 我们将在几分钟内回复方案和时间安排。",
+      writeIn: "选择您方便的通讯方式",
+      emailLabel: "邮箱",
+      phoneLabel: "电话",
+      officeLabel: "办公室",
+      hoursLabel: "工作时间",
+      hours: "周一至周五，10:00–20:00 莫斯科时间",
+      office: "莫斯科，特维尔街7号",
+    },
+    footer: {
+      terms: "用户协议",
+      privacy: "隐私政策",
+      portfolio: "作品集",
+      rights: "版权所有",
+    },
+    common: {
+      ru: "RU",
+      zh: "中文",
+    },
+  },
+};
+
+export type Translations = typeof translations.ru;

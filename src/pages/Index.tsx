@@ -4,6 +4,7 @@ import Icon from "@/components/ui/icon";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { SERVICES } from "@/data/services";
+import { useLang } from "@/i18n/LangContext";
 
 const PROCESS_STEPS = [
   {
@@ -223,14 +224,15 @@ function FaqItem({ q, a, idx }: { q: string; a: string; idx: number }) {
 
 function FaqSection() {
   const { ref, inView } = useInView(0.1);
+  const { t } = useLang();
   return (
     <section id="faq" ref={ref} className="py-12 px-4 max-w-4xl mx-auto scroll-mt-24">
       <div className={`reveal-up ${inView ? "is-visible" : ""}`}>
         <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
-          FAQ
+          {t.faq.label}
         </p>
         <h2 className="text-[56px] font-black text-center mb-12 text-foreground">
-          Часто спрашивают
+          {t.faq.title}
         </h2>
       </div>
       <div className="space-y-3">
@@ -250,15 +252,16 @@ function FaqSection() {
 
 function ProcessSection() {
   const { ref, inView } = useInView(0.1);
+  const { t } = useLang();
   return (
     <section ref={ref} className="py-12 px-4 max-w-7xl mx-auto">
       <div className="bg-gradient-to-br from-[#d6d8f7] via-[#e3e5fa] to-[#ecdcf2] rounded-[2rem] px-6 md:px-16 py-16">
         <div className={`reveal-up ${inView ? "is-visible" : ""}`}>
           <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
-            Процесс
+            {t.process.label}
           </p>
           <h2 className="text-[56px] font-black mb-12 text-center text-foreground">
-            Как мы работаем
+            {t.process.title}
           </h2>
         </div>
 
@@ -294,7 +297,7 @@ function ProcessSection() {
                     className="text-[11px] uppercase tracking-widest font-bold mb-0.5"
                     style={{ color: step.accent }}
                   >
-                    Шаг {step.num}
+                    {t.process.step} {step.num}
                   </p>
                   <div className="inline-flex items-center gap-1 px-2.5 py-1 bg-secondary rounded-full">
                     <Icon name="Clock" size={11} className="text-foreground/60" />
@@ -334,6 +337,7 @@ export default function Index() {
   const servicesSection = useInView(0.1);
   const pricingSection = useInView(0.1);
   const contactsSection = useInView(0.1);
+  const { t } = useLang();
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -355,16 +359,13 @@ export default function Index() {
 
             <div className="relative max-w-3xl mx-auto">
               <h1 className="font-black tracking-tight text-foreground text-center my-[9px] py-0 text-[56px]">
-                <span className="animate-word-reveal inline-block">Готовый</span>{" "}
-                <span className="animate-word-reveal inline-block text-accent delay-150">сайт</span>{" "}
-                <span className="animate-word-reveal inline-block delay-300">за</span>{" "}
-                <span className="animate-word-reveal inline-block delay-400">7</span>{" "}
-                <span className="animate-word-reveal inline-block delay-500">дней</span>
+                <span className="animate-word-reveal inline-block">{t.hero.ready}</span>{" "}
+                <span className="animate-word-reveal inline-block text-accent delay-150">{t.hero.site}</span>{" "}
+                <span className="animate-word-reveal inline-block delay-300">{t.hero.inDays}</span>
               </h1>
 
               <p className="text-base md:text-lg text-foreground/70 max-w-lg mx-auto mb-10 leading-relaxed animate-fade-up delay-600">
-                Создаём сайты под ключ и продвигаем в Яндексе.
-                Дизайн, разработка и первые клиенты — за одну неделю.
+                {t.hero.subtitle}
               </p>
 
               <div className="flex flex-wrap justify-center gap-3 mb-12 animate-fade-up delay-700">
@@ -372,18 +373,18 @@ export default function Index() {
                   href="#pricing"
                   className="px-7 py-4 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity shadow-lg shadow-foreground/20"
                 >
-                  Заказать сайт от 29 000 ₽
+                  {t.hero.orderBtn}
                 </a>
                 <a
                   href="#contacts"
                   className="px-7 py-4 bg-white text-foreground text-sm font-bold rounded-full hover:bg-white/90 transition-colors shadow-lg shadow-black/5"
                 >
-                  Бесплатная консультация
+                  {t.hero.consultBtn}
                 </a>
               </div>
 
               <p className="text-[11px] uppercase tracking-widest font-bold text-foreground/60 mb-4 animate-fade-up delay-700">
-                Работаем с
+                {t.hero.workWith}
               </p>
               <div className="flex flex-wrap justify-center gap-2 animate-fade-up delay-700">
                 {["ЯНДЕКС", "1С", "AMOCRM", "BITRIX24", "TILDA"].map((m, i) => (
@@ -409,10 +410,10 @@ export default function Index() {
       >
         <div className={`reveal-up ${servicesSection.inView ? "is-visible" : ""}`}>
           <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
-            Услуги
+            {t.services.label}
           </p>
           <h2 className="text-[56px] font-black text-center mb-12 text-foreground">
-            Что мы делаем
+            {t.services.title}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -454,7 +455,7 @@ export default function Index() {
                 <div className="relative flex items-center justify-between pt-5 border-t border-secondary">
                   <div>
                     <p className="text-[10px] text-foreground/50 uppercase tracking-wider font-bold mb-0.5">
-                      Цена
+                      {t.services.price}
                     </p>
                     <p className="text-sm font-bold text-foreground">{f.price}</p>
                   </div>
@@ -484,13 +485,13 @@ export default function Index() {
       >
         <div className={`reveal-up ${pricingSection.inView ? "is-visible" : ""}`}>
           <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
-            Тарифы
+            {t.pricing.label}
           </p>
           <h2 className="text-[56px] font-black mb-3 text-center text-foreground">
-            Простые цены
+            {t.pricing.title}
           </h2>
           <p className="text-center text-foreground/65 mb-12 max-w-md mx-auto text-[15px]">
-            Фиксированная цена в договоре. Никаких скрытых платежей.
+            {t.pricing.subtitle}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
@@ -599,24 +600,24 @@ export default function Index() {
               </div>
               <div>
                 <p className="text-[11px] uppercase tracking-widest font-bold text-[#059669] mb-0.5">
-                  Не уверены, что нужен сайт?
+                  {t.pricing.promoSmall}
                 </p>
-                <p className="font-bold text-foreground text-lg leading-tight">Бесплатный аудит вашего сайта</p>
+                <p className="font-bold text-foreground text-lg leading-tight">{t.pricing.promoTitle}</p>
                 <p className="text-xs text-foreground/60 mt-1">
-                  Покажем точки роста и план по продвижению
+                  {t.pricing.promoDesc}
                 </p>
               </div>
             </div>
             <div className="relative flex items-center gap-4 shrink-0">
               <div className="text-right">
-                <p className="text-[10px] uppercase tracking-widest font-bold text-foreground/50">Цена</p>
-                <p className="text-3xl font-black text-foreground leading-none">0 ₽</p>
+                <p className="text-[10px] uppercase tracking-widest font-bold text-foreground/50">{t.services.price}</p>
+                <p className="text-3xl font-black text-foreground leading-none">{t.pricing.free}</p>
               </div>
               <a
                 href="#contacts"
                 className="inline-flex items-center gap-2 px-6 py-3.5 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity whitespace-nowrap group-hover:scale-105"
               >
-                Получить аудит
+                {t.pricing.promoBtn}
                 <Icon name="ArrowRight" size={16} />
               </a>
             </div>
@@ -638,38 +639,37 @@ export default function Index() {
             <div className="grid md:grid-cols-2 gap-12">
               <div>
                 <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3">
-                  Контакты
+                  {t.contacts.label}
                 </p>
-                <h2 className="text-[56px] font-black mb-4 text-foreground">Напишите нам</h2>
+                <h2 className="text-[56px] font-black mb-4 text-foreground">{t.contacts.title}</h2>
                 <p className="text-[15px] text-foreground/65 leading-relaxed mb-8">
-                  Расскажите о задаче — мы вернёмся с предложением и сроками
-                  в течение нескольких минут.
+                  {t.contacts.subtitle}
                 </p>
 
                 <div className="space-y-4">
                   {[
                     {
                       icon: "Mail",
-                      label: "Email",
+                      label: t.contacts.emailLabel,
                       value: "hello@altdel.ru",
                       gradient: "from-[#a78bfa] to-[#818cf8]",
                     },
                     {
                       icon: "Phone",
-                      label: "Телефон",
+                      label: t.contacts.phoneLabel,
                       value: "+7 (495) 000-00-00",
                       gradient: "from-[#34d399] to-[#22d3ee]",
                     },
                     {
                       icon: "MapPin",
-                      label: "Офис",
-                      value: "Москва, ул. Тверская, 7",
+                      label: t.contacts.officeLabel,
+                      value: t.contacts.office,
                       gradient: "from-[#f472b6] to-[#e879f9]",
                     },
                     {
                       icon: "Clock",
-                      label: "Время работы",
-                      value: "Пн–Пт, 10:00–20:00 МСК",
+                      label: t.contacts.hoursLabel,
+                      value: t.contacts.hours,
                       gradient: "from-[#fbbf24] to-[#fb923c]",
                     },
                   ].map((c) => (
@@ -695,7 +695,7 @@ export default function Index() {
 
               <div className="space-y-3">
                 <p className="text-xs text-muted-foreground mb-3 font-bold uppercase tracking-wider">
-                  Напишите в удобном мессенджере
+                  {t.contacts.writeIn}
                 </p>
                 {[
                   {

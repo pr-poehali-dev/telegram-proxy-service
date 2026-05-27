@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Icon from "@/components/ui/icon";
-
-export const NAV_LINKS = [
-  { label: "Услуги", to: "/#services" },
-  { label: "Тарифы", to: "/#pricing" },
-  { label: "Портфолио", to: "/portfolio" },
-  { label: "FAQ", to: "/#faq" },
-];
+import { useLang } from "@/i18n/LangContext";
 
 export function Logo() {
   return (
@@ -26,9 +20,45 @@ export function Logo() {
   );
 }
 
+function LangSwitcher() {
+  const { lang, setLang } = useLang();
+  return (
+    <div className="flex items-center bg-secondary/70 rounded-full p-1 gap-0.5">
+      <button
+        onClick={() => setLang("ru")}
+        className={`px-3 py-1.5 text-xs font-bold rounded-full transition-all ${
+          lang === "ru"
+            ? "bg-foreground text-background shadow-md"
+            : "text-foreground/60 hover:text-foreground"
+        }`}
+      >
+        RU
+      </button>
+      <button
+        onClick={() => setLang("zh")}
+        className={`px-3 py-1.5 text-xs font-bold rounded-full transition-all ${
+          lang === "zh"
+            ? "bg-foreground text-background shadow-md"
+            : "text-foreground/60 hover:text-foreground"
+        }`}
+      >
+        中文
+      </button>
+    </div>
+  );
+}
+
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLang();
+
+  const NAV_LINKS = [
+    { label: t.nav.services, to: "/#services" },
+    { label: t.nav.pricing, to: "/#pricing" },
+    { label: t.nav.portfolio, to: "/portfolio" },
+    { label: t.nav.faq, to: "/#faq" },
+  ];
 
   const renderLink = (link: { label: string; to: string }) => {
     if (link.to.startsWith("/#")) {
@@ -77,17 +107,20 @@ export default function SiteHeader() {
           {NAV_LINKS.map(renderLink)}
         </nav>
 
-        <Link
-          to="/#contacts"
-          className="hidden md:inline-flex items-center px-6 py-2.5 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity"
-        >
-          Заказать
-        </Link>
+        <div className="hidden md:flex items-center gap-3">
+          <LangSwitcher />
+          <Link
+            to="/#contacts"
+            className="inline-flex items-center px-6 py-2.5 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity"
+          >
+            {t.nav.order}
+          </Link>
+        </div>
 
         <button
           className="md:hidden p-2 text-foreground"
           onClick={() => setOpen(!open)}
-          aria-label="Меню"
+          aria-label="Menu"
         >
           <Icon name={open ? "X" : "Menu"} size={20} />
         </button>
@@ -96,12 +129,15 @@ export default function SiteHeader() {
       {open && (
         <div className="md:hidden mt-2 bg-white rounded-3xl shadow-sm px-6 py-4 flex flex-col gap-3 max-w-7xl mx-auto">
           {NAV_LINKS.map(renderLink)}
+          <div className="pt-2 border-t border-secondary">
+            <LangSwitcher />
+          </div>
           <Link
             to="/#contacts"
             onClick={() => setOpen(false)}
             className="text-center px-5 py-3 bg-foreground text-background text-sm font-bold rounded-full"
           >
-            Заказать
+            {t.nav.order}
           </Link>
         </div>
       )}
