@@ -111,8 +111,8 @@ function TestWidget() {
   };
 
   return (
-    <div className="border border-black/10 rounded-sm p-6 bg-white max-w-lg w-full">
-      <p className="text-xs font-mono text-gray-400 mb-3 uppercase tracking-widest">
+    <div className="border border-border rounded-lg p-6 bg-card max-w-lg w-full">
+      <p className="text-xs font-mono text-muted-foreground mb-3 uppercase tracking-widest">
         Бесплатный тест
       </p>
       <div className="flex gap-2">
@@ -122,20 +122,20 @@ function TestWidget() {
           value={ip}
           onChange={(e) => setIp(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleTest()}
-          className="flex-1 border border-black/15 rounded-sm px-3 py-2 text-sm font-mono outline-none focus:border-black/40 transition-colors bg-transparent placeholder:text-gray-300"
+          className="flex-1 border border-border rounded-md px-3 py-2 text-sm font-mono outline-none focus:border-primary/60 transition-colors bg-background text-foreground placeholder:text-muted-foreground/40"
         />
         <button
           onClick={handleTest}
           disabled={loading || !ip.trim()}
-          className="px-4 py-2 bg-black text-white text-sm font-medium rounded-sm hover:bg-black/80 disabled:opacity-40 transition-colors"
+          className="px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-md hover:opacity-90 disabled:opacity-40 transition-opacity"
         >
           {loading ? "..." : "Проверить"}
         </button>
       </div>
 
       {step === "testing" && (
-        <div className="mt-4 flex items-center gap-2 text-sm text-gray-400">
-          <span className="w-2 h-2 rounded-full bg-black/30 animate-pulse" />
+        <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
+          <span className="w-2 h-2 rounded-full bg-primary/50 animate-pulse" />
           Проверяем соединение...
         </div>
       )}
@@ -147,11 +147,11 @@ function TestWidget() {
             { label: "Геолокация", value: result.country },
             { label: "Задержка", value: result.latency },
           ].map((item) => (
-            <div key={item.label} className="bg-gray-50 rounded-sm px-3 py-2">
-              <p className="text-[10px] text-gray-400 uppercase tracking-wider mb-0.5">
+            <div key={item.label} className="bg-secondary rounded-md px-3 py-2">
+              <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5">
                 {item.label}
               </p>
-              <p className="text-sm font-mono font-medium truncate">{item.value}</p>
+              <p className="text-sm font-mono font-medium truncate text-foreground">{item.value}</p>
             </div>
           ))}
         </div>
@@ -168,12 +168,12 @@ export default function Index() {
   const contactsSection = useInView(0.1);
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-background text-foreground">
       {/* NAV */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-black/8">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-sm border-b border-border">
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-          <a href="#hero" className="font-bold text-base tracking-tight">
-            Proxy<span className="font-light">Line</span>
+          <a href="#hero" className="font-bold text-base tracking-tight text-foreground">
+            Proxy<span className="font-light text-primary">Line</span>
           </a>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -181,7 +181,7 @@ export default function Index() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-gray-500 hover:text-black transition-colors"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.label}
               </a>
@@ -190,13 +190,13 @@ export default function Index() {
 
           <a
             href="#pricing"
-            className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 bg-black text-white text-sm rounded-sm hover:bg-black/80 transition-colors"
+            className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 bg-primary text-primary-foreground text-sm rounded-md hover:opacity-90 transition-opacity"
           >
             Начать
           </a>
 
           <button
-            className="md:hidden p-1"
+            className="md:hidden p-1 text-foreground"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Меню"
           >
@@ -205,13 +205,13 @@ export default function Index() {
         </div>
 
         {menuOpen && (
-          <div className="md:hidden border-t border-black/8 bg-white px-6 py-4 flex flex-col gap-4">
+          <div className="md:hidden border-t border-border bg-background px-6 py-4 flex flex-col gap-4">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-sm text-gray-500 hover:text-black transition-colors"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.label}
               </a>
@@ -219,7 +219,7 @@ export default function Index() {
             <a
               href="#pricing"
               onClick={() => setMenuOpen(false)}
-              className="text-sm font-medium"
+              className="text-sm font-medium text-primary"
             >
               Начать →
             </a>
@@ -237,7 +237,7 @@ export default function Index() {
           style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
           className={heroSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
         >
-          <span className="inline-flex items-center gap-1.5 text-xs font-mono text-gray-400 border border-black/10 rounded-full px-3 py-1 mb-8">
+          <span className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground border border-border rounded-full px-3 py-1 mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
             Все серверы работают
           </span>
@@ -245,10 +245,10 @@ export default function Index() {
           <h1 className="text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight mb-6">
             Прокси без
             <br />
-            <span className="text-black/25">компромиссов</span>
+            <span className="text-primary">компромиссов</span>
           </h1>
 
-          <p className="text-lg text-gray-500 max-w-md mb-10 leading-relaxed">
+          <p className="text-lg text-muted-foreground max-w-md mb-10 leading-relaxed">
             Резидентные и дата-центровые прокси для бизнеса и личных задач.
             Попробуйте бесплатно — без регистрации.
           </p>
@@ -256,13 +256,13 @@ export default function Index() {
           <div className="flex flex-wrap gap-3 mb-16">
             <a
               href="#pricing"
-              className="px-6 py-3 bg-black text-white text-sm font-medium rounded-sm hover:bg-black/80 transition-colors"
+              className="px-6 py-3 bg-primary text-primary-foreground text-sm font-medium rounded-md hover:opacity-90 transition-opacity"
             >
               Выбрать тариф
             </a>
             <a
               href="#test"
-              className="px-6 py-3 border border-black/20 text-black text-sm font-medium rounded-sm hover:border-black/40 transition-colors"
+              className="px-6 py-3 border border-border text-foreground text-sm font-medium rounded-md hover:border-primary/50 transition-colors"
             >
               Тест бесплатно
             </a>
@@ -276,8 +276,8 @@ export default function Index() {
               ["24/7", "поддержка"],
             ].map(([val, label]) => (
               <div key={label}>
-                <p className="text-2xl font-bold">{val}</p>
-                <p className="text-xs text-gray-400">{label}</p>
+                <p className="text-2xl font-bold text-foreground">{val}</p>
+                <p className="text-xs text-muted-foreground">{label}</p>
               </div>
             ))}
           </div>
@@ -285,7 +285,7 @@ export default function Index() {
       </section>
 
       {/* DIVIDER */}
-      <div className="border-t border-black/8 max-w-5xl mx-auto px-6" />
+      <div className="border-t border-border max-w-5xl mx-auto px-6" />
 
       {/* FEATURES */}
       <section
@@ -296,17 +296,17 @@ export default function Index() {
           style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
           className={featuresSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
         >
-          <p className="text-xs font-mono text-gray-400 uppercase tracking-widest mb-10">
+          <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-10">
             Возможности
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-black/8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
             {FEATURES.map((f) => (
-              <div key={f.title} className="bg-white p-8 group">
-                <div className="w-8 h-8 flex items-center justify-center mb-4 text-black/30 group-hover:text-black transition-colors">
+              <div key={f.title} className="bg-background p-8 group">
+                <div className="w-8 h-8 flex items-center justify-center mb-4 text-primary/50 group-hover:text-primary transition-colors">
                   <Icon name={f.icon} fallback="Circle" size={20} />
                 </div>
-                <h3 className="font-semibold text-base mb-2">{f.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{f.desc}</p>
+                <h3 className="font-semibold text-base mb-2 text-foreground">{f.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -314,13 +314,13 @@ export default function Index() {
       </section>
 
       {/* TEST WIDGET */}
-      <section id="test" className="py-16 px-6 bg-gray-50 border-y border-black/8">
+      <section id="test" className="py-16 px-6 bg-secondary/40 border-y border-border">
         <div className="max-w-5xl mx-auto">
-          <p className="text-xs font-mono text-gray-400 uppercase tracking-widest mb-4">
+          <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-4">
             Проверить прокси
           </p>
-          <h2 className="text-2xl font-bold mb-2">Протестируйте до покупки</h2>
-          <p className="text-sm text-gray-500 mb-8">
+          <h2 className="text-2xl font-bold mb-2 text-foreground">Протестируйте до покупки</h2>
+          <p className="text-sm text-muted-foreground mb-8">
             Введите IP прокси и убедитесь в качестве соединения — бесплатно и без регистрации.
           </p>
           <TestWidget />
@@ -337,24 +337,24 @@ export default function Index() {
           style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
           className={pricingSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
         >
-          <p className="text-xs font-mono text-gray-400 uppercase tracking-widest mb-4">
+          <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-4">
             Тарифы
           </p>
-          <h2 className="text-3xl font-bold mb-10">Простые цены</h2>
+          <h2 className="text-3xl font-bold mb-10 text-foreground">Простые цены</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {PLANS.map((plan) => (
               <div
                 key={plan.name}
-                className={`rounded-sm p-6 flex flex-col ${
+                className={`rounded-lg p-6 flex flex-col ${
                   plan.highlight
-                    ? "bg-black text-white"
-                    : "border border-black/12 bg-white"
+                    ? "bg-primary text-primary-foreground ring-2 ring-primary"
+                    : "border border-border bg-card"
                 }`}
               >
                 <p
                   className={`text-xs font-mono uppercase tracking-widest mb-4 ${
-                    plan.highlight ? "text-white/50" : "text-gray-400"
+                    plan.highlight ? "text-primary-foreground/60" : "text-muted-foreground"
                   }`}
                 >
                   {plan.desc}
@@ -363,7 +363,7 @@ export default function Index() {
                   {plan.price}
                   <span
                     className={`text-sm font-normal ml-1 ${
-                      plan.highlight ? "text-white/50" : "text-gray-400"
+                      plan.highlight ? "text-primary-foreground/60" : "text-muted-foreground"
                     }`}
                   >
                     ₽/{plan.period}
@@ -377,9 +377,9 @@ export default function Index() {
                       <Icon
                         name="Check"
                         size={14}
-                        className={plan.highlight ? "text-white/60" : "text-black/40"}
+                        className={plan.highlight ? "text-primary-foreground/70" : "text-primary"}
                       />
-                      <span className={plan.highlight ? "text-white/80" : "text-black/70"}>
+                      <span className={plan.highlight ? "text-primary-foreground/85" : "text-muted-foreground"}>
                         {f}
                       </span>
                     </li>
@@ -387,10 +387,10 @@ export default function Index() {
                 </ul>
 
                 <button
-                  className={`w-full py-2.5 text-sm font-medium rounded-sm transition-colors ${
+                  className={`w-full py-2.5 text-sm font-medium rounded-md transition-opacity ${
                     plan.highlight
-                      ? "bg-white text-black hover:bg-white/90"
-                      : "border border-black/20 text-black hover:border-black/40"
+                      ? "bg-primary-foreground text-primary hover:opacity-90"
+                      : "border border-border text-foreground hover:border-primary/50"
                   }`}
                 >
                   Выбрать
@@ -402,7 +402,7 @@ export default function Index() {
       </section>
 
       {/* DIVIDER */}
-      <div className="border-t border-black/8 max-w-5xl mx-auto px-6" />
+      <div className="border-t border-border max-w-5xl mx-auto px-6" />
 
       {/* CONTACTS */}
       <section
@@ -416,11 +416,11 @@ export default function Index() {
         >
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <p className="text-xs font-mono text-gray-400 uppercase tracking-widest mb-4">
+              <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-4">
                 Контакты
               </p>
-              <h2 className="text-3xl font-bold mb-4">Напишите нам</h2>
-              <p className="text-sm text-gray-500 leading-relaxed mb-8">
+              <h2 className="text-3xl font-bold mb-4 text-foreground">Напишите нам</h2>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-8">
                 Ответим в течение нескольких минут в рабочее время.
                 Для срочных вопросов — Telegram.
               </p>
@@ -432,12 +432,12 @@ export default function Index() {
                   { icon: "Clock", label: "Время работы", value: "Пн–Пт, 9:00–21:00 МСК" },
                 ].map((c) => (
                   <div key={c.label} className="flex items-start gap-3">
-                    <div className="w-8 h-8 flex items-center justify-center border border-black/10 rounded-sm mt-0.5">
-                      <Icon name={c.icon} fallback="Circle" size={14} className="text-black/40" />
+                    <div className="w-8 h-8 flex items-center justify-center border border-border rounded-md mt-0.5">
+                      <Icon name={c.icon} fallback="Circle" size={14} className="text-primary" />
                     </div>
                     <div>
-                      <p className="text-xs text-gray-400 mb-0.5">{c.label}</p>
-                      <p className="text-sm font-medium">{c.value}</p>
+                      <p className="text-xs text-muted-foreground mb-0.5">{c.label}</p>
+                      <p className="text-sm font-medium text-foreground">{c.value}</p>
                     </div>
                   </div>
                 ))}
@@ -450,29 +450,29 @@ export default function Index() {
                 { name: "email", label: "Email", placeholder: "ivan@example.com", type: "email" },
               ].map((field) => (
                 <div key={field.name}>
-                  <label className="block text-xs text-gray-400 mb-1.5">
+                  <label className="block text-xs text-muted-foreground mb-1.5">
                     {field.label}
                   </label>
                   <input
                     type={field.type}
                     placeholder={field.placeholder}
-                    className="w-full border border-black/15 rounded-sm px-3 py-2.5 text-sm outline-none focus:border-black/40 transition-colors placeholder:text-gray-300"
+                    className="w-full border border-border rounded-md px-3 py-2.5 text-sm outline-none focus:border-primary/60 transition-colors bg-background text-foreground placeholder:text-muted-foreground/40"
                   />
                 </div>
               ))}
               <div>
-                <label className="block text-xs text-gray-400 mb-1.5">
+                <label className="block text-xs text-muted-foreground mb-1.5">
                   Сообщение
                 </label>
                 <textarea
                   placeholder="Опишите ваш вопрос..."
                   rows={4}
-                  className="w-full border border-black/15 rounded-sm px-3 py-2.5 text-sm outline-none focus:border-black/40 transition-colors placeholder:text-gray-300 resize-none"
+                  className="w-full border border-border rounded-md px-3 py-2.5 text-sm outline-none focus:border-primary/60 transition-colors bg-background text-foreground placeholder:text-muted-foreground/40 resize-none"
                 />
               </div>
               <button
                 type="submit"
-                className="w-full py-2.5 bg-black text-white text-sm font-medium rounded-sm hover:bg-black/80 transition-colors"
+                className="w-full py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-md hover:opacity-90 transition-opacity"
               >
                 Отправить
               </button>
@@ -482,12 +482,12 @@ export default function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-black/8 py-8 px-6">
+      <footer className="border-t border-border py-8 px-6">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-bold text-sm">
-            Proxy<span className="font-light">Line</span>
+          <p className="font-bold text-sm text-foreground">
+            Proxy<span className="font-light text-primary">Line</span>
           </p>
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-muted-foreground">
             © 2024 ProxyLine. Все права защищены.
           </p>
           <div className="flex gap-6">
@@ -495,7 +495,7 @@ export default function Index() {
               <a
                 key={l.href}
                 href={l.href}
-                className="text-xs text-gray-400 hover:text-black transition-colors"
+                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
               >
                 {l.label}
               </a>
