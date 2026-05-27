@@ -32,39 +32,31 @@ const FEATURES = [
 
 const PLANS = [
   {
-    name: "Старт",
-    price: "490",
-    period: "мес",
-    desc: "Для личных задач",
-    features: ["5 прокси", "10 Гб трафика", "HTTP/HTTPS", "Поддержка 9–21"],
+    name: "Год",
+    price: "4 200",
+    subprice: "≈ 350 ₽ в месяц · экономия 30%",
+    desc: "Любимый тариф",
+    badge: null,
+    btnLabel: "Купить на год",
     highlight: false,
   },
   {
-    name: "Про",
-    price: "1 490",
-    period: "мес",
-    desc: "Для бизнеса",
-    features: [
-      "50 прокси",
-      "100 Гб трафика",
-      "HTTP/HTTPS/SOCKS5",
-      "Приоритетная поддержка",
-      "Ротация IP",
-    ],
+    name: "Два года",
+    price: "5 700",
+    subprice: "≈ 190 ₽ в месяц с учётом подарка",
+    desc: "Лучшее предложение",
+    badge: "+ 6 МЕС. В ПОДАРОК",
+    btnLabel: "Купить на 2 года",
+    btnSub: "+ 6 месяцев в подарок",
     highlight: true,
   },
   {
-    name: "Бизнес",
-    price: "4 990",
-    period: "мес",
-    desc: "Для команд и агентств",
-    features: [
-      "Безлимит прокси",
-      "Безлимит трафик",
-      "Все протоколы",
-      "Поддержка 24/7",
-      "Выделенный менеджер",
-    ],
+    name: "Месяц",
+    price: "500",
+    subprice: "за 30 дней",
+    desc: "Для начала",
+    badge: null,
+    btnLabel: "Купить на месяц",
     highlight: false,
   },
 ];
@@ -342,62 +334,84 @@ export default function Index() {
           </p>
           <h2 className="text-3xl font-bold mb-10 text-foreground">Простые цены</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
             {PLANS.map((plan) => (
               <div
                 key={plan.name}
-                className={`rounded-lg p-6 flex flex-col ${
+                className={`rounded-2xl p-6 flex flex-col ${
                   plan.highlight
-                    ? "bg-primary text-primary-foreground ring-2 ring-primary"
-                    : "border border-border bg-card"
+                    ? "bg-[#2d3a9e] text-white shadow-2xl scale-105 z-10"
+                    : "bg-card border border-border"
                 }`}
               >
+                {plan.badge && (
+                  <span className="self-start mb-4 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-yellow-400 text-yellow-900">
+                    {plan.badge}
+                  </span>
+                )}
+
                 <p
-                  className={`text-xs font-mono uppercase tracking-widest mb-4 ${
-                    plan.highlight ? "text-primary-foreground/60" : "text-muted-foreground"
+                  className={`text-xs uppercase tracking-widest font-semibold mb-2 ${
+                    plan.highlight ? "text-white/60" : "text-muted-foreground"
                   }`}
                 >
                   {plan.desc}
                 </p>
-                <p className="text-4xl font-bold mb-1">
-                  {plan.price}
-                  <span
-                    className={`text-sm font-normal ml-1 ${
-                      plan.highlight ? "text-primary-foreground/60" : "text-muted-foreground"
-                    }`}
-                  >
-                    ₽/{plan.period}
-                  </span>
-                </p>
-                <p className="font-semibold text-lg mb-6">{plan.name}</p>
 
-                <ul className="flex-1 space-y-2.5 mb-8">
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-sm">
-                      <Icon
-                        name="Check"
-                        size={14}
-                        className={plan.highlight ? "text-primary-foreground/70" : "text-primary"}
-                      />
-                      <span className={plan.highlight ? "text-primary-foreground/85" : "text-muted-foreground"}>
-                        {f}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <p className={`text-4xl font-extrabold mb-1 ${plan.highlight ? "text-white" : "text-foreground"}`}>
+                  {plan.name}
+                </p>
+
+                <p className={`text-5xl font-extrabold mt-3 mb-1 ${plan.highlight ? "text-white" : "text-foreground"}`}>
+                  {plan.price} <span className="text-2xl font-bold">₽</span>
+                </p>
+
+                <p className={`text-sm mb-8 mt-1 ${plan.highlight ? "text-white/60" : "text-muted-foreground"}`}>
+                  {plan.subprice}
+                </p>
 
                 <button
-                  className={`w-full py-2.5 text-sm font-medium rounded-md transition-opacity ${
+                  className={`w-full py-3 rounded-xl text-sm font-bold transition-opacity mt-auto ${
                     plan.highlight
-                      ? "bg-primary-foreground text-primary hover:opacity-90"
-                      : "border border-border text-foreground hover:border-primary/50"
+                      ? "bg-yellow-400 text-yellow-900 hover:opacity-90"
+                      : "bg-secondary text-foreground hover:opacity-80"
                   }`}
                 >
-                  Выбрать
+                  <span className="block">{plan.btnLabel}</span>
+                  {plan.btnSub && (
+                    <span className={`block text-xs font-normal mt-0.5 ${plan.highlight ? "text-yellow-800" : "text-muted-foreground"}`}>
+                      {plan.btnSub}
+                    </span>
+                  )}
                 </button>
               </div>
             ))}
           </div>
+
+          {/* Пробный тариф */}
+          <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4 bg-card border border-border rounded-2xl px-6 py-5">
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center shrink-0">
+                <Icon name="Clock" size={18} className="text-muted-foreground" />
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-widest font-semibold text-muted-foreground mb-0.5">
+                  Хочется сначала попробовать?
+                </p>
+                <p className="font-bold text-foreground text-base">Пробный тариф на 24 часа</p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Полный доступ на сутки · можно купить один раз
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 shrink-0">
+              <p className="text-3xl font-extrabold text-foreground">10 ₽</p>
+              <button className="px-5 py-3 bg-foreground text-background text-sm font-bold rounded-xl hover:opacity-90 transition-opacity whitespace-nowrap">
+                Попробовать за 10 ₽
+              </button>
+            </div>
+          </div>
+
         </div>
       </section>
 
