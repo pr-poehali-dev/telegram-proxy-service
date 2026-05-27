@@ -2,9 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 
 const NAV_LINKS = [
-  { label: "Главная", href: "#hero" },
+  { label: "Возможности", href: "#features" },
   { label: "Тарифы", href: "#pricing" },
-  { label: "Контакты", href: "#contacts" },
+  { label: "Характеристики", href: "#specs" },
+  { label: "FAQ", href: "#faq" },
 ];
 
 const FEATURES = [
@@ -36,8 +37,9 @@ const PLANS = [
     price: "4 200",
     subprice: "≈ 350 ₽ в месяц · экономия 30%",
     desc: "Любимый тариф",
-    badge: null,
+    badge: null as string | null,
     btnLabel: "Купить на год",
+    btnSub: null as string | null,
     highlight: false,
   },
   {
@@ -45,9 +47,9 @@ const PLANS = [
     price: "5 700",
     subprice: "≈ 190 ₽ в месяц с учётом подарка",
     desc: "Лучшее предложение",
-    badge: "+ 6 МЕС. В ПОДАРОК",
+    badge: "+ 6 МЕС. В ПОДАРОК" as string | null,
     btnLabel: "Купить на 2 года",
-    btnSub: "+ 6 месяцев в подарок",
+    btnSub: "+ 6 месяцев в подарок" as string | null,
     highlight: true,
   },
   {
@@ -55,8 +57,9 @@ const PLANS = [
     price: "500",
     subprice: "за 30 дней",
     desc: "Для начала",
-    badge: null,
+    badge: null as string | null,
     btnLabel: "Купить на месяц",
+    btnSub: null as string | null,
     highlight: false,
   },
 ];
@@ -103,8 +106,8 @@ function TestWidget() {
   };
 
   return (
-    <div className="border border-border rounded-lg p-6 bg-card max-w-lg w-full">
-      <p className="text-xs font-mono text-muted-foreground mb-3 uppercase tracking-widest">
+    <div className="rounded-3xl p-6 bg-white shadow-sm max-w-2xl w-full">
+      <p className="text-xs font-bold text-muted-foreground mb-3 uppercase tracking-widest">
         Бесплатный тест
       </p>
       <div className="flex gap-2">
@@ -114,12 +117,12 @@ function TestWidget() {
           value={ip}
           onChange={(e) => setIp(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleTest()}
-          className="flex-1 border border-border rounded-md px-3 py-2 text-sm font-mono outline-none focus:border-primary/60 transition-colors bg-background text-foreground placeholder:text-muted-foreground/40"
+          className="flex-1 bg-secondary rounded-full px-5 py-3 text-sm font-medium outline-none focus:ring-2 focus:ring-accent/40 text-foreground placeholder:text-muted-foreground/60"
         />
         <button
           onClick={handleTest}
           disabled={loading || !ip.trim()}
-          className="px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-md hover:opacity-90 disabled:opacity-40 transition-opacity"
+          className="px-6 py-3 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 disabled:opacity-40 transition-opacity"
         >
           {loading ? "..." : "Проверить"}
         </button>
@@ -127,7 +130,7 @@ function TestWidget() {
 
       {step === "testing" && (
         <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
-          <span className="w-2 h-2 rounded-full bg-primary/50 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
           Проверяем соединение...
         </div>
       )}
@@ -139,16 +142,33 @@ function TestWidget() {
             { label: "Геолокация", value: result.country },
             { label: "Задержка", value: result.latency },
           ].map((item) => (
-            <div key={item.label} className="bg-secondary rounded-md px-3 py-2">
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5">
+            <div key={item.label} className="bg-secondary rounded-2xl px-4 py-3">
+              <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5 font-bold">
                 {item.label}
               </p>
-              <p className="text-sm font-mono font-medium truncate text-foreground">{item.value}</p>
+              <p className="text-sm font-bold truncate text-foreground">{item.value}</p>
             </div>
           ))}
         </div>
       )}
     </div>
+  );
+}
+
+function Logo() {
+  return (
+    <a href="#hero" className="flex items-center gap-3">
+      <span
+        className="w-10 h-10 rounded-xl flex items-center justify-center text-foreground font-black text-xl"
+        style={{
+          background: "linear-gradient(135deg, #facc15 0%, #fde047 100%)",
+          boxShadow: "0 4px 12px rgba(250, 204, 21, 0.35)",
+        }}
+      >
+        P
+      </span>
+      <span className="font-extrabold text-lg text-foreground">ProxyLine</span>
+    </a>
   );
 }
 
@@ -161,19 +181,17 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* NAV */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-sm border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-          <a href="#hero" className="font-bold text-base tracking-tight text-foreground">
-            Proxy<span className="font-light text-primary">Line</span>
-          </a>
+      {/* NAV — пилюля */}
+      <header className="fixed top-4 left-4 right-4 z-50">
+        <div className="max-w-7xl mx-auto bg-white/90 backdrop-blur-xl rounded-full shadow-sm px-3 md:px-4 py-2.5 flex items-center justify-between">
+          <Logo />
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8 px-4">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
               >
                 {link.label}
               </a>
@@ -182,13 +200,13 @@ export default function Index() {
 
           <a
             href="#pricing"
-            className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 bg-primary text-primary-foreground text-sm rounded-md hover:opacity-90 transition-opacity"
+            className="hidden md:inline-flex items-center px-6 py-2.5 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity"
           >
-            Начать
+            Купить
           </a>
 
           <button
-            className="md:hidden p-1 text-foreground"
+            className="md:hidden p-2 text-foreground"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Меню"
           >
@@ -197,13 +215,13 @@ export default function Index() {
         </div>
 
         {menuOpen && (
-          <div className="md:hidden border-t border-border bg-background px-6 py-4 flex flex-col gap-4">
+          <div className="md:hidden mt-2 bg-white rounded-3xl shadow-sm px-6 py-4 flex flex-col gap-3">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
               >
                 {link.label}
               </a>
@@ -211,9 +229,9 @@ export default function Index() {
             <a
               href="#pricing"
               onClick={() => setMenuOpen(false)}
-              className="text-sm font-medium text-primary"
+              className="text-center px-5 py-3 bg-foreground text-background text-sm font-bold rounded-full"
             >
-              Начать →
+              Купить
             </a>
           </div>
         )}
@@ -223,23 +241,22 @@ export default function Index() {
       <section
         id="hero"
         ref={heroSection.ref}
-        className="pt-32 pb-24 px-6 max-w-7xl mx-auto"
+        className="pt-28 pb-12 px-4 max-w-7xl mx-auto"
       >
         <div
           style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
           className={heroSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
         >
-          <div className="relative rounded-[2rem] overflow-hidden px-6 py-20 md:py-28 text-center bg-gradient-to-br from-[#cfd1f5] via-[#dfe1f9] to-[#e8d9f0]">
-            {/* Декоративное светлое пятно */}
-            <div className="pointer-events-none absolute -top-10 -right-10 w-72 h-72 rounded-full bg-yellow-200/60 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-20 -left-10 w-72 h-72 rounded-full bg-white/40 blur-3xl" />
+          <div className="relative rounded-[2rem] overflow-hidden px-6 py-20 md:py-28 text-center bg-gradient-to-br from-[#d6d8f7] via-[#e3e5fa] to-[#ecdcf2]">
+            <div className="pointer-events-none absolute -top-10 -right-10 w-80 h-80 rounded-full bg-yellow-200/60 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-20 -left-10 w-80 h-80 rounded-full bg-white/50 blur-3xl" />
 
             <div className="relative max-w-3xl mx-auto">
-              <h1 className="text-4xl md:text-6xl font-black leading-[1.1] tracking-tight mb-6 text-[#1a2452]">
-                Один <span className="text-[#2952ff]">клик</span> — и сервер ваш.
+              <h1 className="text-4xl md:text-6xl font-black leading-[1.1] tracking-tight mb-6 text-foreground">
+                Один <span className="text-accent">клик</span> — и сервер ваш.
               </h1>
 
-              <p className="text-base md:text-lg text-[#3b4382] max-w-lg mx-auto mb-10 leading-relaxed">
+              <p className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto mb-10 leading-relaxed">
                 Оформите доступ — сервер будет готов к работе через пару минут.
                 Инструкции по подключению придут сразу.
               </p>
@@ -247,26 +264,26 @@ export default function Index() {
               <div className="flex flex-wrap justify-center gap-3 mb-12">
                 <a
                   href="#pricing"
-                  className="px-7 py-4 bg-[#1a2452] text-white text-sm font-bold rounded-full hover:opacity-90 transition-opacity shadow-lg shadow-[#1a2452]/20"
+                  className="px-7 py-4 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity shadow-lg shadow-foreground/20"
                 >
                   Купить от 190 ₽/мес
                 </a>
                 <a
                   href="#pricing"
-                  className="px-7 py-4 bg-white text-[#1a2452] text-sm font-bold rounded-full hover:bg-white/90 transition-colors shadow-lg shadow-black/5"
+                  className="px-7 py-4 bg-white text-foreground text-sm font-bold rounded-full hover:bg-white/90 transition-colors shadow-lg shadow-black/5"
                 >
                   Попробовать за 10 ₽
                 </a>
               </div>
 
-              <p className="text-[11px] uppercase tracking-widest font-bold text-[#5a64a8]/70 mb-4">
+              <p className="text-[11px] uppercase tracking-widest font-bold text-muted-foreground/80 mb-4">
                 Принимаем к оплате
               </p>
               <div className="flex flex-wrap justify-center gap-2">
                 {["VISA", "MC", "МИР", "CRYPTO"].map((m) => (
                   <span
                     key={m}
-                    className="px-4 py-2 bg-white rounded-xl text-xs font-bold text-[#1a2452] shadow-sm"
+                    className="px-4 py-2 bg-white rounded-xl text-xs font-bold text-foreground shadow-sm"
                   >
                     {m}
                   </span>
@@ -274,49 +291,36 @@ export default function Index() {
               </div>
             </div>
           </div>
-
-          {/* Нижние ссылки-плашки */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
-            {[
-              "Пользовательское соглашение",
-              "Политика конфиденциальности",
-              "Статус узлов",
-            ].map((label) => (
-              <a
-                key={label}
-                href="#"
-                className="flex items-center justify-between px-5 py-4 bg-[#eef0fb] hover:bg-[#e4e7f7] rounded-full text-sm font-medium text-[#1a2452] transition-colors"
-              >
-                <span>{label}</span>
-                <Icon name="ArrowRight" size={16} className="text-[#1a2452]/40" />
-              </a>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* DIVIDER */}
-      <div className="border-t border-border max-w-7xl mx-auto px-6" />
-
       {/* FEATURES */}
       <section
+        id="features"
         ref={featuresSection.ref}
-        className="py-20 px-6 max-w-7xl mx-auto"
+        className="py-12 px-4 max-w-7xl mx-auto"
       >
         <div
           style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
           className={featuresSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
         >
-          <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-10">
+          <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3 text-center">
             Возможности
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
+          <h2 className="text-3xl md:text-5xl font-black text-center mb-12 text-foreground">
+            Всё уже включено
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {FEATURES.map((f) => (
-              <div key={f.title} className="bg-background p-8 group">
-                <div className="w-8 h-8 flex items-center justify-center mb-4 text-primary/50 group-hover:text-primary transition-colors">
-                  <Icon name={f.icon} fallback="Circle" size={20} />
+              <div
+                key={f.title}
+                className="bg-white rounded-3xl p-7 hover:-translate-y-1 transition-transform"
+              >
+                <div className="w-12 h-12 flex items-center justify-center mb-5 rounded-2xl bg-secondary text-accent">
+                  <Icon name={f.icon} fallback="Circle" size={22} />
                 </div>
-                <h3 className="font-semibold text-base mb-2 text-foreground">{f.title}</h3>
+                <h3 className="font-bold text-lg mb-2 text-foreground">{f.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
               </div>
             ))}
@@ -325,16 +329,20 @@ export default function Index() {
       </section>
 
       {/* TEST WIDGET */}
-      <section id="test" className="py-16 px-6 bg-secondary/40 border-y border-border">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-4">
+      <section id="test" className="py-12 px-4 max-w-7xl mx-auto">
+        <div className="bg-gradient-to-br from-[#d6d8f7] via-[#e3e5fa] to-[#ecdcf2] rounded-[2rem] px-6 md:px-16 py-16 text-center">
+          <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">
             Проверить прокси
           </p>
-          <h2 className="text-2xl font-bold mb-2 text-foreground">Протестируйте до покупки</h2>
-          <p className="text-sm text-muted-foreground mb-8">
+          <h2 className="text-3xl md:text-4xl font-black mb-3 text-foreground">
+            Протестируйте до покупки
+          </h2>
+          <p className="text-base text-muted-foreground mb-10 max-w-md mx-auto">
             Введите IP прокси и убедитесь в качестве соединения — бесплатно и без регистрации.
           </p>
-          <TestWidget />
+          <div className="flex justify-center">
+            <TestWidget />
+          </div>
         </div>
       </section>
 
@@ -342,25 +350,30 @@ export default function Index() {
       <section
         id="pricing"
         ref={pricingSection.ref}
-        className="py-20 px-6 max-w-7xl mx-auto"
+        className="py-16 px-4 max-w-7xl mx-auto"
       >
         <div
           style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
           className={pricingSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
         >
-          <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-4">
+          <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3 text-center">
             Тарифы
           </p>
-          <h2 className="text-3xl font-bold mb-10 text-foreground">Простые цены</h2>
+          <h2 className="text-3xl md:text-5xl font-black mb-3 text-center text-foreground">
+            Простые цены
+          </h2>
+          <p className="text-center text-muted-foreground mb-12 max-w-md mx-auto">
+            84% клиентов переходят на длительный тариф уже после первого месяца.
+          </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
             {PLANS.map((plan) => (
               <div
                 key={plan.name}
-                className={`rounded-2xl p-6 flex flex-col ${
+                className={`rounded-3xl p-8 flex flex-col ${
                   plan.highlight
-                    ? "bg-[#2d3a9e] text-white shadow-2xl scale-105 z-10"
-                    : "bg-card border border-border"
+                    ? "bg-[#2d3a9e] text-white shadow-2xl md:scale-105 z-10"
+                    : "bg-white"
                 }`}
               >
                 {plan.badge && (
@@ -370,18 +383,18 @@ export default function Index() {
                 )}
 
                 <p
-                  className={`text-xs uppercase tracking-widest font-semibold mb-2 ${
+                  className={`text-xs uppercase tracking-widest font-bold mb-2 ${
                     plan.highlight ? "text-white/60" : "text-muted-foreground"
                   }`}
                 >
                   {plan.desc}
                 </p>
 
-                <p className={`text-4xl font-extrabold mb-1 ${plan.highlight ? "text-white" : "text-foreground"}`}>
+                <p className={`text-4xl font-black mb-1 ${plan.highlight ? "text-white" : "text-foreground"}`}>
                   {plan.name}
                 </p>
 
-                <p className={`text-5xl font-extrabold mt-3 mb-1 ${plan.highlight ? "text-white" : "text-foreground"}`}>
+                <p className={`text-5xl font-black mt-3 mb-1 ${plan.highlight ? "text-white" : "text-foreground"}`}>
                   {plan.price} <span className="text-2xl font-bold">₽</span>
                 </p>
 
@@ -390,7 +403,7 @@ export default function Index() {
                 </p>
 
                 <button
-                  className={`w-full py-3 rounded-xl text-sm font-bold transition-opacity mt-auto ${
+                  className={`w-full py-4 rounded-full text-sm font-bold transition-opacity mt-auto ${
                     plan.highlight
                       ? "bg-yellow-400 text-yellow-900 hover:opacity-90"
                       : "bg-secondary text-foreground hover:opacity-80"
@@ -408,13 +421,13 @@ export default function Index() {
           </div>
 
           {/* Пробный тариф */}
-          <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4 bg-card border border-border rounded-2xl px-6 py-5">
+          <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white rounded-3xl px-6 py-5">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center shrink-0">
-                <Icon name="Clock" size={18} className="text-muted-foreground" />
+              <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center shrink-0">
+                <Icon name="Clock" size={20} className="text-foreground" />
               </div>
               <div>
-                <p className="text-xs uppercase tracking-widest font-semibold text-muted-foreground mb-0.5">
+                <p className="text-xs uppercase tracking-widest font-bold text-muted-foreground mb-0.5">
                   Хочется сначала попробовать?
                 </p>
                 <p className="font-bold text-foreground text-base">Пробный тариф на 24 часа</p>
@@ -424,116 +437,118 @@ export default function Index() {
               </div>
             </div>
             <div className="flex items-center gap-4 shrink-0">
-              <p className="text-3xl font-extrabold text-foreground">10 ₽</p>
-              <button className="px-5 py-3 bg-foreground text-background text-sm font-bold rounded-xl hover:opacity-90 transition-opacity whitespace-nowrap">
+              <p className="text-3xl font-black text-foreground">10 ₽</p>
+              <button className="px-6 py-3.5 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity whitespace-nowrap">
                 Попробовать за 10 ₽
               </button>
             </div>
           </div>
-
         </div>
       </section>
-
-      {/* DIVIDER */}
-      <div className="border-t border-border max-w-7xl mx-auto px-6" />
 
       {/* CONTACTS */}
       <section
         id="contacts"
         ref={contactsSection.ref}
-        className="py-20 px-6 max-w-7xl mx-auto"
+        className="py-16 px-4 max-w-7xl mx-auto"
       >
         <div
           style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
           className={contactsSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
         >
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-4">
-                Контакты
-              </p>
-              <h2 className="text-3xl font-bold mb-4 text-foreground">Напишите нам</h2>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-8">
-                Ответим в течение нескольких минут в рабочее время.
-                Для срочных вопросов — Telegram.
-              </p>
+          <div className="bg-white rounded-[2rem] p-8 md:p-12">
+            <div className="grid md:grid-cols-2 gap-12">
+              <div>
+                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">
+                  Контакты
+                </p>
+                <h2 className="text-3xl md:text-4xl font-black mb-4 text-foreground">Напишите нам</h2>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-8">
+                  Ответим в течение нескольких минут в рабочее время.
+                  Для срочных вопросов — Telegram.
+                </p>
 
-              <div className="space-y-4">
+                <div className="space-y-4">
+                  {[
+                    { icon: "Mail", label: "Email", value: "hello@proxyline.ru" },
+                    { icon: "MessageCircle", label: "Telegram", value: "@proxyline_support" },
+                    { icon: "Clock", label: "Время работы", value: "Пн–Пт, 9:00–21:00 МСК" },
+                  ].map((c) => (
+                    <div key={c.label} className="flex items-start gap-3">
+                      <div className="w-10 h-10 flex items-center justify-center bg-secondary rounded-2xl mt-0.5 shrink-0">
+                        <Icon name={c.icon} fallback="Circle" size={16} className="text-foreground" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground mb-0.5 font-bold uppercase tracking-wider">{c.label}</p>
+                        <p className="text-sm font-bold text-foreground">{c.value}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <form className="space-y-3">
                 {[
-                  { icon: "Mail", label: "Email", value: "hello@proxyline.ru" },
-                  { icon: "MessageCircle", label: "Telegram", value: "@proxyline_support" },
-                  { icon: "Clock", label: "Время работы", value: "Пн–Пт, 9:00–21:00 МСК" },
-                ].map((c) => (
-                  <div key={c.label} className="flex items-start gap-3">
-                    <div className="w-8 h-8 flex items-center justify-center border border-border rounded-md mt-0.5">
-                      <Icon name={c.icon} fallback="Circle" size={14} className="text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-muted-foreground mb-0.5">{c.label}</p>
-                      <p className="text-sm font-medium text-foreground">{c.value}</p>
-                    </div>
+                  { name: "name", label: "Имя", placeholder: "Иван Иванов", type: "text" },
+                  { name: "email", label: "Email", placeholder: "ivan@example.com", type: "email" },
+                ].map((field) => (
+                  <div key={field.name}>
+                    <label className="block text-xs text-muted-foreground mb-1.5 font-bold uppercase tracking-wider">
+                      {field.label}
+                    </label>
+                    <input
+                      type={field.type}
+                      placeholder={field.placeholder}
+                      className="w-full bg-secondary rounded-2xl px-5 py-3.5 text-sm outline-none focus:ring-2 focus:ring-accent/40 transition text-foreground placeholder:text-muted-foreground/60"
+                    />
                   </div>
                 ))}
-              </div>
-            </div>
-
-            <form className="space-y-4">
-              {[
-                { name: "name", label: "Имя", placeholder: "Иван Иванов", type: "text" },
-                { name: "email", label: "Email", placeholder: "ivan@example.com", type: "email" },
-              ].map((field) => (
-                <div key={field.name}>
-                  <label className="block text-xs text-muted-foreground mb-1.5">
-                    {field.label}
+                <div>
+                  <label className="block text-xs text-muted-foreground mb-1.5 font-bold uppercase tracking-wider">
+                    Сообщение
                   </label>
-                  <input
-                    type={field.type}
-                    placeholder={field.placeholder}
-                    className="w-full border border-border rounded-md px-3 py-2.5 text-sm outline-none focus:border-primary/60 transition-colors bg-background text-foreground placeholder:text-muted-foreground/40"
+                  <textarea
+                    placeholder="Опишите ваш вопрос..."
+                    rows={4}
+                    className="w-full bg-secondary rounded-2xl px-5 py-3.5 text-sm outline-none focus:ring-2 focus:ring-accent/40 transition text-foreground placeholder:text-muted-foreground/60 resize-none"
                   />
                 </div>
-              ))}
-              <div>
-                <label className="block text-xs text-muted-foreground mb-1.5">
-                  Сообщение
-                </label>
-                <textarea
-                  placeholder="Опишите ваш вопрос..."
-                  rows={4}
-                  className="w-full border border-border rounded-md px-3 py-2.5 text-sm outline-none focus:border-primary/60 transition-colors bg-background text-foreground placeholder:text-muted-foreground/40 resize-none"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-md hover:opacity-90 transition-opacity"
-              >
-                Отправить
-              </button>
-            </form>
+                <button
+                  type="submit"
+                  className="w-full py-4 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity"
+                >
+                  Отправить
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border py-8 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-bold text-sm text-foreground">
-            Proxy<span className="font-light text-primary">Line</span>
-          </p>
+      <footer className="px-4 pb-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+          {[
+            "Пользовательское соглашение",
+            "Политика конфиденциальности",
+            "Статус узлов",
+          ].map((label) => (
+            <a
+              key={label}
+              href="#"
+              className="flex items-center justify-between px-6 py-4 bg-white hover:bg-secondary rounded-full text-sm font-medium text-foreground transition-colors"
+            >
+              <span>{label}</span>
+              <Icon name="ArrowRight" size={16} className="text-muted-foreground" />
+            </a>
+          ))}
+        </div>
+
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 px-4">
+          <Logo />
           <p className="text-xs text-muted-foreground">
             © 2024 ProxyLine. Все права защищены.
           </p>
-          <div className="flex gap-6">
-            {NAV_LINKS.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
         </div>
       </footer>
     </div>
