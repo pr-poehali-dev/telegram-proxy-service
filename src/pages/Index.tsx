@@ -163,7 +163,7 @@ export default function Index() {
     <div className="min-h-screen bg-background text-foreground">
       {/* NAV */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-sm border-b border-border">
-        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
           <a href="#hero" className="font-bold text-base tracking-tight text-foreground">
             Proxy<span className="font-light text-primary">Line</span>
           </a>
@@ -223,7 +223,7 @@ export default function Index() {
       <section
         id="hero"
         ref={heroSection.ref}
-        className="pt-32 pb-24 px-6 max-w-5xl mx-auto"
+        className="pt-32 pb-24 px-6 max-w-7xl mx-auto"
       >
         <div
           style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
@@ -296,12 +296,12 @@ export default function Index() {
       </section>
 
       {/* DIVIDER */}
-      <div className="border-t border-border max-w-5xl mx-auto px-6" />
+      <div className="border-t border-border max-w-7xl mx-auto px-6" />
 
       {/* FEATURES */}
       <section
         ref={featuresSection.ref}
-        className="py-20 px-6 max-w-5xl mx-auto"
+        className="py-20 px-6 max-w-7xl mx-auto"
       >
         <div
           style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
@@ -326,7 +326,7 @@ export default function Index() {
 
       {/* TEST WIDGET */}
       <section id="test" className="py-16 px-6 bg-secondary/40 border-y border-border">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-4">
             Проверить прокси
           </p>
@@ -342,7 +342,7 @@ export default function Index() {
       <section
         id="pricing"
         ref={pricingSection.ref}
-        className="py-20 px-6 max-w-5xl mx-auto"
+        className="py-20 px-6 max-w-7xl mx-auto"
       >
         <div
           style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
@@ -435,13 +435,13 @@ export default function Index() {
       </section>
 
       {/* DIVIDER */}
-      <div className="border-t border-border max-w-5xl mx-auto px-6" />
+      <div className="border-t border-border max-w-7xl mx-auto px-6" />
 
       {/* CONTACTS */}
       <section
         id="contacts"
         ref={contactsSection.ref}
-        className="py-20 px-6 max-w-5xl mx-auto"
+        className="py-20 px-6 max-w-7xl mx-auto"
       >
         <div
           style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
@@ -516,7 +516,7 @@ export default function Index() {
 
       {/* FOOTER */}
       <footer className="border-t border-border py-8 px-6">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-bold text-sm text-foreground">
             Proxy<span className="font-light text-primary">Line</span>
           </p>
