@@ -140,9 +140,68 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         />
       </button>
       {open && (
-        <div className="px-6 pb-5 text-sm text-muted-foreground leading-relaxed">{a}</div>
+        <div className="px-6 pb-5 text-[15px] text-foreground/70 leading-relaxed animate-fade-up">{a}</div>
       )}
     </div>
+  );
+}
+
+function FaqSection() {
+  const { ref, inView } = useInView(0.1);
+  return (
+    <section id="faq" ref={ref} className="py-12 px-4 max-w-4xl mx-auto scroll-mt-24">
+      <div className={`reveal-up ${inView ? "is-visible" : ""}`}>
+        <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
+          FAQ
+        </p>
+        <h2 className="text-[56px] font-black text-center mb-12 text-foreground">
+          Часто спрашивают
+        </h2>
+      </div>
+      <div className="space-y-3">
+        {FAQ.map((item, i) => (
+          <div
+            key={item.q}
+            style={{ animationDelay: `${i * 100}ms` }}
+            className={inView ? "animate-fade-up" : "opacity-0"}
+          >
+            <FaqItem q={item.q} a={item.a} />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ProcessSection() {
+  const { ref, inView } = useInView(0.1);
+  return (
+    <section ref={ref} className="py-12 px-4 max-w-7xl mx-auto">
+      <div className="bg-gradient-to-br from-[#d6d8f7] via-[#e3e5fa] to-[#ecdcf2] rounded-[2rem] px-6 md:px-16 py-16">
+        <div className={`reveal-up ${inView ? "is-visible" : ""}`}>
+          <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
+            Процесс
+          </p>
+          <h2 className="text-[56px] font-black mb-12 text-center text-foreground">
+            Как мы работаем
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {PROCESS_STEPS.map((step, i) => (
+            <div
+              key={step.num}
+              style={{ animationDelay: `${i * 100}ms` }}
+              className={`bg-white rounded-3xl p-7 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 ${inView ? "animate-fade-up" : "opacity-0"}`}
+            >
+              <p className="text-3xl font-black text-accent mb-3">{step.num}</p>
+              <p className="font-bold text-lg mb-1 text-foreground">{step.title}</p>
+              <p className="text-[15px] text-foreground/65 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -171,16 +230,20 @@ export default function Index() {
             <div className="pointer-events-none absolute -bottom-20 -left-10 w-80 h-80 rounded-full bg-white/50 blur-3xl" />
 
             <div className="relative max-w-3xl mx-auto">
-              <h1 className="font-black leading-[1.1] tracking-tight text-foreground text-center my-[9px] py-0 text-[56px]">
-                Готовый <span className="text-accent">сайт</span> за 7 дней
+              <h1 className="font-black tracking-tight text-foreground text-center my-[9px] py-0 text-[56px]">
+                <span className="animate-word-reveal inline-block">Готовый</span>{" "}
+                <span className="animate-word-reveal inline-block text-accent delay-150">сайт</span>{" "}
+                <span className="animate-word-reveal inline-block delay-300">за</span>{" "}
+                <span className="animate-word-reveal inline-block delay-400">7</span>{" "}
+                <span className="animate-word-reveal inline-block delay-500">дней</span>
               </h1>
 
-              <p className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto mb-10 leading-relaxed">
+              <p className="text-base md:text-lg text-foreground/70 max-w-lg mx-auto mb-10 leading-relaxed animate-fade-up delay-600">
                 Создаём сайты под ключ и продвигаем в Яндексе.
                 Дизайн, разработка и первые клиенты — за одну неделю.
               </p>
 
-              <div className="flex flex-wrap justify-center gap-3 mb-12">
+              <div className="flex flex-wrap justify-center gap-3 mb-12 animate-fade-up delay-700">
                 <a
                   href="#pricing"
                   className="px-7 py-4 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity shadow-lg shadow-foreground/20"
@@ -195,14 +258,15 @@ export default function Index() {
                 </a>
               </div>
 
-              <p className="text-[11px] uppercase tracking-widest font-bold text-muted-foreground/80 mb-4">
+              <p className="text-[11px] uppercase tracking-widest font-bold text-foreground/60 mb-4 animate-fade-up delay-700">
                 Работаем с
               </p>
-              <div className="flex flex-wrap justify-center gap-2">
-                {["ЯНДЕКС", "1С", "AMOCRM", "BITRIX24", "TILDA"].map((m) => (
+              <div className="flex flex-wrap justify-center gap-2 animate-fade-up delay-700">
+                {["ЯНДЕКС", "1С", "AMOCRM", "BITRIX24", "TILDA"].map((m, i) => (
                   <span
                     key={m}
-                    className="px-4 py-2 bg-white rounded-xl text-xs font-bold text-foreground shadow-sm"
+                    style={{ animationDelay: `${800 + i * 80}ms` }}
+                    className="px-4 py-2 bg-white rounded-xl text-xs font-bold text-foreground shadow-sm animate-fade-up hover:-translate-y-0.5 transition-transform"
                   >
                     {m}
                   </span>
@@ -219,28 +283,26 @@ export default function Index() {
         ref={servicesSection.ref}
         className="py-12 px-4 max-w-7xl mx-auto scroll-mt-24"
       >
-        <div
-          style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
-          className={servicesSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
-        >
-          <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3 text-center">
+        <div className={`reveal-up ${servicesSection.inView ? "is-visible" : ""}`}>
+          <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
             Услуги
           </p>
-          <h2 className="text-[56px] leading-[1.1] font-black text-center mb-12 text-foreground">
+          <h2 className="text-[56px] font-black text-center mb-12 text-foreground">
             Что мы делаем
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {SERVICES.map((f) => (
+            {SERVICES.map((f, i) => (
               <div
                 key={f.title}
-                className="bg-white rounded-3xl p-7 hover:-translate-y-1 transition-transform"
+                style={{ animationDelay: `${i * 120}ms` }}
+                className={`bg-white rounded-3xl p-7 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 ${servicesSection.inView ? "animate-fade-up" : "opacity-0"}`}
               >
                 <div className="w-12 h-12 flex items-center justify-center mb-5 rounded-2xl bg-secondary text-accent">
                   <Icon name={f.icon} fallback="Circle" size={22} />
                 </div>
                 <h3 className="font-bold text-lg mb-2 text-foreground">{f.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+                <p className="text-[15px] text-foreground/65 leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -248,26 +310,9 @@ export default function Index() {
       </section>
 
       {/* PROCESS */}
-      <section className="py-12 px-4 max-w-7xl mx-auto">
-        <div className="bg-gradient-to-br from-[#d6d8f7] via-[#e3e5fa] to-[#ecdcf2] rounded-[2rem] px-6 md:px-16 py-16">
-          <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3 text-center">
-            Процесс
-          </p>
-          <h2 className="text-[56px] leading-[1.1] font-black mb-12 text-center text-foreground">
-            Как мы работаем
-          </h2>
+      <ProcessSection />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {PROCESS_STEPS.map((step) => (
-              <div key={step.num} className="bg-white rounded-3xl p-7">
-                <p className="text-3xl font-black text-accent mb-3">{step.num}</p>
-                <p className="font-bold text-lg mb-1 text-foreground">{step.title}</p>
-                <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* PROCESS-END */}
 
       {/* PRICING */}
       <section
@@ -275,29 +320,27 @@ export default function Index() {
         ref={pricingSection.ref}
         className="py-16 px-4 max-w-7xl mx-auto scroll-mt-24"
       >
-        <div
-          style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
-          className={pricingSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
-        >
-          <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3 text-center">
+        <div className={`reveal-up ${pricingSection.inView ? "is-visible" : ""}`}>
+          <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
             Тарифы
           </p>
-          <h2 className="text-[56px] leading-[1.1] font-black mb-3 text-center text-foreground">
+          <h2 className="text-[56px] font-black mb-3 text-center text-foreground">
             Простые цены
           </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-md mx-auto">
+          <p className="text-center text-foreground/65 mb-12 max-w-md mx-auto text-[15px]">
             Фиксированная цена в договоре. Никаких скрытых платежей.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
-            {PLANS.map((plan) => (
+            {PLANS.map((plan, idx) => (
               <div
                 key={plan.name}
-                className={`rounded-3xl p-8 flex flex-col ${
+                style={{ animationDelay: `${idx * 130}ms` }}
+                className={`rounded-3xl p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300 ${
                   plan.highlight
                     ? "bg-[#2d3a9e] text-white shadow-2xl md:scale-105 z-10"
-                    : "bg-white"
-                }`}
+                    : "bg-white hover:shadow-lg"
+                } ${pricingSection.inView ? "animate-fade-up" : "opacity-0"}`}
               >
                 {plan.badge && (
                   <span className="self-start mb-4 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-yellow-400 text-yellow-900">
@@ -388,19 +431,7 @@ export default function Index() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="py-12 px-4 max-w-4xl mx-auto scroll-mt-24">
-        <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3 text-center">
-          FAQ
-        </p>
-        <h2 className="text-[56px] leading-[1.1] font-black text-center mb-12 text-foreground">
-          Часто спрашивают
-        </h2>
-        <div className="space-y-3">
-          {FAQ.map((item) => (
-            <FaqItem key={item.q} q={item.q} a={item.a} />
-          ))}
-        </div>
-      </section>
+      <FaqSection />
 
       {/* CONTACTS */}
       <section
@@ -408,18 +439,15 @@ export default function Index() {
         ref={contactsSection.ref}
         className="py-16 px-4 max-w-7xl mx-auto scroll-mt-24"
       >
-        <div
-          style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
-          className={contactsSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
-        >
+        <div className={`reveal-up ${contactsSection.inView ? "is-visible" : ""}`}>
           <div className="bg-white rounded-[2rem] p-8 md:p-12">
             <div className="grid md:grid-cols-2 gap-12">
               <div>
-                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">
+                <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3">
                   Контакты
                 </p>
-                <h2 className="text-[56px] leading-[1.1] font-black mb-4 text-foreground">Напишите нам</h2>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-8">
+                <h2 className="text-[56px] font-black mb-4 text-foreground">Напишите нам</h2>
+                <p className="text-[15px] text-foreground/65 leading-relaxed mb-8">
                   Расскажите о задаче — мы вернёмся с предложением и сроками
                   в течение нескольких минут.
                 </p>
