@@ -253,7 +253,7 @@ export default function Index() {
 
             <div className="relative max-w-3xl mx-auto">
               <h1 className="font-black leading-[1.1] tracking-tight text-foreground text-center my-[9px] py-0 text-[56px]">
-                Один <span className="text-accent">сайт</span> — и сервер ваш.
+                Готовый <span className="text-accent">сайт</span> за 7 дней
               </h1>
 
               <p className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto mb-10 leading-relaxed">
