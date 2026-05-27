@@ -100,15 +100,18 @@ export default function ServicePage() {
             <div
               key={item.title}
               style={{ animationDelay: `${i * 100}ms` }}
-              className="bg-white rounded-3xl p-7 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 animate-fade-up"
+              className="group relative bg-white rounded-3xl p-7 hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 animate-fade-up overflow-hidden"
             >
               <div
-                className={`w-12 h-12 flex items-center justify-center mb-5 rounded-2xl bg-gradient-to-br ${service.gradient} text-white`}
+                className={`absolute -top-16 -right-16 w-40 h-40 rounded-full bg-gradient-to-br ${service.gradient} opacity-10 blur-3xl group-hover:opacity-30 group-hover:scale-125 transition-all duration-500`}
+              />
+              <div
+                className={`relative w-14 h-14 flex items-center justify-center mb-5 rounded-2xl bg-gradient-to-br ${service.gradient} text-white shadow-lg group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500`}
               >
-                <Icon name={item.icon} fallback="Circle" size={22} />
+                <Icon name={item.icon} fallback="Circle" size={24} />
               </div>
-              <h3 className="font-bold text-lg mb-2 text-foreground">{item.title}</h3>
-              <p className="text-[15px] text-foreground/65 leading-relaxed">{item.desc}</p>
+              <h3 className="relative font-bold text-lg mb-2 text-foreground">{item.title}</h3>
+              <p className="relative text-[15px] text-foreground/65 leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -137,19 +140,21 @@ export default function ServicePage() {
               </button>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-2">
               {service.features.map((feat, i) => (
                 <div
                   key={feat}
                   style={{ animationDelay: `${i * 80}ms` }}
-                  className="flex items-start gap-3 animate-fade-up"
+                  className="group flex items-center gap-3 p-3 rounded-2xl hover:bg-secondary/60 transition-colors animate-fade-up"
                 >
                   <div
-                    className={`w-7 h-7 rounded-full bg-gradient-to-br ${service.gradient} flex items-center justify-center shrink-0 mt-0.5`}
+                    className={`w-9 h-9 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shrink-0 shadow-md group-hover:scale-110 transition-transform`}
                   >
-                    <Icon name="Check" size={14} className="text-white" />
+                    <Icon name="Check" size={16} className="text-white" />
                   </div>
-                  <span className="text-foreground text-[15px] leading-relaxed">{feat}</span>
+                  <span className="text-foreground text-[15px] leading-relaxed font-medium">
+                    {feat}
+                  </span>
                 </div>
               ))}
             </div>
@@ -172,21 +177,35 @@ export default function ServicePage() {
               <div
                 key={step.num}
                 style={{ animationDelay: `${i * 100}ms` }}
-                className="relative bg-white rounded-3xl p-7 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 animate-fade-up overflow-hidden"
+                className="group relative bg-white rounded-3xl p-7 hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 animate-fade-up overflow-hidden"
               >
-                <div
-                  className={`absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br ${service.gradient} opacity-10 blur-2xl`}
-                />
-                <p
-                  className="relative text-4xl font-black mb-3"
+                <span
+                  className="absolute -top-6 -right-2 text-[140px] font-black leading-none select-none pointer-events-none opacity-[0.06] group-hover:opacity-[0.12] transition-opacity"
                   style={{ color: service.accent }}
                 >
                   {step.num}
-                </p>
-                <p className="relative font-bold text-lg mb-1 text-foreground">{step.title}</p>
-                <p className="relative text-[15px] text-foreground/65 leading-relaxed">
+                </span>
+                <div
+                  className={`absolute -bottom-20 -left-10 w-48 h-48 rounded-full bg-gradient-to-br ${service.gradient} opacity-[0.08] blur-3xl group-hover:opacity-20 transition-opacity duration-500`}
+                />
+
+                <div
+                  className={`relative w-14 h-14 flex items-center justify-center rounded-2xl bg-gradient-to-br ${service.gradient} text-white shadow-lg mb-5 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500`}
+                >
+                  <span className="font-black text-lg">{step.num}</span>
+                </div>
+                <h3 className="relative font-bold text-lg mb-2 text-foreground">{step.title}</h3>
+                <p className="relative text-[15px] text-foreground/65 leading-relaxed mb-5">
                   {step.desc}
                 </p>
+
+                {/* Прогресс-полоска */}
+                <div className="relative h-1.5 bg-secondary rounded-full overflow-hidden">
+                  <div
+                    className={`h-full bg-gradient-to-r ${service.gradient} rounded-full`}
+                    style={{ width: `${((i + 1) / service.stages.length) * 100}%` }}
+                  />
+                </div>
               </div>
             ))}
           </div>
@@ -241,20 +260,42 @@ export default function ServicePage() {
               className="group relative bg-white rounded-3xl p-7 hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 overflow-hidden"
             >
               <div
-                className={`absolute -top-16 -right-16 w-40 h-40 rounded-full bg-gradient-to-br ${f.gradient} opacity-20 blur-2xl group-hover:opacity-40 transition-all duration-500`}
+                className={`absolute -top-16 -right-16 w-40 h-40 rounded-full bg-gradient-to-br ${f.gradient} opacity-20 blur-2xl group-hover:opacity-40 group-hover:scale-125 transition-all duration-500`}
               />
-              <div
-                className={`relative w-14 h-14 flex items-center justify-center rounded-2xl bg-gradient-to-br ${f.gradient} text-white shadow-lg mb-5 group-hover:scale-110 transition-transform`}
-              >
-                <Icon name={f.icon} fallback="Circle" size={24} />
+
+              <div className="relative flex items-start justify-between mb-6">
+                <div
+                  className={`w-14 h-14 flex items-center justify-center rounded-2xl bg-gradient-to-br ${f.gradient} text-white shadow-lg group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500`}
+                >
+                  <Icon name={f.icon} fallback="Circle" size={24} />
+                </div>
+                <span
+                  className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider"
+                  style={{ background: `${f.accent}15`, color: f.accent }}
+                >
+                  {f.badge}
+                </span>
               </div>
-              <h3 className="relative font-bold text-xl mb-2 text-foreground">{f.title}</h3>
+
+              <h3 className="relative font-bold text-xl mb-2 text-foreground leading-tight">
+                {f.title}
+              </h3>
               <p className="relative text-[15px] text-foreground/65 leading-relaxed mb-6">
                 {f.desc}
               </p>
               <div className="relative flex items-center justify-between pt-5 border-t border-secondary">
-                <p className="text-sm font-bold text-foreground">{f.price}</p>
-                <Icon name="ArrowRight" size={18} className="text-foreground/40 group-hover:text-foreground group-hover:translate-x-1 transition-all" />
+                <div>
+                  <p className="text-[10px] text-foreground/50 uppercase tracking-wider font-bold mb-0.5">
+                    Цена
+                  </p>
+                  <p className="text-sm font-bold text-foreground">{f.price}</p>
+                </div>
+                <div
+                  className="w-9 h-9 rounded-full flex items-center justify-center group-hover:translate-x-1 transition-transform"
+                  style={{ background: f.accent }}
+                >
+                  <Icon name="ArrowRight" size={16} className="text-white" />
+                </div>
               </div>
             </Link>
           ))}
