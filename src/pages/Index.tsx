@@ -1,66 +1,108 @@
 import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 
-const NAV_LINKS = [
-  { label: "Возможности", href: "#features" },
-  { label: "Тарифы", href: "#pricing" },
-  { label: "Характеристики", href: "#specs" },
-  { label: "FAQ", href: "#faq" },
+const SERVICES = [
+  {
+    icon: "Layout",
+    title: "Лендинги под ключ",
+    desc: "Продающая одностраничная посадка с дизайном, текстами и формами.",
+  },
+  {
+    icon: "ShoppingBag",
+    title: "Интернет-магазины",
+    desc: "Каталог, корзина, оплата, интеграция с CRM и 1С.",
+  },
+  {
+    icon: "Briefcase",
+    title: "Корпоративные сайты",
+    desc: "Многостраничные сайты для компаний и услуг с понятной структурой.",
+  },
+  {
+    icon: "TrendingUp",
+    title: "Продвижение в Яндексе",
+    desc: "SEO под Яндекс, Директ, аналитика. Поднимаем в ТОП-10.",
+  },
 ];
 
-const FEATURES = [
-  {
-    icon: "Zap",
-    title: "Скорость до 10 Гбит/с",
-    desc: "Минимальные задержки и стабильное соединение без разрывов.",
-  },
-  {
-    icon: "Globe",
-    title: "200+ стран",
-    desc: "Резидентные и дата-центровые прокси в любой точке мира.",
-  },
-  {
-    icon: "ShieldCheck",
-    title: "Анонимность 100%",
-    desc: "Не храним логи. Ваши данные остаются только у вас.",
-  },
-  {
-    icon: "RefreshCw",
-    title: "Ротация IP",
-    desc: "Автоматическая смена IP по расписанию или по запросу.",
-  },
+const PROCESS_STEPS = [
+  { num: "01", title: "Бриф", desc: "Узнаём задачу, целевую аудиторию и пожелания." },
+  { num: "02", title: "Прототип", desc: "Согласуем структуру и логику страниц." },
+  { num: "03", title: "Дизайн", desc: "Создаём уникальный визуал в фирменном стиле." },
+  { num: "04", title: "Разработка", desc: "Верстаем адаптивно, подключаем функции." },
+  { num: "05", title: "Запуск", desc: "Размещаем на хостинге, настраиваем аналитику." },
+  { num: "06", title: "Продвижение", desc: "Выводим в ТОП Яндекса и приводим клиентов." },
 ];
 
 const PLANS = [
   {
-    name: "Год",
-    price: "4 200",
-    subprice: "≈ 350 ₽ в месяц · экономия 30%",
-    desc: "Любимый тариф",
+    name: "Лендинг",
+    price: "29 000",
+    subprice: "Срок: 7 дней · с дизайном и текстами",
+    desc: "Для старта",
     badge: null as string | null,
-    btnLabel: "Купить на год",
+    btnLabel: "Заказать лендинг",
     btnSub: null as string | null,
     highlight: false,
+    features: [
+      "Уникальный дизайн",
+      "Адаптив под мобильные",
+      "До 5 секций",
+      "Форма заявки на почту",
+    ],
   },
   {
-    name: "Два года",
-    price: "5 700",
-    subprice: "≈ 190 ₽ в месяц с учётом подарка",
+    name: "Сайт + SEO",
+    price: "59 000",
+    subprice: "Лендинг + 3 месяца продвижения в Яндексе",
     desc: "Лучшее предложение",
-    badge: "+ 6 МЕС. В ПОДАРОК" as string | null,
-    btnLabel: "Купить на 2 года",
-    btnSub: "+ 6 месяцев в подарок" as string | null,
+    badge: "ХИТ ПРОДАЖ" as string | null,
+    btnLabel: "Заказать комплекс",
+    btnSub: "+ продвижение в подарок" as string | null,
     highlight: true,
+    features: [
+      "Всё из тарифа «Лендинг»",
+      "SEO-оптимизация",
+      "Семантическое ядро",
+      "Настройка Яндекс.Метрики",
+      "Отчёты каждый месяц",
+    ],
   },
   {
-    name: "Месяц",
-    price: "500",
-    subprice: "за 30 дней",
-    desc: "Для начала",
+    name: "Магазин",
+    price: "89 000",
+    subprice: "Срок: 14 дней · каталог + оплата",
+    desc: "Для продаж",
     badge: null as string | null,
-    btnLabel: "Купить на месяц",
+    btnLabel: "Заказать магазин",
     btnSub: null as string | null,
     highlight: false,
+    features: [
+      "Каталог товаров",
+      "Корзина и оплата онлайн",
+      "Личный кабинет",
+      "Интеграция с CRM",
+    ],
+  },
+];
+
+const FAQ = [
+  {
+    q: "Сколько стоит сайт под ключ?",
+    a: "Базовый лендинг — от 29 000 ₽. Корпоративный сайт — от 59 000 ₽. Интернет-магазин — от 89 000 ₽. Финальная цена зависит от объёма и сложности.",
+  },
+  {
+    q: "За сколько дней сделаете сайт?",
+    a: "Лендинг — 7 дней, корпоративный сайт — 10–14 дней, интернет-магазин — 14–21 день. Срок фиксируем в договоре.",
+  },
+  {
+    q: "Как вы продвигаете сайты в Яндексе?",
+    a: "Собираем семантическое ядро, оптимизируем тексты и метатеги, настраиваем Яндекс.Вебмастер и Метрику. При необходимости запускаем Яндекс.Директ.",
+  },
+  {
+    q: "Что если мне не понравится результат?",
+    a: "На каждом этапе мы согласуем работу. Если что-то не подходит — переделываем без доплат до полного утверждения.",
   },
 ];
 
@@ -82,160 +124,37 @@ function useInView(threshold = 0.15) {
   return { ref, inView };
 }
 
-function TestWidget() {
-  const [ip, setIp] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<null | { ip: string; country: string; latency: string }>(null);
-  const [step, setStep] = useState<"idle" | "testing" | "done">("idle");
-
-  const handleTest = () => {
-    if (!ip.trim()) return;
-    setLoading(true);
-    setStep("testing");
-    setResult(null);
-
-    setTimeout(() => {
-      setResult({
-        ip: ip.trim(),
-        country: "Германия 🇩🇪",
-        latency: `${Math.floor(Math.random() * 30 + 8)} мс`,
-      });
-      setLoading(false);
-      setStep("done");
-    }, 1800);
-  };
-
+function FaqItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false);
   return (
-    <div className="rounded-3xl p-6 bg-white shadow-sm max-w-2xl w-full">
-      <p className="text-xs font-bold text-muted-foreground mb-3 uppercase tracking-widest">
-        Бесплатный тест
-      </p>
-      <div className="flex gap-2">
-        <input
-          type="text"
-          placeholder="Введите IP или домен прокси"
-          value={ip}
-          onChange={(e) => setIp(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleTest()}
-          className="flex-1 bg-secondary rounded-full px-5 py-3 text-sm font-medium outline-none focus:ring-2 focus:ring-accent/40 text-foreground placeholder:text-muted-foreground/60"
+    <div className="bg-white rounded-2xl overflow-hidden">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
+      >
+        <span className="font-bold text-foreground text-base md:text-lg">{q}</span>
+        <Icon
+          name="Plus"
+          size={20}
+          className={`text-muted-foreground transition-transform shrink-0 ${open ? "rotate-45" : ""}`}
         />
-        <button
-          onClick={handleTest}
-          disabled={loading || !ip.trim()}
-          className="px-6 py-3 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 disabled:opacity-40 transition-opacity"
-        >
-          {loading ? "..." : "Проверить"}
-        </button>
-      </div>
-
-      {step === "testing" && (
-        <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
-          <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-          Проверяем соединение...
-        </div>
-      )}
-
-      {step === "done" && result && (
-        <div className="mt-4 grid grid-cols-3 gap-3">
-          {[
-            { label: "IP", value: result.ip },
-            { label: "Геолокация", value: result.country },
-            { label: "Задержка", value: result.latency },
-          ].map((item) => (
-            <div key={item.label} className="bg-secondary rounded-2xl px-4 py-3">
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5 font-bold">
-                {item.label}
-              </p>
-              <p className="text-sm font-bold truncate text-foreground">{item.value}</p>
-            </div>
-          ))}
-        </div>
+      </button>
+      {open && (
+        <div className="px-6 pb-5 text-sm text-muted-foreground leading-relaxed">{a}</div>
       )}
     </div>
   );
 }
 
-function Logo() {
-  return (
-    <a href="#hero" className="flex items-center gap-3">
-      <span
-        className="w-10 h-10 rounded-xl flex items-center justify-center text-foreground font-black text-xl"
-        style={{
-          background: "linear-gradient(135deg, #facc15 0%, #fde047 100%)",
-          boxShadow: "0 4px 12px rgba(250, 204, 21, 0.35)",
-        }}
-      >
-        P
-      </span>
-      <span className="font-extrabold text-lg text-foreground">ProxyLine</span>
-    </a>
-  );
-}
-
 export default function Index() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const heroSection = useInView(0.1);
-  const featuresSection = useInView(0.1);
+  const servicesSection = useInView(0.1);
   const pricingSection = useInView(0.1);
   const contactsSection = useInView(0.1);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* NAV — пилюля */}
-      <header className="fixed top-4 left-4 right-4 z-50">
-        <div className="max-w-7xl mx-auto bg-white/90 backdrop-blur-xl rounded-full shadow-sm px-3 md:px-4 py-2.5 flex items-center justify-between">
-          <Logo />
-
-          <nav className="hidden md:flex items-center gap-8 px-4">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          <a
-            href="#pricing"
-            className="hidden md:inline-flex items-center px-6 py-2.5 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity"
-          >
-            Купить
-          </a>
-
-          <button
-            className="md:hidden p-2 text-foreground"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Меню"
-          >
-            <Icon name={menuOpen ? "X" : "Menu"} size={20} />
-          </button>
-        </div>
-
-        {menuOpen && (
-          <div className="md:hidden mt-2 bg-white rounded-3xl shadow-sm px-6 py-4 flex flex-col gap-3">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="#pricing"
-              onClick={() => setMenuOpen(false)}
-              className="text-center px-5 py-3 bg-foreground text-background text-sm font-bold rounded-full"
-            >
-              Купить
-            </a>
-          </div>
-        )}
-      </header>
+      <SiteHeader />
 
       {/* HERO */}
       <section
@@ -257,8 +176,8 @@ export default function Index() {
               </h1>
 
               <p className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto mb-10 leading-relaxed">
-                Оформите доступ — сервер будет готов к работе через пару минут.
-                Инструкции по подключению придут сразу.
+                Создаём сайты под ключ и продвигаем в Яндексе.
+                Дизайн, разработка и первые клиенты — за одну неделю.
               </p>
 
               <div className="flex flex-wrap justify-center gap-3 mb-12">
@@ -266,21 +185,21 @@ export default function Index() {
                   href="#pricing"
                   className="px-7 py-4 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity shadow-lg shadow-foreground/20"
                 >
-                  Купить от 190 ₽/мес
+                  Заказать сайт от 29 000 ₽
                 </a>
                 <a
-                  href="#pricing"
+                  href="#contacts"
                   className="px-7 py-4 bg-white text-foreground text-sm font-bold rounded-full hover:bg-white/90 transition-colors shadow-lg shadow-black/5"
                 >
-                  Попробовать за 10 ₽
+                  Бесплатная консультация
                 </a>
               </div>
 
               <p className="text-[11px] uppercase tracking-widest font-bold text-muted-foreground/80 mb-4">
-                Принимаем к оплате
+                Работаем с
               </p>
               <div className="flex flex-wrap justify-center gap-2">
-                {["VISA", "MC", "МИР", "CRYPTO"].map((m) => (
+                {["ЯНДЕКС", "1С", "AMOCRM", "BITRIX24", "TILDA"].map((m) => (
                   <span
                     key={m}
                     className="px-4 py-2 bg-white rounded-xl text-xs font-bold text-foreground shadow-sm"
@@ -294,25 +213,25 @@ export default function Index() {
         </div>
       </section>
 
-      {/* FEATURES */}
+      {/* SERVICES */}
       <section
-        id="features"
-        ref={featuresSection.ref}
-        className="py-12 px-4 max-w-7xl mx-auto"
+        id="services"
+        ref={servicesSection.ref}
+        className="py-12 px-4 max-w-7xl mx-auto scroll-mt-24"
       >
         <div
           style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
-          className={featuresSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
+          className={servicesSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
         >
           <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3 text-center">
-            Возможности
+            Услуги
           </p>
           <h2 className="text-[56px] leading-[1.1] font-black text-center mb-12 text-foreground">
-            Всё уже включено
+            Что мы делаем
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {FEATURES.map((f) => (
+            {SERVICES.map((f) => (
               <div
                 key={f.title}
                 className="bg-white rounded-3xl p-7 hover:-translate-y-1 transition-transform"
@@ -328,20 +247,24 @@ export default function Index() {
         </div>
       </section>
 
-      {/* TEST WIDGET */}
-      <section id="test" className="py-12 px-4 max-w-7xl mx-auto">
-        <div className="bg-gradient-to-br from-[#d6d8f7] via-[#e3e5fa] to-[#ecdcf2] rounded-[2rem] px-6 md:px-16 py-16 text-center">
-          <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">
-            Проверить прокси
+      {/* PROCESS */}
+      <section className="py-12 px-4 max-w-7xl mx-auto">
+        <div className="bg-gradient-to-br from-[#d6d8f7] via-[#e3e5fa] to-[#ecdcf2] rounded-[2rem] px-6 md:px-16 py-16">
+          <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3 text-center">
+            Процесс
           </p>
-          <h2 className="text-[56px] leading-[1.1] font-black mb-3 text-foreground">
-            Протестируйте до покупки
+          <h2 className="text-[56px] leading-[1.1] font-black mb-12 text-center text-foreground">
+            Как мы работаем
           </h2>
-          <p className="text-base text-muted-foreground mb-10 max-w-md mx-auto">
-            Введите IP прокси и убедитесь в качестве соединения — бесплатно и без регистрации.
-          </p>
-          <div className="flex justify-center">
-            <TestWidget />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {PROCESS_STEPS.map((step) => (
+              <div key={step.num} className="bg-white rounded-3xl p-7">
+                <p className="text-3xl font-black text-accent mb-3">{step.num}</p>
+                <p className="font-bold text-lg mb-1 text-foreground">{step.title}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -350,7 +273,7 @@ export default function Index() {
       <section
         id="pricing"
         ref={pricingSection.ref}
-        className="py-16 px-4 max-w-7xl mx-auto"
+        className="py-16 px-4 max-w-7xl mx-auto scroll-mt-24"
       >
         <div
           style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
@@ -363,7 +286,7 @@ export default function Index() {
             Простые цены
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-md mx-auto">
-            84% клиентов переходят на длительный тариф уже после первого месяца.
+            Фиксированная цена в договоре. Никаких скрытых платежей.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
@@ -398,9 +321,24 @@ export default function Index() {
                   {plan.price} <span className="text-2xl font-bold">₽</span>
                 </p>
 
-                <p className={`text-sm mb-8 mt-1 ${plan.highlight ? "text-white/60" : "text-muted-foreground"}`}>
+                <p className={`text-sm mb-6 mt-1 ${plan.highlight ? "text-white/60" : "text-muted-foreground"}`}>
                   {plan.subprice}
                 </p>
+
+                <ul className="space-y-2 mb-8">
+                  {plan.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-sm">
+                      <Icon
+                        name="Check"
+                        size={16}
+                        className={`mt-0.5 shrink-0 ${plan.highlight ? "text-yellow-400" : "text-accent"}`}
+                      />
+                      <span className={plan.highlight ? "text-white/85" : "text-muted-foreground"}>
+                        {f}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
 
                 <button
                   className={`w-full py-4 rounded-full text-sm font-bold transition-opacity mt-auto ${
@@ -420,29 +358,47 @@ export default function Index() {
             ))}
           </div>
 
-          {/* Пробный тариф */}
+          {/* Промо-блок */}
           <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white rounded-3xl px-6 py-5">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center shrink-0">
-                <Icon name="Clock" size={20} className="text-foreground" />
+                <Icon name="Gift" size={20} className="text-foreground" />
               </div>
               <div>
                 <p className="text-xs uppercase tracking-widest font-bold text-muted-foreground mb-0.5">
-                  Хочется сначала попробовать?
+                  Не уверены, что нужен сайт?
                 </p>
-                <p className="font-bold text-foreground text-base">Пробный тариф на 24 часа</p>
+                <p className="font-bold text-foreground text-base">Бесплатный аудит вашего сайта</p>
                 <p className="text-xs text-muted-foreground mt-0.5">
-                  Полный доступ на сутки · можно купить один раз
+                  Покажем точки роста и план по продвижению
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-4 shrink-0">
-              <p className="text-3xl font-black text-foreground">10 ₽</p>
-              <button className="px-6 py-3.5 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity whitespace-nowrap">
-                Попробовать за 10 ₽
-              </button>
+              <p className="text-3xl font-black text-foreground">0 ₽</p>
+              <a
+                href="#contacts"
+                className="px-6 py-3.5 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity whitespace-nowrap"
+              >
+                Получить аудит
+              </a>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="py-12 px-4 max-w-4xl mx-auto scroll-mt-24">
+        <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3 text-center">
+          FAQ
+        </p>
+        <h2 className="text-[56px] leading-[1.1] font-black text-center mb-12 text-foreground">
+          Часто спрашивают
+        </h2>
+        <div className="space-y-3">
+          {FAQ.map((item) => (
+            <FaqItem key={item.q} q={item.q} a={item.a} />
+          ))}
         </div>
       </section>
 
@@ -450,7 +406,7 @@ export default function Index() {
       <section
         id="contacts"
         ref={contactsSection.ref}
-        className="py-16 px-4 max-w-7xl mx-auto"
+        className="py-16 px-4 max-w-7xl mx-auto scroll-mt-24"
       >
         <div
           style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
@@ -464,15 +420,16 @@ export default function Index() {
                 </p>
                 <h2 className="text-[56px] leading-[1.1] font-black mb-4 text-foreground">Напишите нам</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-8">
-                  Ответим в течение нескольких минут в рабочее время.
-                  Для срочных вопросов — Telegram.
+                  Расскажите о задаче — мы вернёмся с предложением и сроками
+                  в течение нескольких минут.
                 </p>
 
                 <div className="space-y-4">
                   {[
-                    { icon: "Mail", label: "Email", value: "hello@proxyline.ru" },
-                    { icon: "MessageCircle", label: "Telegram", value: "@proxyline_support" },
-                    { icon: "Clock", label: "Время работы", value: "Пн–Пт, 9:00–21:00 МСК" },
+                    { icon: "Mail", label: "Email", value: "hello@sitecraft.ru" },
+                    { icon: "MessageCircle", label: "Telegram", value: "@sitecraft_team" },
+                    { icon: "Phone", label: "Телефон", value: "+7 (495) 000-00-00" },
+                    { icon: "Clock", label: "Время работы", value: "Пн–Пт, 10:00–20:00 МСК" },
                   ].map((c) => (
                     <div key={c.label} className="flex items-start gap-3">
                       <div className="w-10 h-10 flex items-center justify-center bg-secondary rounded-2xl mt-0.5 shrink-0">
@@ -490,7 +447,7 @@ export default function Index() {
               <form className="space-y-3">
                 {[
                   { name: "name", label: "Имя", placeholder: "Иван Иванов", type: "text" },
-                  { name: "email", label: "Email", placeholder: "ivan@example.com", type: "email" },
+                  { name: "phone", label: "Телефон", placeholder: "+7 (___) ___-__-__", type: "tel" },
                 ].map((field) => (
                   <div key={field.name}>
                     <label className="block text-xs text-muted-foreground mb-1.5 font-bold uppercase tracking-wider">
@@ -505,10 +462,10 @@ export default function Index() {
                 ))}
                 <div>
                   <label className="block text-xs text-muted-foreground mb-1.5 font-bold uppercase tracking-wider">
-                    Сообщение
+                    Опишите задачу
                   </label>
                   <textarea
-                    placeholder="Опишите ваш вопрос..."
+                    placeholder="Хочу лендинг под услугу..."
                     rows={4}
                     className="w-full bg-secondary rounded-2xl px-5 py-3.5 text-sm outline-none focus:ring-2 focus:ring-accent/40 transition text-foreground placeholder:text-muted-foreground/60 resize-none"
                   />
@@ -517,40 +474,18 @@ export default function Index() {
                   type="submit"
                   className="w-full py-4 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity"
                 >
-                  Отправить
+                  Отправить заявку
                 </button>
+                <p className="text-xs text-muted-foreground text-center">
+                  Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
+                </p>
               </form>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="px-4 pb-8 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
-          {[
-            "Пользовательское соглашение",
-            "Политика конфиденциальности",
-            "Статус узлов",
-          ].map((label) => (
-            <a
-              key={label}
-              href="#"
-              className="flex items-center justify-between px-6 py-4 bg-white hover:bg-secondary rounded-full text-sm font-medium text-foreground transition-colors"
-            >
-              <span>{label}</span>
-              <Icon name="ArrowRight" size={16} className="text-muted-foreground" />
-            </a>
-          ))}
-        </div>
-
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 px-4">
-          <Logo />
-          <p className="text-xs text-muted-foreground">
-            © 2024 ProxyLine. Все права защищены.
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
