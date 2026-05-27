@@ -13,15 +13,15 @@ export function Logo() {
   return (
     <Link to="/" className="flex items-center gap-3">
       <span
-        className="w-10 h-10 rounded-xl flex items-center justify-center text-foreground font-black text-xl"
+        className="w-10 h-10 rounded-xl flex items-center justify-center text-foreground font-black text-sm"
         style={{
           background: "linear-gradient(135deg, #facc15 0%, #fde047 100%)",
           boxShadow: "0 4px 12px rgba(250, 204, 21, 0.35)",
         }}
       >
-        S
+        A
       </span>
-      <span className="font-extrabold text-lg text-foreground">SiteCraft</span>
+      <span className="font-extrabold text-lg text-foreground">AltDel</span>
     </Link>
   );
 }

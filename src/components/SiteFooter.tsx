@@ -25,7 +25,7 @@ export default function SiteFooter() {
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 px-4">
         <Logo />
         <p className="text-xs text-muted-foreground">
-          © 2026 SiteCraft. Все права защищены.
+          © 2026 AltDel. Все права защищены.
         </p>
       </div>
     </footer>
