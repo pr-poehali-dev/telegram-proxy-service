@@ -252,7 +252,7 @@ export default function Index() {
             <div className="pointer-events-none absolute -bottom-20 -left-10 w-80 h-80 rounded-full bg-white/50 blur-3xl" />
 
             <div className="relative max-w-3xl mx-auto">
-              <h1 className="md:text-6xl font-black leading-[1.1] tracking-tight text-foreground text-center my-[9px] py-0 text-5xl">
+              <h1 className="font-black leading-[1.1] tracking-tight text-foreground text-center my-[9px] py-0 text-[56px]">
                 Один <span className="text-accent">клик</span> — и сервер ваш.
               </h1>
 
