@@ -374,7 +374,7 @@ export default function Index() {
 
               <h1 className="font-semibold tracking-tight text-foreground text-center my-[9px] py-0 text-[56px]">
                 <span className="animate-word-reveal inline-block">{t.hero.ready}</span>{" "}
-                <span className="animate-word-reveal inline-block text-accent delay-150 relative">
+                <span className="animate-word-reveal inline-block delay-150 relative text-shimmer">
                   {t.hero.site}
                   <span className="absolute -bottom-1 left-0 right-0 h-2 bg-yellow-300/60 -z-10 rounded-full" />
                 </span>{" "}
@@ -388,19 +388,19 @@ export default function Index() {
               <div className="flex flex-wrap justify-center gap-3 mb-12 animate-fade-up delay-700">
                 <a
                   href="#pricing"
-                  className="group inline-flex items-center gap-2 px-7 py-4 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 hover:scale-105 transition-all shadow-xl shadow-foreground/20"
+                  className="btn-shine animate-pulse-soft group inline-flex items-center gap-2 px-7 py-4 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 hover:scale-105 transition-all shadow-xl shadow-foreground/20"
                 >
-                  {t.hero.orderBtn}
-                  <Icon name="ArrowRight" size={16} className="group-hover:translate-x-1 transition-transform" />
+                  <span className="relative z-10">{t.hero.orderBtn}</span>
+                  <Icon name="ArrowRight" size={16} className="relative z-10 group-hover:translate-x-1 transition-transform" />
                 </a>
                 <a
                   href="https://max.ru/@id752905383918_bot"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-7 py-4 bg-white text-foreground text-sm font-bold rounded-full hover:scale-105 transition-all shadow-lg shadow-black/5"
+                  className="btn-shine group inline-flex items-center gap-2 px-7 py-4 bg-white text-foreground text-sm font-bold rounded-full hover:scale-105 transition-all shadow-lg shadow-black/5"
                 >
-                  <Icon name="MessageCircle" size={16} />
-                  {t.hero.consultBtn}
+                  <Icon name="MessageCircle" size={16} className="relative z-10 group-hover:rotate-12 transition-transform" />
+                  <span className="relative z-10">{t.hero.consultBtn}</span>
                 </a>
               </div>
 
@@ -607,13 +607,13 @@ export default function Index() {
                 </ul>
 
                 <button
-                  className={`relative w-full py-4 rounded-full text-sm font-bold transition-all duration-300 mt-auto group-hover:scale-[1.02] ${
+                  className={`btn-shine relative w-full py-4 rounded-full text-sm font-bold transition-all duration-300 mt-auto group-hover:scale-[1.02] ${
                     plan.highlight
-                      ? "bg-yellow-400 text-yellow-900 hover:shadow-2xl hover:shadow-yellow-400/40"
+                      ? "bg-yellow-400 text-yellow-900 hover:shadow-2xl hover:shadow-yellow-400/40 animate-pulse-soft"
                       : "bg-foreground text-background hover:shadow-xl"
                   }`}
                 >
-                  <span className="block">{plan.btnLabel}</span>
+                  <span className="block relative z-10">{plan.btnLabel}</span>
                   {plan.btnSub && (
                     <span className={`block text-xs font-normal mt-0.5 ${plan.highlight ? "text-yellow-800" : "text-background/70"}`}>
                       {plan.btnSub}
@@ -648,10 +648,10 @@ export default function Index() {
               </div>
               <a
                 href="#contacts"
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity whitespace-nowrap group-hover:scale-105"
+                className="btn-shine group/btn inline-flex items-center gap-2 px-6 py-3.5 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-opacity whitespace-nowrap group-hover:scale-105"
               >
-                {t.pricing.promoBtn}
-                <Icon name="ArrowRight" size={16} />
+                <span className="relative z-10">{t.pricing.promoBtn}</span>
+                <Icon name="ArrowRight" size={16} className="relative z-10 group-hover/btn:translate-x-1 transition-transform" />
               </a>
             </div>
           </div>
