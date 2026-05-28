@@ -394,7 +394,9 @@ export default function Index() {
                   <Icon name="ArrowRight" size={16} className="group-hover:translate-x-1 transition-transform" />
                 </a>
                 <a
-                  href="#contacts"
+                  href="https://max.ru/id752905383918_bot"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-7 py-4 bg-white text-foreground text-sm font-bold rounded-full hover:scale-105 transition-all shadow-lg shadow-black/5"
                 >
                   <Icon name="MessageCircle" size={16} />
