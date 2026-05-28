@@ -16,7 +16,7 @@ export const translations = {
       inDays: "за 7 дней",
       subtitle:
         "Создаём сайты под ключ и продвигаем в Яндексе. Дизайн, разработка и первые клиенты — за одну неделю.",
-      orderBtn: "Заказать сайт от 29 000 ₽",
+      orderBtn: "Заказать сайт от 15 000 ₽",
       consultBtn: "Бесплатная консультация",
       workWith: "Работаем с",
     },
@@ -146,7 +146,7 @@ export const translations = {
       inDays: "7天内交付",
       subtitle:
         "我们提供网站建设和Yandex推广一站式服务。设计、开发和首批客户 — 一周内完成。",
-      orderBtn: "订购网站 29 000 ₽起",
+      orderBtn: "订购网站 15 000 ₽起",
       consultBtn: "免费咨询",
       workWith: "合作平台",
     },
