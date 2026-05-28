@@ -25,23 +25,6 @@ type RawProject = {
 
 const RAW_PROJECTS: RawProject[] = [
   {
-    title: { ru: "Платформа для закупок в Китае", zh: "中国采购平台" },
-    client: { ru: "ChinaCart", zh: "ChinaCart" },
-    category: "corp",
-    tags: [
-      { ru: "Платформа", zh: "平台" },
-      { ru: "B2B", zh: "B2B" },
-    ],
-    result: { ru: "ТОП-3 Яндекса по 12 запросам", zh: "Yandex 12个关键词进入前3" },
-    metric: { value: "×4", label: { ru: "рост заявок", zh: "申请增长" } },
-    gradient: "from-[#34d399] via-[#22d3ee] to-[#60a5fa]",
-    accent: "#0891b2",
-    icon: "Briefcase",
-    emoji: "🛒",
-    url: "https://chinacart.ru",
-    image: "https://cdn.poehali.dev/projects/ce65ddef-2217-4074-b035-2a6a61d819df/bucket/46435715-6705-4ca1-ad19-a5dc0731acb7.png",
-  },
-  {
     title: { ru: "Лендинг курса по фитнесу", zh: "健身课程落地页" },
     client: { ru: "Тренер Мария Кузнецова", zh: "教练 Maria Kuznetsova" },
     category: "landing",
