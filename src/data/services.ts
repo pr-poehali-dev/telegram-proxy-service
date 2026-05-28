@@ -63,7 +63,7 @@ export const RAW_SERVICES: RawService[] = [
       zh: "将访客转化为客户的单页网站。独特设计、营销文案和全链路分析 — 7天内完成。",
     },
     badge: { ru: "Хит", zh: "热门" },
-    price: { ru: "от 29 000 ₽", zh: "29 000 ₽起" },
+    price: { ru: "от 15 000 ₽", zh: "15 000 ₽起" },
     duration: { ru: "7 дней", zh: "7天" },
     gradient: "from-[#a78bfa] via-[#818cf8] to-[#60a5fa]",
     accent: "#7c3aed",
