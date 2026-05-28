@@ -367,9 +367,7 @@ export default function Index() {
                   <span className="absolute inline-flex w-full h-full rounded-full bg-green-400 opacity-75 animate-ping" />
                   <span className="relative inline-flex w-2 h-2 rounded-full bg-green-500" />
                 </span>
-                <span className="text-xs font-bold text-foreground uppercase tracking-widest">
-                  {t.hero.workWith}: Яндекс · 1С · Bitrix24
-                </span>
+                <span className="text-xs font-bold text-foreground uppercase tracking-widest">Работаем с chatgpt</span>
               </div>
 
               <h1 className="font-black tracking-tight text-foreground text-center my-[9px] py-0 text-[56px]">
