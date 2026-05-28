@@ -110,7 +110,10 @@ export default function Portfolio() {
             </p>
 
             {/* STATS */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-12">
+            <p className="text-xs font-bold text-accent uppercase tracking-widest mt-12 mb-3">
+              {lang === "zh" ? "我们使用的工具" : "Инструменты, которые мы используем"}
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {STATS.map((s) => (
                 <div
                   key={s.label}
