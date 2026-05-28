@@ -5,7 +5,7 @@ export const translations = {
     nav: {
       services: "Услуги",
       pricing: "Тарифы",
-      portfolio: "Портфолио",
+      portfolio: "Шаблоны",
       faq: "FAQ",
       order: "Заказать",
       buy: "Купить",
@@ -135,7 +135,7 @@ export const translations = {
     nav: {
       services: "服务",
       pricing: "价格",
-      portfolio: "作品集",
+      portfolio: "模板",
       faq: "常见问题",
       order: "下单",
       buy: "购买",
