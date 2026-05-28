@@ -690,12 +690,6 @@ export default function Index() {
                       gradient: "from-[#34d399] to-[#22d3ee]",
                     },
                     {
-                      icon: "MapPin",
-                      label: t.contacts.officeLabel,
-                      value: t.contacts.office,
-                      gradient: "from-[#f472b6] to-[#e879f9]",
-                    },
-                    {
                       icon: "Clock",
                       label: t.contacts.hoursLabel,
                       value: t.contacts.hours,
