@@ -754,6 +754,15 @@ export default function Index() {
                     iconColor: "text-white",
                     href: "https://vk.com/altdel",
                   },
+                  {
+                    name: "WeChat",
+                    handle: "altdel_cn",
+                    desc: "Работаем с Китаем",
+                    icon: "MessageSquare",
+                    color: "from-[#7bed9f] to-[#2ed573]",
+                    iconColor: "text-white",
+                    href: "#",
+                  },
                 ].map((s) => (
                   <a
                     key={s.name}
@@ -786,16 +795,6 @@ export default function Index() {
                     </div>
                   </a>
                 ))}
-
-                <div className="relative bg-white border-2 border-secondary rounded-2xl p-5 flex flex-col items-center text-center">
-                  <p className="font-bold text-foreground text-base mb-1">WeChat</p>
-                  <p className="text-xs text-foreground/55 mb-4">Работаем с Китаем</p>
-                  <img
-                    src="https://cdn.poehali.dev/projects/ce65ddef-2217-4074-b035-2a6a61d819df/bucket/5ad56e18-60d5-49cc-a4d0-7705778a89bd.jpg"
-                    alt="WeChat QR код"
-                    className="w-full max-w-[130px] rounded-xl"
-                  />
-                </div>
               </div>
             </div>
           </div>
