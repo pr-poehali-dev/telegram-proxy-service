@@ -141,7 +141,7 @@ export const RAW_SERVICES: RawService[] = [
       zh: "完整的在线商店，包含商品目录、购物车和在线支付。集成CRM、1С和物流服务。",
     },
     badge: { ru: "Топ", zh: "顶级" },
-    price: { ru: "от 89 000 ₽", zh: "89 000 ₽起" },
+    price: { ru: "от 35 000 ₽", zh: "35 000 ₽起" },
     duration: { ru: "14–21 день", zh: "14–21天" },
     gradient: "from-[#f472b6] via-[#e879f9] to-[#a78bfa]",
     accent: "#db2777",
