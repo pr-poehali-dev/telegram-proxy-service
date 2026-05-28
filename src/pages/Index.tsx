@@ -716,7 +716,7 @@ export default function Index() {
                 </div>
               </div>
 
-              <div className="space-y-3 mt-10">
+              <div className="space-y-3 my-[133px]">
                 {[
                   {
                     name: "MAX",
