@@ -403,7 +403,7 @@ export default function Index() {
               {/* Иконки сервисов в едином стиле карточек */}
               <div className="grid grid-cols-2 md:grid-cols-5 gap-3 max-w-3xl mx-auto">
                 {[
-                  { label: "Яндекс", icon: "Search", gradient: "from-[#fbbf24] to-[#fb923c]", accent: "#ea580c" },
+                  { label: "Домен", icon: "Globe", gradient: "from-[#fbbf24] to-[#fb923c]", accent: "#ea580c" },
                   { label: "1С", icon: "Database", gradient: "from-[#f472b6] to-[#e879f9]", accent: "#db2777" },
                   { label: "amoCRM", icon: "Users", gradient: "from-[#a78bfa] to-[#818cf8]", accent: "#7c3aed" },
                   { label: "Bitrix24", icon: "Briefcase", gradient: "from-[#34d399] to-[#22d3ee]", accent: "#0891b2" },
