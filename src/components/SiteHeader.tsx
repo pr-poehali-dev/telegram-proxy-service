@@ -7,7 +7,7 @@ export function Logo() {
   return (
     <Link to="/" className="group flex items-center gap-3">
       <span
-        className="relative w-10 h-10 rounded-2xl flex items-center justify-center text-yellow-900 font-black text-sm overflow-hidden group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500"
+        className="relative w-10 h-10 rounded-2xl flex items-center justify-center text-yellow-900 font-semibold text-sm overflow-hidden group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500"
         style={{
           background: "linear-gradient(135deg, #facc15 0%, #fde047 100%)",
           boxShadow: "0 8px 24px rgba(250, 204, 21, 0.4)",
@@ -16,7 +16,7 @@ export function Logo() {
         <span className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent" />
         <span className="relative">A</span>
       </span>
-      <span className="font-extrabold text-lg text-foreground tracking-tight">
+      <span className="font-semibold text-lg text-foreground tracking-tight">
         AltDel
       </span>
     </Link>

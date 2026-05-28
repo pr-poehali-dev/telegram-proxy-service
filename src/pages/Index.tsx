@@ -190,7 +190,7 @@ function FaqItem({ q, a, idx }: { q: string; a: string; idx: number }) {
       >
         <div className="flex items-center gap-4 flex-1">
           <div
-            className={`w-11 h-11 shrink-0 rounded-2xl bg-gradient-to-br ${gradient} text-white flex items-center justify-center font-black text-sm shadow-md transition-transform duration-500 ${
+            className={`w-11 h-11 shrink-0 rounded-2xl bg-gradient-to-br ${gradient} text-white flex items-center justify-center font-semibold text-sm shadow-md transition-transform duration-500 ${
               open ? "scale-110 rotate-6" : "group-hover:scale-105"
             }`}
           >
@@ -231,7 +231,7 @@ function FaqSection() {
         <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
           {t.faq.label}
         </p>
-        <h2 className="text-[56px] font-black text-center mb-12 text-foreground">
+        <h2 className="text-[56px] font-semibold text-center mb-12 text-foreground">
           {t.faq.title}
         </h2>
       </div>
@@ -260,7 +260,7 @@ function ProcessSection() {
           <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
             {t.process.label}
           </p>
-          <h2 className="text-[56px] font-black mb-12 text-center text-foreground">
+          <h2 className="text-[56px] font-semibold mb-12 text-center text-foreground">
             {t.process.title}
           </h2>
         </div>
@@ -274,7 +274,7 @@ function ProcessSection() {
             >
               {/* Огромный номер на фоне */}
               <span
-                className="absolute -top-6 -right-2 text-[140px] font-black leading-none select-none pointer-events-none opacity-[0.06] group-hover:opacity-[0.12] transition-opacity"
+                className="absolute -top-6 -right-2 text-[140px] font-semibold leading-none select-none pointer-events-none opacity-[0.06] group-hover:opacity-[0.12] transition-opacity"
                 style={{ color: step.accent }}
               >
                 {step.num}
@@ -370,7 +370,7 @@ export default function Index() {
                 <span className="text-xs font-bold text-foreground uppercase tracking-widest">Партнер Reg.ru</span>
               </div>
 
-              <h1 className="font-black tracking-tight text-foreground text-center my-[9px] py-0 text-[56px]">
+              <h1 className="font-semibold tracking-tight text-foreground text-center my-[9px] py-0 text-[56px]">
                 <span className="animate-word-reveal inline-block">{t.hero.ready}</span>{" "}
                 <span className="animate-word-reveal inline-block text-accent delay-150 relative">
                   {t.hero.site}
@@ -441,7 +441,7 @@ export default function Index() {
           <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
             {t.services.label}
           </p>
-          <h2 className="text-[56px] font-black text-center mb-12 text-foreground">
+          <h2 className="text-[56px] font-semibold text-center mb-12 text-foreground">
             {t.services.title}
           </h2>
 
@@ -516,7 +516,7 @@ export default function Index() {
           <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
             {t.pricing.label}
           </p>
-          <h2 className="text-[56px] font-black mb-3 text-center text-foreground">
+          <h2 className="text-[56px] font-semibold mb-3 text-center text-foreground">
             {t.pricing.title}
           </h2>
           <p className="text-center text-foreground/65 mb-12 max-w-md mx-auto text-[15px]">
@@ -563,7 +563,7 @@ export default function Index() {
                   {plan.desc}
                 </p>
 
-                <p className={`relative text-3xl font-black mb-4 ${plan.highlight ? "text-white" : "text-foreground"}`}>
+                <p className={`relative text-3xl font-semibold mb-4 ${plan.highlight ? "text-white" : "text-foreground"}`}>
                   {plan.name}
                 </p>
 
@@ -573,7 +573,7 @@ export default function Index() {
                     plan.highlight ? "bg-white/10 backdrop-blur-sm border border-white/20" : "bg-secondary"
                   }`}
                 >
-                  <p className={`text-4xl font-black ${plan.highlight ? "text-white" : "text-foreground"}`}>
+                  <p className={`text-4xl font-semibold ${plan.highlight ? "text-white" : "text-foreground"}`}>
                     {plan.price}{" "}
                     <span className={`text-lg font-bold ${plan.highlight ? "text-white/70" : "text-foreground/60"}`}>
                       ₽
@@ -640,7 +640,7 @@ export default function Index() {
             <div className="relative flex items-center gap-4 shrink-0">
               <div className="text-right">
                 <p className="text-[10px] uppercase tracking-widest font-bold text-foreground/50">{t.services.price}</p>
-                <p className="text-3xl font-black text-foreground leading-none">{t.pricing.free}</p>
+                <p className="text-3xl font-semibold text-foreground leading-none">{t.pricing.free}</p>
               </div>
               <a
                 href="#contacts"
@@ -670,7 +670,7 @@ export default function Index() {
                 <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3">
                   {t.contacts.label}
                 </p>
-                <h2 className="text-[56px] font-black mb-4 text-foreground">{t.contacts.title}</h2>
+                <h2 className="text-[56px] font-semibold mb-4 text-foreground">{t.contacts.title}</h2>
                 <p className="text-[15px] text-foreground/65 leading-relaxed mb-8">
                   {t.contacts.subtitle}
                 </p>

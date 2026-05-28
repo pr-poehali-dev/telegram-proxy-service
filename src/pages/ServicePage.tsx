@@ -45,7 +45,7 @@ export default function ServicePage() {
               <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-widest mb-5">
                 {service.badge}
               </span>
-              <h1 className="font-black text-[44px] md:text-[56px] leading-[1.05] mb-5 animate-fade-up">
+              <h1 className="font-semibold text-[44px] md:text-[56px] leading-[1.05] mb-5 animate-fade-up">
                 {service.title}
               </h1>
               <p className="text-white/90 text-base md:text-lg leading-relaxed mb-8 max-w-md animate-fade-up delay-100">
@@ -93,7 +93,7 @@ export default function ServicePage() {
         <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
           {t.service.includesLabel}
         </p>
-        <h2 className="text-[44px] md:text-[56px] font-black text-center mb-12 text-foreground">
+        <h2 className="text-[44px] md:text-[56px] font-semibold text-center mb-12 text-foreground">
           {t.service.includesTitle}
         </h2>
 
@@ -127,7 +127,7 @@ export default function ServicePage() {
               <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3">
                 {t.service.fullListLabel}
               </p>
-              <h2 className="text-[44px] font-black mb-4 text-foreground leading-[1.1]">
+              <h2 className="text-[44px] font-semibold mb-4 text-foreground leading-[1.1]">
                 {t.service.fullListTitle}
               </h2>
               <p className="text-[15px] text-foreground/65 mb-8 leading-relaxed">
@@ -170,7 +170,7 @@ export default function ServicePage() {
           <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
             {t.service.processLabel}
           </p>
-          <h2 className="text-[44px] md:text-[56px] font-black mb-12 text-center text-foreground">
+          <h2 className="text-[44px] md:text-[56px] font-semibold mb-12 text-center text-foreground">
             {t.service.processTitle}
           </h2>
 
@@ -182,7 +182,7 @@ export default function ServicePage() {
                 className="group relative bg-white rounded-3xl p-7 hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 animate-fade-up overflow-hidden"
               >
                 <span
-                  className="absolute -top-6 -right-2 text-[140px] font-black leading-none select-none pointer-events-none opacity-[0.06] group-hover:opacity-[0.12] transition-opacity"
+                  className="absolute -top-6 -right-2 text-[140px] font-semibold leading-none select-none pointer-events-none opacity-[0.06] group-hover:opacity-[0.12] transition-opacity"
                   style={{ color: service.accent }}
                 >
                   {step.num}
@@ -194,7 +194,7 @@ export default function ServicePage() {
                 <div
                   className={`relative w-14 h-14 flex items-center justify-center rounded-2xl bg-gradient-to-br ${service.gradient} text-white shadow-lg mb-5 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500`}
                 >
-                  <span className="font-black text-lg">{step.num}</span>
+                  <span className="font-semibold text-lg">{step.num}</span>
                 </div>
                 <h3 className="relative font-bold text-lg mb-2 text-foreground">{step.title}</h3>
                 <p className="relative text-[15px] text-foreground/65 leading-relaxed mb-5">
@@ -221,7 +221,7 @@ export default function ServicePage() {
         >
           <div className="pointer-events-none absolute -top-20 -right-20 w-96 h-96 rounded-full bg-white/30 blur-3xl" />
           <div className="relative max-w-2xl mx-auto text-white">
-            <h2 className="text-[44px] md:text-[56px] font-black mb-4 leading-[1.1]">
+            <h2 className="text-[44px] md:text-[56px] font-semibold mb-4 leading-[1.1]">
               {t.service.ctaTitle}
             </h2>
             <p className="text-white/90 text-base md:text-lg mb-10 leading-relaxed">
@@ -250,7 +250,7 @@ export default function ServicePage() {
         <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
           {t.service.otherLabel}
         </p>
-        <h2 className="text-[44px] md:text-[56px] font-black text-center mb-12 text-foreground">
+        <h2 className="text-[44px] md:text-[56px] font-semibold text-center mb-12 text-foreground">
           {t.service.otherTitle}
         </h2>
 

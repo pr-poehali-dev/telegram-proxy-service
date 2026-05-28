@@ -80,7 +80,7 @@ export default function OrderModal({
           <p className="text-[11px] uppercase tracking-widest font-bold opacity-80 mb-2 relative">
             {t.modal.title}
           </p>
-          <h3 className="relative text-2xl md:text-3xl font-black leading-tight pr-10">
+          <h3 className="relative text-2xl md:text-3xl font-semibold leading-tight pr-10">
             {t.modal.orderFor} «{finalServiceName}»
           </h3>
           {servicePrice && (
@@ -96,7 +96,7 @@ export default function OrderModal({
             <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
               <Icon name="Check" size={32} className="text-green-600" />
             </div>
-            <h4 className="text-2xl font-black text-foreground mb-2">{t.modal.sentTitle}</h4>
+            <h4 className="text-2xl font-semibold text-foreground mb-2">{t.modal.sentTitle}</h4>
             <p className="text-foreground/65 text-[15px]">{t.modal.sentDesc}</p>
           </div>
         ) : (

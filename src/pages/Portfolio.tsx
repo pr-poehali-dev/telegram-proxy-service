@@ -226,7 +226,7 @@ export default function Portfolio() {
                   >
                     <Icon name={s.icon} fallback="Circle" size={18} />
                   </div>
-                  <p className="relative text-2xl md:text-3xl font-black text-foreground">{s.value}</p>
+                  <p className="relative text-2xl md:text-3xl font-semibold text-foreground">{s.value}</p>
                   <p className="relative text-xs text-foreground/55 mt-1 font-bold uppercase tracking-wider">
                     {s.label}
                   </p>
@@ -310,7 +310,7 @@ export default function Portfolio() {
                 </div>
 
                 <div className="absolute bottom-4 right-4 bg-white rounded-2xl px-4 py-2.5 text-right shadow-xl group-hover:scale-110 transition-transform">
-                  <p className="text-xl font-black leading-tight" style={{ color: p.accent }}>
+                  <p className="text-xl font-semibold leading-tight" style={{ color: p.accent }}>
                     {p.metric.value}
                   </p>
                   <p className="text-[10px] text-foreground/55 font-bold uppercase tracking-wider">
@@ -367,7 +367,7 @@ export default function Portfolio() {
         <div className="bg-[#2d3a9e] text-white rounded-[2rem] px-8 py-16 md:py-20 text-center relative overflow-hidden">
           <div className="pointer-events-none absolute -top-10 -right-10 w-80 h-80 rounded-full bg-yellow-400/20 blur-3xl" />
           <div className="relative max-w-2xl mx-auto">
-            <h2 className="text-[56px] leading-[1.1] font-black mb-4">
+            <h2 className="text-[56px] leading-[1.1] font-semibold mb-4">
               {t.portfolio.ctaTitle}
             </h2>
             <p className="text-white/70 mb-10 text-base md:text-lg">
