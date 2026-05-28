@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { getLocalizedServices } from "@/data/services";
 import { useLang } from "@/i18n/LangContext";
 
@@ -339,6 +340,7 @@ export default function Index() {
   const contactsSection = useInView(0.1);
   const { t, lang } = useLang();
   const SERVICES = getLocalizedServices(lang);
+  const [wechatOpen, setWechatOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -753,46 +755,85 @@ export default function Index() {
                   },
                   {
                     name: "WeChat",
-                    handle: "sinomarketing",
+                    handle: "QR-код",
                     desc: "Работаем с Китаем",
                     icon: "MessageSquare",
                     color: "from-[#7bed9f] to-[#2ed573]",
                     iconColor: "text-white",
-                    href: "weixin://dl/chat?sinomarketing",
+                    href: "",
+                    isWechat: true,
                   },
-                ].map((s) => (
-                  <a
-                    key={s.name}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative flex items-center gap-4 bg-white border-2 border-secondary hover:border-transparent hover:shadow-2xl rounded-2xl px-5 py-4 transition-all duration-500 overflow-hidden"
-                  >
-                    <div
-                      className={`absolute -top-12 -right-12 w-32 h-32 rounded-full bg-gradient-to-br ${s.color} opacity-0 blur-2xl group-hover:opacity-30 transition-opacity duration-500`}
-                    />
-                    <div
-                      className={`relative w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 bg-gradient-to-br ${s.color} shadow-md group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500`}
-                    >
-                      <Icon name={s.icon} fallback="MessageCircle" size={20} className={s.iconColor} />
-                    </div>
-                    <div className="relative flex-1 min-w-0">
-                      <p className="font-bold text-foreground text-base leading-tight">{s.name}</p>
-                      <p className="text-xs text-foreground/55 mt-0.5">{s.desc}</p>
-                    </div>
-                    <div className="relative hidden sm:block text-right">
-                      <p className="text-sm font-bold text-foreground/80">{s.handle}</p>
-                    </div>
-                    <div className="relative w-9 h-9 rounded-full bg-secondary group-hover:bg-foreground flex items-center justify-center shrink-0 transition-colors">
-                      <Icon
-                        name="ArrowUpRight"
-                        size={16}
-                        className="text-foreground group-hover:text-background transition-colors"
+                ].map((s) => {
+                  const cardClass = "group relative flex items-center gap-4 bg-white border-2 border-secondary hover:border-transparent hover:shadow-2xl rounded-2xl px-5 py-4 transition-all duration-500 overflow-hidden w-full text-left";
+                  const inner = (
+                    <>
+                      <div
+                        className={`absolute -top-12 -right-12 w-32 h-32 rounded-full bg-gradient-to-br ${s.color} opacity-0 blur-2xl group-hover:opacity-30 transition-opacity duration-500`}
                       />
-                    </div>
-                  </a>
-                ))}
+                      <div
+                        className={`relative w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 bg-gradient-to-br ${s.color} shadow-md group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500`}
+                      >
+                        <Icon name={s.icon} fallback="MessageCircle" size={20} className={s.iconColor} />
+                      </div>
+                      <div className="relative flex-1 min-w-0">
+                        <p className="font-bold text-foreground text-base leading-tight">{s.name}</p>
+                        <p className="text-xs text-foreground/55 mt-0.5">{s.desc}</p>
+                      </div>
+                      <div className="relative hidden sm:block text-right">
+                        <p className="text-sm font-bold text-foreground/80">{s.handle}</p>
+                      </div>
+                      <div className="relative w-9 h-9 rounded-full bg-secondary group-hover:bg-foreground flex items-center justify-center shrink-0 transition-colors">
+                        <Icon
+                          name={s.isWechat ? "QrCode" : "ArrowUpRight"}
+                          size={16}
+                          className="text-foreground group-hover:text-background transition-colors"
+                        />
+                      </div>
+                    </>
+                  );
+                  if (s.isWechat) {
+                    return (
+                      <button
+                        key={s.name}
+                        type="button"
+                        onClick={() => setWechatOpen(true)}
+                        className={cardClass}
+                      >
+                        {inner}
+                      </button>
+                    );
+                  }
+                  return (
+                    <a
+                      key={s.name}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cardClass}
+                    >
+                      {inner}
+                    </a>
+                  );
+                })}
               </div>
+
+              <Dialog open={wechatOpen} onOpenChange={setWechatOpen}>
+                <DialogContent className="max-w-sm">
+                  <DialogHeader>
+                    <DialogTitle className="text-center">WeChat</DialogTitle>
+                  </DialogHeader>
+                  <div className="flex flex-col items-center gap-4 pt-2">
+                    <img
+                      src="https://cdn.poehali.dev/projects/ce65ddef-2217-4074-b035-2a6a61d819df/bucket/c3afa60b-2ec0-4c2f-8745-e32ba2bc8c37.jpg"
+                      alt="WeChat QR-код"
+                      className="w-full max-w-[280px] rounded-2xl"
+                    />
+                    <p className="text-sm text-foreground/65 text-center">
+                      Отсканируйте QR-код, чтобы добавить меня в друзья
+                    </p>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>
