@@ -405,17 +405,18 @@ export default function Index() {
               </div>
 
               {/* Иконки сервисов в едином стиле карточек */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto items-stretch">
                 {[
-                  { label: "Домен", icon: "Globe", gradient: "from-[#fbbf24] to-[#fb923c]", accent: "#ea580c" },
-                  { label: "Хостинг", icon: "Server", gradient: "from-[#f472b6] to-[#e879f9]", accent: "#db2777" },
-                  { label: "SSL", icon: "ShieldCheck", gradient: "from-[#a78bfa] to-[#818cf8]", accent: "#7c3aed" },
-                  { label: "Почта на домене", icon: "Mail", gradient: "from-[#34d399] to-[#22d3ee]", accent: "#0891b2" },
+                  { label: "Домен", icon: "Globe", gradient: "from-[#fbbf24] to-[#fb923c]", accent: "#ea580c", href: "#contacts" },
+                  { label: "Хостинг", icon: "Server", gradient: "from-[#f472b6] to-[#e879f9]", accent: "#db2777", href: "#contacts" },
+                  { label: "SSL", icon: "ShieldCheck", gradient: "from-[#a78bfa] to-[#818cf8]", accent: "#7c3aed", href: "#contacts" },
+                  { label: "Почта на домене", icon: "Mail", gradient: "from-[#34d399] to-[#22d3ee]", accent: "#0891b2", href: "#contacts" },
                 ].map((m, i) => (
-                  <div
+                  <a
                     key={m.label}
+                    href={m.href}
                     style={{ animationDelay: `${800 + i * 80}ms` }}
-                    className="group relative bg-white rounded-2xl p-6 hover:-translate-y-1 hover:shadow-xl transition-all duration-500 overflow-hidden animate-fade-up"
+                    className="group relative flex flex-col items-center justify-start text-center h-full bg-white rounded-2xl p-6 hover:-translate-y-1 hover:shadow-xl transition-all duration-500 overflow-hidden animate-fade-up"
                   >
                     <div
                       className={`absolute -top-8 -right-8 w-28 h-28 rounded-full bg-gradient-to-br ${m.gradient} opacity-15 blur-2xl group-hover:opacity-30 transition-opacity duration-500`}
@@ -425,8 +426,8 @@ export default function Index() {
                     >
                       <Icon name={m.icon} fallback="Circle" size={22} />
                     </div>
-                    <p className="relative text-sm font-bold text-foreground">{m.label}</p>
-                  </div>
+                    <p className="relative text-sm font-bold text-foreground leading-snug">{m.label}</p>
+                  </a>
                 ))}
               </div>
             </div>
