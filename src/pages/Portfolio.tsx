@@ -71,7 +71,7 @@ const RAW_PROJECTS: RawProject[] = [
   },
   {
     title: { ru: "Сайт службы доставки товаров", zh: "货物配送服务网站" },
-    client: { ru: "FastDelivery", zh: "FastDelivery" },
+    client: { ru: "silk-route.ru", zh: "silk-route.ru" },
     category: "corp",
     tags: [
       { ru: "Корпоративный", zh: "企业网站" },
@@ -83,6 +83,7 @@ const RAW_PROJECTS: RawProject[] = [
     accent: "#0891b2",
     icon: "Truck",
     emoji: "🚚",
+    url: "https://silk-route.ru",
   },
   {
     title: { ru: "Лендинг свадебного фотографа", zh: "婚礼摄影师落地页" },
