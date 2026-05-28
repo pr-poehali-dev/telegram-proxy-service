@@ -5,7 +5,7 @@ export const translations = {
     nav: {
       services: "Услуги",
       pricing: "Тарифы",
-      portfolio: "Шаблоны",
+      portfolio: "Портфолио",
       faq: "FAQ",
       order: "Заказать",
       buy: "Купить",
