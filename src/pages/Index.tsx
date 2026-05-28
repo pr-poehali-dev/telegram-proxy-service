@@ -661,7 +661,7 @@ export default function Index() {
       <section
         id="contacts"
         ref={contactsSection.ref}
-        className="py-16 px-4 max-w-7xl mx-auto scroll-mt-24"
+        className="max-w-7xl mx-auto scroll-mt-24 py-[27px] px-0"
       >
         <div className={`reveal-up ${contactsSection.inView ? "is-visible" : ""}`}>
           <div className="bg-white rounded-[2rem] p-8 md:p-12 py-0 px-[21px]">
