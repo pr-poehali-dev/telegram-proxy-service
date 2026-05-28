@@ -5,31 +5,19 @@ import { useLang } from "@/i18n/LangContext";
 
 export function Logo() {
   return (
-    <Link to="/" className="group flex items-center">
+    <Link to="/" className="group inline-flex items-center gap-2.5 bg-white rounded-2xl px-3 py-1.5">
       <span
-        className="relative inline-flex items-center px-4 py-2 rounded-xl overflow-hidden group-hover:scale-105 transition-transform duration-500"
+        className="relative w-10 h-10 rounded-full flex items-center justify-center overflow-hidden group-hover:scale-110 transition-transform duration-500"
         style={{
           background: "linear-gradient(135deg, #facc15 0%, #fde047 100%)",
-          boxShadow: "0 8px 24px rgba(250, 204, 21, 0.4)",
+          boxShadow: "0 6px 18px rgba(250, 204, 21, 0.45)",
         }}
       >
         <span className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent" />
-        <span className="relative font-bold text-yellow-950 text-xl tracking-tight leading-none">
-          Alt
-        </span>
-        <span
-          className="relative mx-0.5 font-bold text-xl leading-none"
-          style={{
-            color: "#1e3a8a",
-            transform: "skewX(-18deg)",
-            display: "inline-block",
-          }}
-        >
-          /
-        </span>
-        <span className="relative font-bold text-yellow-950 text-xl tracking-tight leading-none">
-          Del
-        </span>
+        <Icon name="Power" size={20} className="relative" style={{ color: "#1e3a8a" }} />
+      </span>
+      <span className="font-bold text-xl tracking-tight leading-none" style={{ color: "#1e3a8a" }}>
+        AltDel
       </span>
     </Link>
   );
