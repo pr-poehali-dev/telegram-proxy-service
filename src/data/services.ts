@@ -302,7 +302,7 @@ export const RAW_SERVICES: RawService[] = [
       zh: "全面的Yandex SEO推广。关键词、优化、内容和Yandex Direct。保证进入TOP-10。",
     },
     badge: { ru: "Результат", zh: "见效" },
-    price: { ru: "от 35 000 ₽/мес", zh: "35 000 ₽/月起" },
+    price: { ru: "от 40 000 ₽", zh: "40 000 ₽起" },
     duration: { ru: "от 3 месяцев", zh: "3个月起" },
     gradient: "from-[#fbbf24] via-[#fb923c] to-[#f87171]",
     accent: "#ea580c",
