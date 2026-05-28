@@ -20,6 +20,7 @@ type RawProject = {
   emoji: string;
   icon: string;
   url?: string;
+  image?: string;
 };
 
 const RAW_PROJECTS: RawProject[] = [
@@ -38,6 +39,7 @@ const RAW_PROJECTS: RawProject[] = [
     icon: "Briefcase",
     emoji: "🛒",
     url: "https://chinacart.ru",
+    image: "https://cdn.poehali.dev/projects/ce65ddef-2217-4074-b035-2a6a61d819df/bucket/46435715-6705-4ca1-ad19-a5dc0731acb7.png",
   },
   {
     title: { ru: "Лендинг курса по фитнесу", zh: "健身课程落地页" },
@@ -197,6 +199,7 @@ export default function Portfolio() {
     emoji: p.emoji,
     icon: p.icon,
     url: p.url,
+    image: p.image,
   }));
 
   const filtered =
@@ -291,12 +294,21 @@ export default function Portfolio() {
               <div
                 className={`relative aspect-[4/3] bg-gradient-to-br ${p.gradient} flex items-center justify-center overflow-hidden`}
               >
-                <div className="pointer-events-none absolute -top-10 -right-10 w-48 h-48 rounded-full bg-white/30 blur-3xl" />
-                <div className="pointer-events-none absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-white/20 blur-3xl" />
-
-                <span className="relative text-8xl group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500 drop-shadow-lg">
-                  {p.emoji}
-                </span>
+                {p.image ? (
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                  />
+                ) : (
+                  <>
+                    <div className="pointer-events-none absolute -top-10 -right-10 w-48 h-48 rounded-full bg-white/30 blur-3xl" />
+                    <div className="pointer-events-none absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-white/20 blur-3xl" />
+                    <span className="relative text-8xl group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500 drop-shadow-lg">
+                      {p.emoji}
+                    </span>
+                  </>
+                )}
 
                 <div className="absolute top-4 left-4 flex gap-2 flex-wrap">
                   {p.tags.map((tag) => (
