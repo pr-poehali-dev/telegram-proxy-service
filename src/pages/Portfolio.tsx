@@ -19,23 +19,25 @@ type RawProject = {
   accent: string;
   emoji: string;
   icon: string;
+  url?: string;
 };
 
 const RAW_PROJECTS: RawProject[] = [
   {
     title: { ru: "Платформа для закупок в Китае", zh: "中国采购平台" },
-    client: { ru: "Клиника «Улыбка»", zh: "「微笑」诊所" },
+    client: { ru: "ChinaCart", zh: "ChinaCart" },
     category: "corp",
     tags: [
-      { ru: "Корпоративный", zh: "企业网站" },
-      { ru: "SEO", zh: "SEO" },
+      { ru: "Платформа", zh: "平台" },
+      { ru: "B2B", zh: "B2B" },
     ],
     result: { ru: "ТОП-3 Яндекса по 12 запросам", zh: "Yandex 12个关键词进入前3" },
     metric: { value: "×4", label: { ru: "рост заявок", zh: "申请增长" } },
     gradient: "from-[#34d399] via-[#22d3ee] to-[#60a5fa]",
     accent: "#0891b2",
     icon: "Briefcase",
-    emoji: "🦷",
+    emoji: "🛒",
+    url: "https://chinacart.ru",
   },
   {
     title: { ru: "Лендинг курса по фитнесу", zh: "健身课程落地页" },
@@ -194,6 +196,7 @@ export default function Portfolio() {
     accent: p.accent,
     emoji: p.emoji,
     icon: p.icon,
+    url: p.url,
   }));
 
   const filtered =
@@ -269,10 +272,20 @@ export default function Portfolio() {
       {/* PROJECTS GRID */}
       <section className="px-4 max-w-7xl mx-auto pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((p, idx) => (
-            <article
+          {filtered.map((p, idx) => {
+            const Wrapper = p.url ? "a" : "article";
+            const wrapperProps = p.url
+              ? {
+                  href: p.url,
+                  target: "_blank" as const,
+                  rel: "noopener noreferrer",
+                }
+              : {};
+            return (
+            <Wrapper
               key={idx}
-              className="group relative bg-white rounded-3xl overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 cursor-pointer"
+              {...wrapperProps}
+              className="group relative bg-white rounded-3xl overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 cursor-pointer block"
             >
               {/* Цветное превью */}
               <div
@@ -338,8 +351,9 @@ export default function Portfolio() {
                   </div>
                 </div>
               </div>
-            </article>
-          ))}
+            </Wrapper>
+            );
+          })}
         </div>
 
         {filtered.length === 0 && (
