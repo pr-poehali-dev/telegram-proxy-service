@@ -723,9 +723,6 @@ export default function Index() {
               </div>
 
               <div className="space-y-3 mt-10">
-                <p className="text-xs text-muted-foreground mb-3 font-bold uppercase tracking-wider">
-                  {t.contacts.writeIn}
-                </p>
                 {[
                   {
                     name: "MAX",
