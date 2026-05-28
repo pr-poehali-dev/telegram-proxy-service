@@ -23,7 +23,7 @@ type RawProject = {
 
 const RAW_PROJECTS: RawProject[] = [
   {
-    title: { ru: "Сайт для стоматологии", zh: "牙科诊所网站" },
+    title: { ru: "Платформа для закупок в Китае", zh: "中国采购平台" },
     client: { ru: "Клиника «Улыбка»", zh: "「微笑」诊所" },
     category: "corp",
     tags: [
