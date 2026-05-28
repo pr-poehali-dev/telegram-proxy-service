@@ -686,7 +686,7 @@ export default function Index() {
                     {
                       icon: "Phone",
                       label: t.contacts.phoneLabel,
-                      value: "+7 (495) 000-00-00",
+                      value: "+7 (919) 186-12-22",
                       gradient: "from-[#34d399] to-[#22d3ee]",
                     },
                     {
