@@ -737,12 +737,12 @@ export default function Index() {
                   },
                   {
                     name: "Telegram",
-                    handle: "@altdel_team",
+                    handle: "@sp100869",
                     desc: "Ответим за пару минут",
                     icon: "Send",
                     color: "from-[#74c0fc] to-[#339af0]",
                     iconColor: "text-white",
-                    href: "https://t.me/altdel_team",
+                    href: "https://t.me/sp100869",
                   },
                   {
                     name: "VK",
