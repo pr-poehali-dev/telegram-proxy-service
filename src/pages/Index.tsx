@@ -85,7 +85,7 @@ const PLANS = [
   },
   {
     name: "Сайт + SEO",
-    price: "59 000",
+    price: "25 000",
     subprice: "Лендинг + 3 месяца продвижения в Яндексе",
     desc: "Лучшее предложение",
     badge: "ХИТ ПРОДАЖ" as string | null,
