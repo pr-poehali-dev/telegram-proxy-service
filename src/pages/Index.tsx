@@ -746,12 +746,12 @@ export default function Index() {
                   },
                   {
                     name: "VK",
-                    handle: "vk.com/altdel",
+                    handle: "vk.com/id890465963",
                     desc: "Сообщения сообщества",
                     icon: "MessageCircle",
                     color: "from-[#5181b8] to-[#2a5885]",
                     iconColor: "text-white",
-                    href: "https://vk.com/altdel",
+                    href: "https://vk.com/id890465963",
                   },
                   {
                     name: "WeChat",
