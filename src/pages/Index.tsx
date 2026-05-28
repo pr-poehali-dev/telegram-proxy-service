@@ -374,7 +374,7 @@ export default function Index() {
 
               <h1 className="font-semibold tracking-tight text-foreground text-center my-[9px] py-0 text-[56px]">
                 <span className="animate-word-reveal inline-block">{t.hero.ready}</span>{" "}
-                <span className="animate-word-reveal inline-block delay-150 relative text-shimmer">
+                <span className="animate-word-reveal inline-block text-accent delay-150 relative">
                   {t.hero.site}
                   <span className="absolute -bottom-1 left-0 right-0 h-2 bg-yellow-300/60 -z-10 rounded-full" />
                 </span>{" "}
