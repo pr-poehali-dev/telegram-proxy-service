@@ -224,7 +224,7 @@ export const RAW_SERVICES: RawService[] = [
       zh: "用于展示公司、服务和团队的多页网站。包含博客、案例和便捷的后台管理。",
     },
     badge: { ru: "B2B", zh: "B2B" },
-    price: { ru: "от 59 000 ₽", zh: "59 000 ₽起" },
+    price: { ru: "от 25 000 ₽", zh: "25 000 ₽起" },
     duration: { ru: "10–14 дней", zh: "10–14天" },
     gradient: "from-[#34d399] via-[#22d3ee] to-[#60a5fa]",
     accent: "#0891b2",
