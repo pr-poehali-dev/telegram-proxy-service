@@ -753,12 +753,12 @@ export default function Index() {
                   },
                   {
                     name: "WeChat",
-                    handle: "altdel_cn",
+                    handle: "sinomarketing",
                     desc: "Работаем с Китаем",
                     icon: "MessageSquare",
                     color: "from-[#7bed9f] to-[#2ed573]",
                     iconColor: "text-white",
-                    href: "#",
+                    href: "weixin://dl/chat?sinomarketing",
                   },
                 ].map((s) => (
                   <a
