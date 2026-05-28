@@ -664,7 +664,7 @@ export default function Index() {
         className="py-16 px-4 max-w-7xl mx-auto scroll-mt-24"
       >
         <div className={`reveal-up ${contactsSection.inView ? "is-visible" : ""}`}>
-          <div className="bg-white rounded-[2rem] p-8 md:p-12">
+          <div className="bg-white rounded-[2rem] p-8 md:p-12 px-[39px] py-0">
             <div className="grid md:grid-cols-2 gap-12">
               <div>
                 <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3">
