@@ -407,14 +407,14 @@ export default function Index() {
               {/* Иконки сервисов в едином стиле карточек */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto items-stretch">
                 {[
-                  { label: "Домен", icon: "Globe", gradient: "from-[#fbbf24] to-[#fb923c]", accent: "#ea580c", href: "#contacts" },
-                  { label: "Хостинг", icon: "Server", gradient: "from-[#f472b6] to-[#e879f9]", accent: "#db2777", href: "#contacts" },
-                  { label: "SSL", icon: "ShieldCheck", gradient: "from-[#a78bfa] to-[#818cf8]", accent: "#7c3aed", href: "#contacts" },
-                  { label: "Почта на домене", icon: "Mail", gradient: "from-[#34d399] to-[#22d3ee]", accent: "#0891b2", href: "#contacts" },
+                  { label: "Домен", icon: "Globe", gradient: "from-[#fbbf24] to-[#fb923c]", accent: "#ea580c", to: "/infra/domen" },
+                  { label: "Хостинг", icon: "Server", gradient: "from-[#f472b6] to-[#e879f9]", accent: "#db2777", to: "/infra/hosting" },
+                  { label: "SSL", icon: "ShieldCheck", gradient: "from-[#a78bfa] to-[#818cf8]", accent: "#7c3aed", to: "/infra/ssl" },
+                  { label: "Почта на домене", icon: "Mail", gradient: "from-[#34d399] to-[#22d3ee]", accent: "#0891b2", to: "/infra/mail" },
                 ].map((m, i) => (
-                  <a
+                  <Link
                     key={m.label}
-                    href={m.href}
+                    to={m.to}
                     style={{ animationDelay: `${800 + i * 80}ms` }}
                     className="group relative flex flex-col items-center justify-start text-center h-full bg-white rounded-2xl p-6 hover:-translate-y-1 hover:shadow-xl transition-all duration-500 overflow-hidden animate-fade-up"
                   >
@@ -427,7 +427,7 @@ export default function Index() {
                       <Icon name={m.icon} fallback="Circle" size={22} />
                     </div>
                     <p className="relative text-sm font-bold text-foreground leading-snug">{m.label}</p>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>

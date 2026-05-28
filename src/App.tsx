@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
 import ServicePage from "./pages/ServicePage";
+import InfraPage from "./pages/InfraPage";
 import NotFound from "./pages/NotFound";
 import { LangProvider } from "./i18n/LangContext";
 
@@ -23,6 +24,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/services/:slug" element={<ServicePage />} />
+            <Route path="/infra/:slug" element={<InfraPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
