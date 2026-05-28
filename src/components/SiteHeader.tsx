@@ -5,7 +5,7 @@ import { useLang } from "@/i18n/LangContext";
 
 export function Logo() {
   return (
-    <Link to="/" className="group inline-flex items-center gap-2.5 bg-white rounded-2xl px-3 py-1.5">
+    <Link to="/" className="group inline-flex items-center gap-2.5">
       <span
         className="relative w-10 h-10 rounded-full flex items-center justify-center overflow-hidden group-hover:scale-110 transition-transform duration-500"
         style={{
