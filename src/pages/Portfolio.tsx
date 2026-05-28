@@ -47,27 +47,27 @@ export default function Portfolio() {
 
   const STATS = [
     {
-      value: "150+",
+      value: "ChatGPT",
       label: t.portfolio.stats.projects,
-      icon: "Folder",
+      icon: "Sparkles",
       gradient: "from-[#a78bfa] to-[#818cf8]",
     },
     {
-      value: "94%",
+      value: "Freepik",
       label: t.portfolio.stats.clients,
-      icon: "Heart",
+      icon: "Image",
       gradient: "from-[#f472b6] to-[#e879f9]",
     },
     {
-      value: lang === "zh" ? "7天" : "7 дней",
+      value: "Framer",
       label: t.portfolio.stats.avgTime,
-      icon: "Zap",
+      icon: "Frame",
       gradient: "from-[#34d399] to-[#22d3ee]",
     },
     {
-      value: lang === "zh" ? "5年" : "5 лет",
+      value: "DeepSeek",
       label: t.portfolio.stats.years,
-      icon: "Award",
+      icon: "Brain",
       gradient: "from-[#fbbf24] to-[#fb923c]",
     },
   ];
@@ -124,7 +124,7 @@ export default function Portfolio() {
                   >
                     <Icon name={s.icon} fallback="Circle" size={18} />
                   </div>
-                  <p className="relative text-2xl md:text-3xl font-semibold text-foreground">{s.value}</p>
+                  <p className="relative text-lg md:text-xl font-semibold text-foreground">{s.value}</p>
                   <p className="relative text-xs text-foreground/55 mt-1 font-bold uppercase tracking-wider">
                     {s.label}
                   </p>
