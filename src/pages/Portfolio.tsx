@@ -335,34 +335,6 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              <div className="relative p-6">
-                <div
-                  className={`absolute -top-10 -right-10 w-40 h-40 rounded-full bg-gradient-to-br ${p.gradient} opacity-0 blur-3xl group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`}
-                />
-                <p className="relative text-[11px] text-foreground/50 mb-1 font-bold uppercase tracking-widest">
-                  {p.client}
-                </p>
-                <h3 className="relative font-bold text-lg text-foreground mb-3 leading-snug">
-                  {p.title}
-                </h3>
-                <div className="relative flex items-center justify-between pt-4 border-t border-secondary">
-                  <p className="text-sm text-foreground/70 leading-relaxed flex items-center gap-2 flex-1 min-w-0">
-                    <Icon
-                      name="TrendingUp"
-                      size={14}
-                      className="shrink-0"
-                      style={{ color: p.accent }}
-                    />
-                    <span className="truncate">{p.result}</span>
-                  </p>
-                  <div
-                    className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 ml-3 group-hover:translate-x-1 transition-transform"
-                    style={{ background: p.accent }}
-                  >
-                    <Icon name="ArrowRight" size={16} className="text-white" />
-                  </div>
-                </div>
-              </div>
             </Wrapper>
             );
           })}
