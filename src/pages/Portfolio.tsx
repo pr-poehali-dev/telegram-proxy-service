@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import SiteHeader from "@/components/SiteHeader";
@@ -44,16 +43,7 @@ const RAW_PROJECTS: RawProject[] = [
 ];
 
 export default function Portfolio() {
-  const [filter, setFilter] = useState("all");
   const { t, lang } = useLang();
-
-  const CATEGORIES = [
-    { id: "all", label: t.portfolio.filters.all },
-    { id: "landing", label: t.portfolio.filters.landing },
-    { id: "shop", label: t.portfolio.filters.shop },
-    { id: "corp", label: t.portfolio.filters.corp },
-    { id: "seo", label: t.portfolio.filters.seo },
-  ];
 
   const STATS = [
     {
@@ -82,7 +72,7 @@ export default function Portfolio() {
     },
   ];
 
-  const projects = RAW_PROJECTS.map((p) => ({
+  const filtered = RAW_PROJECTS.map((p) => ({
     title: p.title[lang],
     client: p.client[lang],
     category: p.category,
@@ -96,9 +86,6 @@ export default function Portfolio() {
     url: p.url,
     image: p.image,
   }));
-
-  const filtered =
-    filter === "all" ? projects : projects.filter((p) => p.category === filter);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -145,25 +132,6 @@ export default function Portfolio() {
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* FILTERS */}
-      <section className="px-4 max-w-7xl mx-auto mb-8">
-        <div className="flex flex-wrap justify-center gap-2">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setFilter(cat.id)}
-              className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all ${
-                filter === cat.id
-                  ? "bg-foreground text-background"
-                  : "bg-white text-foreground hover:bg-secondary"
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
         </div>
       </section>
 
