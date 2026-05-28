@@ -65,8 +65,8 @@ export const translations = {
     },
     portfolio: {
       label: "Портфолио",
-      titlePre: "Сделали —",
-      titleHi: "показываем",
+      titlePre: "Платформы",
+      titleHi: "для сайтов",
       subtitle:
         "Познакомьтесь с платформами, с помощью которых можно создавать лендинги, блоги, сайты-визитки и интернет-магазины.",
       filters: {
@@ -194,8 +194,8 @@ export const translations = {
     },
     portfolio: {
       label: "作品集",
-      titlePre: "我们完成的 —",
-      titleHi: "向您展示",
+      titlePre: "建站",
+      titleHi: "平台",
       subtitle:
         "为全俄企业完成了150+网站和推广项目。每一个都有真实成果和满意的客户。",
       filters: {
