@@ -5,19 +5,31 @@ import { useLang } from "@/i18n/LangContext";
 
 export function Logo() {
   return (
-    <Link to="/" className="group flex items-center gap-3">
+    <Link to="/" className="group flex items-center">
       <span
-        className="relative w-10 h-10 rounded-2xl flex items-center justify-center text-yellow-900 font-semibold text-sm overflow-hidden group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500"
+        className="relative inline-flex items-center px-4 py-2 rounded-xl overflow-hidden group-hover:scale-105 transition-transform duration-500"
         style={{
-          background: "linear-gradient(135deg, #facc15 0%, #fde047 100%)",
-          boxShadow: "0 8px 24px rgba(250, 204, 21, 0.4)",
+          background: "linear-gradient(135deg, #1f2937 0%, #111827 100%)",
+          boxShadow: "0 8px 24px rgba(17, 24, 39, 0.25)",
         }}
       >
-        <span className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent" />
-        <span className="relative">A</span>
-      </span>
-      <span className="font-semibold text-lg text-foreground tracking-tight">
-        AltDel
+        <span className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
+        <span className="relative font-bold text-white text-xl tracking-tight leading-none">
+          Alt
+        </span>
+        <span
+          className="relative mx-0.5 font-bold text-xl leading-none"
+          style={{
+            color: "#3b82f6",
+            transform: "skewX(-18deg)",
+            display: "inline-block",
+          }}
+        >
+          /
+        </span>
+        <span className="relative font-bold text-white text-xl tracking-tight leading-none">
+          Del
+        </span>
       </span>
     </Link>
   );
