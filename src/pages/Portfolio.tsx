@@ -203,7 +203,7 @@ export default function Portfolio() {
             <p className="text-xs font-bold text-accent uppercase tracking-widest mb-4">
               {t.portfolio.label}
             </p>
-            <h1 className="font-black tracking-tight text-foreground text-center text-[56px]">
+            <h1 className="font-semibold tracking-tight text-foreground text-center text-[56px]">
               {t.portfolio.titlePre}{" "}
               <span className="text-accent">{t.portfolio.titleHi}</span>
             </h1>
