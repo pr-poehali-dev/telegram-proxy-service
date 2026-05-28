@@ -362,19 +362,15 @@ export default function Index() {
             <div className="pointer-events-none absolute -bottom-32 -left-20 w-[420px] h-[420px] rounded-full bg-gradient-to-br from-[#a78bfa] to-[#f472b6] opacity-25 blur-3xl animate-float" style={{ animationDelay: "1s" }} />
             <div className="pointer-events-none absolute top-1/3 left-1/2 w-[300px] h-[300px] rounded-full bg-gradient-to-br from-[#34d399] to-[#22d3ee] opacity-15 blur-3xl" />
 
-            {/* Иллюстрации — слева создание сайта, справа реклама в Яндексе */}
-            <img
-              src="https://cdn.poehali.dev/projects/ce65ddef-2217-4074-b035-2a6a61d819df/files/01b187f6-e84b-49d6-9a0f-1be126cdce26.jpg"
-              alt="Создание сайта"
-              className="pointer-events-none hidden lg:block absolute left-8 top-8 w-40 h-40 xl:w-48 xl:h-48 rounded-full object-cover shadow-2xl ring-4 ring-white/60 animate-float"
-              style={{ animationDelay: "0.4s" }}
-            />
-            <img
-              src="https://cdn.poehali.dev/projects/ce65ddef-2217-4074-b035-2a6a61d819df/files/2f8307b2-b715-4ba8-b0f4-34fc2ce37ee6.jpg"
-              alt="Продвижение в Яндексе"
-              className="pointer-events-none hidden lg:block absolute right-8 top-8 w-40 h-40 xl:w-48 xl:h-48 rounded-full object-cover shadow-2xl ring-4 ring-white/60 animate-float"
-              style={{ animationDelay: "1.2s" }}
-            />
+            {/* Подписи в верхних углах */}
+            <div className="hidden lg:flex absolute left-8 top-8 items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-md animate-float" style={{ animationDelay: "0.4s" }}>
+              <Icon name="Sparkles" size={14} className="text-[#7c3aed]" />
+              <span className="text-xs font-bold text-foreground uppercase tracking-widest">Создаём сайт</span>
+            </div>
+            <div className="hidden lg:flex absolute right-8 top-8 items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-md animate-float" style={{ animationDelay: "1.2s" }}>
+              <Icon name="TrendingUp" size={14} className="text-[#ea580c]" />
+              <span className="text-xs font-bold text-foreground uppercase tracking-widest">Рекламируем в Яндексе</span>
+            </div>
 
             <div className="relative max-w-3xl mx-auto">
               {/* Бейдж как на карточках */}
