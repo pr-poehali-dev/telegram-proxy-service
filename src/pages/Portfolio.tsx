@@ -100,7 +100,7 @@ const RAW_PROJECTS: RawProject[] = [
     icon: "UtensilsCrossed",
     emoji: "🥂",
     url: "https://furshetinbox.ru",
-    image: "https://cdn.poehali.dev/projects/ce65ddef-2217-4074-b035-2a6a61d819df/bucket/d681b63f-a3c7-43ef-b73c-058c77dccb0f.jpg",
+    image: "https://cdn.poehali.dev/projects/a8ae25f0-9542-4f49-bc05-8b8f1da19cee/files/327cee59-148f-43a6-8ee6-45cff9ea1006.jpg",
   },
   {
     title: { ru: "Лендинг свадебного фотографа", zh: "婚礼摄影师落地页" },
