@@ -105,7 +105,7 @@ const PLANS = [
   },
   {
     name: "Магазин",
-    price: "89 000",
+    price: "35 000",
     subprice: "Срок: 14 дней · каталог + оплата",
     desc: "Для продаж",
     badge: null as string | null,
