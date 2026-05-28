@@ -9,25 +9,25 @@ export function Logo() {
       <span
         className="relative inline-flex items-center px-4 py-2 rounded-xl overflow-hidden group-hover:scale-105 transition-transform duration-500"
         style={{
-          background: "linear-gradient(135deg, #1f2937 0%, #111827 100%)",
-          boxShadow: "0 8px 24px rgba(17, 24, 39, 0.25)",
+          background: "linear-gradient(135deg, #facc15 0%, #fde047 100%)",
+          boxShadow: "0 8px 24px rgba(250, 204, 21, 0.4)",
         }}
       >
-        <span className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
-        <span className="relative font-bold text-white text-xl tracking-tight leading-none">
+        <span className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent" />
+        <span className="relative font-bold text-yellow-950 text-xl tracking-tight leading-none">
           Alt
         </span>
         <span
           className="relative mx-0.5 font-bold text-xl leading-none"
           style={{
-            color: "#3b82f6",
+            color: "#1e3a8a",
             transform: "skewX(-18deg)",
             display: "inline-block",
           }}
         >
           /
         </span>
-        <span className="relative font-bold text-white text-xl tracking-tight leading-none">
+        <span className="relative font-bold text-yellow-950 text-xl tracking-tight leading-none">
           Del
         </span>
       </span>
