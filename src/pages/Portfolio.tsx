@@ -86,6 +86,22 @@ const RAW_PROJECTS: RawProject[] = [
     url: "https://silk-route.ru",
   },
   {
+    title: { ru: "Сайт службы доставки фуршетов", zh: "自助餐配送服务网站" },
+    client: { ru: "furshetinbox.ru", zh: "furshetinbox.ru" },
+    category: "corp",
+    tags: [
+      { ru: "Корпоративный", zh: "企业网站" },
+      { ru: "Доставка", zh: "配送" },
+    ],
+    result: { ru: "Запуск за 7 дней", zh: "7天上线" },
+    metric: { value: "24/7", label: { ru: "приём заказов", zh: "接单" } },
+    gradient: "from-[#fbbf24] via-[#fb923c] to-[#f472b6]",
+    accent: "#db2777",
+    icon: "UtensilsCrossed",
+    emoji: "🥂",
+    url: "https://furshetinbox.ru",
+  },
+  {
     title: { ru: "Лендинг свадебного фотографа", zh: "婚礼摄影师落地页" },
     client: { ru: "Анна Соколова", zh: "Anna Sokolova" },
     category: "landing",
