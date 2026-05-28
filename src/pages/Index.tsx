@@ -793,7 +793,7 @@ export default function Index() {
                   <img
                     src="https://cdn.poehali.dev/projects/ce65ddef-2217-4074-b035-2a6a61d819df/bucket/5ad56e18-60d5-49cc-a4d0-7705778a89bd.jpg"
                     alt="WeChat QR код"
-                    className="w-full max-w-[260px] rounded-xl"
+                    className="w-full max-w-[130px] rounded-xl"
                   />
                 </div>
               </div>
