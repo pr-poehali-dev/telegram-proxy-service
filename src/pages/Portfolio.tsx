@@ -291,51 +291,6 @@ export default function Portfolio() {
               {...wrapperProps}
               className="group relative bg-white rounded-3xl overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 cursor-pointer block"
             >
-              {/* Цветное превью */}
-              <div
-                className={`relative aspect-[4/3] bg-gradient-to-br ${p.gradient} flex items-center justify-center overflow-hidden`}
-              >
-                {p.image ? (
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                  />
-                ) : (
-                  <>
-                    <div className="pointer-events-none absolute -top-10 -right-10 w-48 h-48 rounded-full bg-white/30 blur-3xl" />
-                    <div className="pointer-events-none absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-white/20 blur-3xl" />
-                    <span className="relative text-8xl group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500 drop-shadow-lg">
-                      {p.emoji}
-                    </span>
-                  </>
-                )}
-
-                <div className="absolute top-4 left-4 flex gap-2 flex-wrap">
-                  {p.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-[11px] font-bold text-foreground shadow-md"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="absolute top-4 right-4 w-10 h-10 rounded-2xl bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
-                  <Icon name={p.icon} fallback="Circle" size={18} style={{ color: p.accent }} />
-                </div>
-
-                <div className="absolute bottom-4 right-4 bg-white rounded-2xl px-4 py-2.5 text-right shadow-xl group-hover:scale-110 transition-transform">
-                  <p className="text-xl font-semibold leading-tight" style={{ color: p.accent }}>
-                    {p.metric.value}
-                  </p>
-                  <p className="text-[10px] text-foreground/55 font-bold uppercase tracking-wider">
-                    {p.metric.label}
-                  </p>
-                </div>
-              </div>
-
               <div className="relative p-6">
                 <div
                   className={`absolute -top-10 -right-10 w-40 h-40 rounded-full bg-gradient-to-br ${p.gradient} opacity-0 blur-3xl group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`}
