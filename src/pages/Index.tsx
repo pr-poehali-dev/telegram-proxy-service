@@ -66,7 +66,7 @@ const PROCESS_STEPS = [
 const PLANS = [
   {
     name: "Лендинг",
-    price: "29 000",
+    price: "15 000",
     subprice: "Срок: 7 дней · с дизайном и текстами",
     desc: "Для старта",
     badge: null as string | null,
