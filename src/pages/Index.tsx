@@ -674,7 +674,7 @@ export default function Index() {
                 <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3">
                   {t.contacts.label}
                 </p>
-                <h2 className="text-[56px] font-semibold mb-4 text-foreground">{t.contacts.title}</h2>
+                <h2 className="text-[56px] font-semibold mb-4 text-shimmer">{t.contacts.title}</h2>
                 <p className="text-[15px] text-foreground/65 leading-relaxed mb-8">
                   {t.contacts.subtitle}
                 </p>
@@ -766,7 +766,7 @@ export default function Index() {
                     isWechat: true,
                   },
                 ].map((s) => {
-                  const cardClass = "group relative flex items-center gap-4 bg-white border-2 border-secondary hover:border-transparent hover:shadow-2xl rounded-2xl px-5 py-4 transition-all duration-500 overflow-hidden w-full text-left";
+                  const cardClass = "btn-shine group relative flex items-center gap-4 bg-white border-2 border-secondary hover:border-transparent hover:shadow-2xl hover:-translate-y-0.5 rounded-2xl px-5 py-4 transition-all duration-500 overflow-hidden w-full text-left";
                   const inner = (
                     <>
                       <div
