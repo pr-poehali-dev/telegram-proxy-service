@@ -366,13 +366,13 @@ export default function Index() {
             <img
               src="https://cdn.poehali.dev/projects/ce65ddef-2217-4074-b035-2a6a61d819df/files/01b187f6-e84b-49d6-9a0f-1be126cdce26.jpg"
               alt="Создание сайта"
-              className="pointer-events-none hidden lg:block absolute left-6 top-1/2 -translate-y-1/2 w-56 xl:w-64 rounded-3xl shadow-2xl animate-float mix-blend-multiply"
+              className="pointer-events-none hidden lg:block absolute left-6 top-6 w-44 xl:w-52 rounded-3xl shadow-2xl animate-float mix-blend-multiply"
               style={{ animationDelay: "0.4s" }}
             />
             <img
               src="https://cdn.poehali.dev/projects/ce65ddef-2217-4074-b035-2a6a61d819df/files/2f8307b2-b715-4ba8-b0f4-34fc2ce37ee6.jpg"
               alt="Продвижение в Яндексе"
-              className="pointer-events-none hidden lg:block absolute right-6 top-1/2 -translate-y-1/2 w-56 xl:w-64 rounded-3xl shadow-2xl animate-float mix-blend-multiply"
+              className="pointer-events-none hidden lg:block absolute right-6 top-6 w-44 xl:w-52 rounded-3xl shadow-2xl animate-float mix-blend-multiply"
               style={{ animationDelay: "1.2s" }}
             />
 
