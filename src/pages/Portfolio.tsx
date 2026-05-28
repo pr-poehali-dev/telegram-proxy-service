@@ -87,7 +87,7 @@ const RAW_PROJECTS: RawProject[] = [
   },
   {
     title: { ru: "Сайт службы доставки фуршетов", zh: "自助餐配送服务网站" },
-    client: { ru: "furshetinbox.ru", zh: "furshetinbox.ru" },
+    client: { ru: "Фуршетный мастер · Краснодар", zh: "Furshet Master · Krasnodar" },
     category: "corp",
     tags: [
       { ru: "Корпоративный", zh: "企业网站" },
@@ -100,6 +100,7 @@ const RAW_PROJECTS: RawProject[] = [
     icon: "UtensilsCrossed",
     emoji: "🥂",
     url: "https://furshetinbox.ru",
+    image: "https://cdn.poehali.dev/projects/ce65ddef-2217-4074-b035-2a6a61d819df/bucket/d681b63f-a3c7-43ef-b73c-058c77dccb0f.jpg",
   },
   {
     title: { ru: "Лендинг свадебного фотографа", zh: "婚礼摄影师落地页" },
