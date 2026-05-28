@@ -731,7 +731,7 @@ export default function Index() {
                     icon: "MessagesSquare",
                     color: "from-[#ffe27a] to-[#facc15]",
                     iconColor: "text-yellow-900",
-                    href: "https://max.ru/altdel",
+                    href: "https://max.ru/join/1jLwxEQ4_MSNkMVLMOEDQsNYTQfb8oX13kTPSresPtA",
                   },
                   {
                     name: "Telegram",
