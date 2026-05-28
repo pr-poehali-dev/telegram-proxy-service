@@ -109,6 +109,28 @@ export default function Portfolio() {
               {t.portfolio.subtitle}
             </p>
 
+            {/* PLATFORMS */}
+            <div className="flex flex-wrap justify-center gap-2 mt-6">
+              {[
+                { label: "Tilda", icon: "Layout", gradient: "from-[#fbbf24] to-[#fb923c]" },
+                { label: "WordPress", icon: "Globe", gradient: "from-[#60a5fa] to-[#818cf8]" },
+                { label: "Shopify", icon: "ShoppingBag", gradient: "from-[#34d399] to-[#22d3ee]" },
+                { label: "Bitrix", icon: "Briefcase", gradient: "from-[#f472b6] to-[#e879f9]" },
+              ].map((p) => (
+                <div
+                  key={p.label}
+                  className="group inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-md hover:scale-105 transition-transform"
+                >
+                  <div
+                    className={`w-6 h-6 rounded-lg bg-gradient-to-br ${p.gradient} text-white flex items-center justify-center shrink-0 group-hover:rotate-6 transition-transform`}
+                  >
+                    <Icon name={p.icon} fallback="Circle" size={12} />
+                  </div>
+                  <span className="text-sm font-bold text-foreground">{p.label}</span>
+                </div>
+              ))}
+            </div>
+
             {/* STATS */}
             <p className="text-xs font-bold text-accent uppercase tracking-widest mt-12 mb-3">
               {lang === "zh" ? "我们使用的工具" : "Инструменты, которые мы используем"}
