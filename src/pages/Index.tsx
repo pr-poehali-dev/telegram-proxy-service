@@ -670,10 +670,7 @@ export default function Index() {
                 <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3">
                   {t.contacts.label}
                 </p>
-                <h2 className="text-[56px] font-semibold mb-4 text-foreground">{t.contacts.title}</h2>
-                <p className="text-[15px] text-foreground/65 leading-relaxed mb-8">
-                  {t.contacts.subtitle}
-                </p>
+                <h2 className="text-[56px] font-semibold mb-8 text-foreground">{t.contacts.title}</h2>
 
                 <div className="space-y-4">
                   {[
