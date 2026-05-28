@@ -405,28 +405,27 @@ export default function Index() {
               </div>
 
               {/* Иконки сервисов в едином стиле карточек */}
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-3 max-w-3xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
                 {[
                   { label: "Домен", icon: "Globe", gradient: "from-[#fbbf24] to-[#fb923c]", accent: "#ea580c" },
                   { label: "Хостинг", icon: "Server", gradient: "from-[#f472b6] to-[#e879f9]", accent: "#db2777" },
                   { label: "SSL", icon: "ShieldCheck", gradient: "from-[#a78bfa] to-[#818cf8]", accent: "#7c3aed" },
                   { label: "Почта на домене", icon: "Mail", gradient: "from-[#34d399] to-[#22d3ee]", accent: "#0891b2" },
-                  { label: "ChatGPT", icon: "Sparkles", gradient: "from-[#60a5fa] to-[#a78bfa]", accent: "#2563eb" },
                 ].map((m, i) => (
                   <div
                     key={m.label}
                     style={{ animationDelay: `${800 + i * 80}ms` }}
-                    className="group relative bg-white rounded-2xl p-4 hover:-translate-y-1 hover:shadow-xl transition-all duration-500 overflow-hidden animate-fade-up"
+                    className="group relative bg-white rounded-2xl p-6 hover:-translate-y-1 hover:shadow-xl transition-all duration-500 overflow-hidden animate-fade-up"
                   >
                     <div
-                      className={`absolute -top-8 -right-8 w-24 h-24 rounded-full bg-gradient-to-br ${m.gradient} opacity-15 blur-2xl group-hover:opacity-30 transition-opacity duration-500`}
+                      className={`absolute -top-8 -right-8 w-28 h-28 rounded-full bg-gradient-to-br ${m.gradient} opacity-15 blur-2xl group-hover:opacity-30 transition-opacity duration-500`}
                     />
                     <div
-                      className={`relative mx-auto w-10 h-10 rounded-2xl bg-gradient-to-br ${m.gradient} text-white flex items-center justify-center mb-2 shadow-md group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500`}
+                      className={`relative mx-auto w-12 h-12 rounded-2xl bg-gradient-to-br ${m.gradient} text-white flex items-center justify-center mb-3 shadow-md group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500`}
                     >
-                      <Icon name={m.icon} fallback="Circle" size={18} />
+                      <Icon name={m.icon} fallback="Circle" size={22} />
                     </div>
-                    <p className="relative text-xs font-bold text-foreground">{m.label}</p>
+                    <p className="relative text-sm font-bold text-foreground">{m.label}</p>
                   </div>
                 ))}
               </div>
