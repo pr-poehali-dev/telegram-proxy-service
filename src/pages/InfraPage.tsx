@@ -117,19 +117,19 @@ export default function InfraPage() {
 
       {/* HERO */}
       <section className="pt-28 pb-12 px-4 max-w-7xl mx-auto">
-        <div className="relative rounded-[2rem] overflow-hidden px-6 py-16 md:py-24 bg-gradient-to-br from-[#d6d8f7] via-[#e3e5fa] to-[#ecdcf2]">
+        <div className="relative rounded-[2rem] overflow-hidden px-6 py-16 md:py-24 bg-white shadow-[0_30px_80px_-30px_rgba(80,70,200,0.25)]">
           <div
-            className={`pointer-events-none absolute -top-32 -right-20 w-[420px] h-[420px] rounded-full bg-gradient-to-br ${service.gradient} opacity-25 blur-3xl animate-float`}
+            className={`pointer-events-none absolute -top-32 -right-20 w-[420px] h-[420px] rounded-full bg-gradient-to-br ${service.gradient} opacity-15 blur-3xl animate-float`}
           />
           <div
-            className={`pointer-events-none absolute -bottom-32 -left-20 w-[420px] h-[420px] rounded-full bg-gradient-to-br ${service.gradient} opacity-20 blur-3xl animate-float`}
+            className={`pointer-events-none absolute -bottom-32 -left-20 w-[420px] h-[420px] rounded-full bg-gradient-to-br ${service.gradient} opacity-10 blur-3xl animate-float`}
             style={{ animationDelay: "1s" }}
           />
 
           <div className="relative max-w-3xl mx-auto text-center">
             <Link
               to="/#hero"
-              className="inline-flex items-center gap-1.5 mb-6 px-4 py-2 bg-white rounded-full shadow-md hover:scale-105 transition-transform"
+              className="inline-flex items-center gap-1.5 mb-6 px-4 py-2 bg-secondary/40 rounded-full hover:bg-white hover:shadow-md transition-all"
             >
               <Icon name="ArrowLeft" size={14} />
               <span className="text-xs font-bold uppercase tracking-widest">На главную</span>
@@ -148,7 +148,7 @@ export default function InfraPage() {
               {service.tagline}
             </p>
 
-            <div className="inline-flex items-baseline gap-2 mt-8 px-6 py-3 bg-white rounded-full shadow-md">
+            <div className="inline-flex items-baseline gap-2 mt-8 px-6 py-3 bg-secondary/40 rounded-full">
               <span className="text-[11px] uppercase tracking-widest font-bold text-foreground/50">
                 Стоимость
               </span>
@@ -160,7 +160,7 @@ export default function InfraPage() {
             <div className="flex flex-wrap justify-center gap-3 mt-8">
               <a
                 href="/#contacts"
-                className="btn-shine animate-pulse-soft inline-flex items-center gap-2 px-7 py-4 bg-foreground text-background text-sm font-bold rounded-full hover:scale-105 transition-all shadow-xl shadow-foreground/20"
+                className="btn-shine inline-flex items-center gap-2 px-7 py-4 bg-accent text-white text-sm font-bold rounded-2xl hover:scale-105 transition-all shadow-lg shadow-accent/30"
               >
                 <span className="relative z-10">Заказать</span>
                 <Icon name="ArrowRight" size={16} className="relative z-10" />
@@ -169,7 +169,7 @@ export default function InfraPage() {
                 href="https://max.ru/@id752905383918_bot"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-shine inline-flex items-center gap-2 px-7 py-4 bg-white text-foreground text-sm font-bold rounded-full hover:scale-105 transition-all shadow-lg"
+                className="btn-shine inline-flex items-center gap-2 px-7 py-4 bg-white text-foreground text-sm font-bold rounded-2xl border border-secondary hover:bg-secondary/40 transition-all"
               >
                 <Icon name="MessageCircle" size={16} className="relative z-10" />
                 <span className="relative z-10">Задать вопрос</span>

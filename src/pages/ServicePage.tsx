@@ -34,53 +34,56 @@ export default function ServicePage() {
           {t.service.backToAll}
         </Link>
 
-        <div
-          className={`relative rounded-[2rem] overflow-hidden px-6 md:px-16 py-16 md:py-20 bg-gradient-to-br ${service.gradient}`}
-        >
-          <div className="pointer-events-none absolute -top-20 -right-20 w-96 h-96 rounded-full bg-white/30 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-white/20 blur-3xl" />
+        <div className="relative rounded-[2rem] overflow-hidden bg-white shadow-[0_30px_80px_-30px_rgba(80,70,200,0.25)] px-6 md:px-16 py-16 md:py-20">
+          <div
+            className={`pointer-events-none absolute -top-20 -right-20 w-96 h-96 rounded-full bg-gradient-to-br ${service.gradient} opacity-20 blur-3xl`}
+          />
 
           <div className="relative grid md:grid-cols-2 gap-8 items-center">
-            <div className="text-white">
-              <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-widest mb-5">
+            <div className="text-foreground">
+              <span
+                className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-5 bg-gradient-to-br ${service.gradient} text-white`}
+              >
                 {service.badge}
               </span>
               <h1 className="font-extrabold text-[44px] md:text-[56px] leading-[1.05] mb-5 animate-fade-up">
                 {service.title}
               </h1>
-              <p className="text-white/90 text-base md:text-lg leading-relaxed mb-8 max-w-md animate-fade-up delay-100">
+              <p className="text-foreground/60 text-base md:text-lg leading-relaxed mb-8 max-w-md animate-fade-up delay-100">
                 {service.short}
               </p>
 
               <div className="flex flex-wrap gap-3 mb-8 animate-fade-up delay-200">
                 <button
                   onClick={openModal}
-                  className="px-7 py-4 bg-white text-foreground text-sm font-bold rounded-full hover:scale-105 transition-transform shadow-xl"
+                  className="px-7 py-4 bg-accent text-white text-sm font-bold rounded-2xl hover:scale-105 transition-transform shadow-lg shadow-accent/30"
                 >
                   {t.service.orderFor} {service.price}
                 </button>
                 <button
                   onClick={openModal}
-                  className="px-7 py-4 bg-white/15 backdrop-blur-sm text-white text-sm font-bold rounded-full hover:bg-white/25 transition-colors border border-white/20"
+                  className="px-7 py-4 bg-white text-foreground text-sm font-bold rounded-2xl border border-secondary hover:bg-secondary/40 transition-colors"
                 >
                   {t.service.freeConsult}
                 </button>
               </div>
 
-              <div className="flex flex-wrap gap-6 text-white/90 animate-fade-up delay-300">
+              <div className="flex flex-wrap gap-6 animate-fade-up delay-300">
                 <div>
-                  <p className="text-[11px] uppercase tracking-widest font-bold opacity-70 mb-0.5">{t.service.term}</p>
-                  <p className="text-xl font-bold">{service.duration}</p>
+                  <p className="text-[11px] uppercase tracking-widest font-bold text-foreground/50 mb-0.5">{t.service.term}</p>
+                  <p className="text-xl font-bold text-foreground">{service.duration}</p>
                 </div>
                 <div>
-                  <p className="text-[11px] uppercase tracking-widest font-bold opacity-70 mb-0.5">{t.service.price}</p>
-                  <p className="text-xl font-bold">{service.price}</p>
+                  <p className="text-[11px] uppercase tracking-widest font-bold text-foreground/50 mb-0.5">{t.service.price}</p>
+                  <p className="text-xl font-bold text-foreground">{service.price}</p>
                 </div>
               </div>
             </div>
 
             <div className="hidden md:flex items-center justify-center animate-float">
-              <div className="w-64 h-64 rounded-[3rem] bg-white/15 backdrop-blur-md flex items-center justify-center shadow-2xl border border-white/20">
+              <div
+                className={`w-64 h-64 rounded-[3rem] bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-2xl`}
+              >
                 <Icon name={service.icon} size={120} className="text-white" />
               </div>
             </div>
