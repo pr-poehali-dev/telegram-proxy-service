@@ -45,7 +45,7 @@ export default function ServicePage() {
               <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-widest mb-5">
                 {service.badge}
               </span>
-              <h1 className="font-semibold text-[44px] md:text-[56px] leading-[1.05] mb-5 animate-fade-up">
+              <h1 className="font-extrabold text-[44px] md:text-[56px] leading-[1.05] mb-5 animate-fade-up">
                 {service.title}
               </h1>
               <p className="text-white/90 text-base md:text-lg leading-relaxed mb-8 max-w-md animate-fade-up delay-100">
@@ -93,7 +93,7 @@ export default function ServicePage() {
         <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
           {t.service.includesLabel}
         </p>
-        <h2 className="text-[44px] md:text-[56px] font-semibold text-center mb-12 text-foreground">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-12 text-foreground">
           {t.service.includesTitle}
         </h2>
 
@@ -170,7 +170,7 @@ export default function ServicePage() {
           <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
             {t.service.processLabel}
           </p>
-          <h2 className="text-[44px] md:text-[56px] font-semibold mb-12 text-center text-foreground">
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-center text-foreground">
             {t.service.processTitle}
           </h2>
 

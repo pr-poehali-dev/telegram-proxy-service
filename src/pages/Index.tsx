@@ -232,7 +232,7 @@ function FaqSection() {
         <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
           {t.faq.label}
         </p>
-        <h2 className="text-[56px] font-semibold text-center mb-12 text-foreground">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-12 text-foreground">
           {t.faq.title}
         </h2>
       </div>
@@ -261,7 +261,7 @@ function ProcessSection() {
           <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
             {t.process.label}
           </p>
-          <h2 className="text-[56px] font-semibold mb-12 text-center text-foreground">
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-center text-foreground">
             {t.process.title}
           </h2>
         </div>
@@ -431,8 +431,8 @@ export default function Index() {
                 <div className="pointer-events-none absolute -top-8 -right-8 w-40 h-40 rounded-full bg-yellow-200/50 blur-2xl" />
                 <div className="pointer-events-none absolute -bottom-10 -left-6 w-48 h-48 rounded-full bg-[#ede9fe] blur-2xl" />
                 <img
-                  src="https://cdn.poehali.dev/projects/ce65ddef-2217-4074-b035-2a6a61d819df/bucket/3ae0a300-d6df-4751-92b1-294863c80926.jpg"
-                  alt="Modern Website Design"
+                  src="https://cdn.poehali.dev/projects/ce65ddef-2217-4074-b035-2a6a61d819df/files/89058156-2085-4863-98e4-f99d8c314638.jpg"
+                  alt="Создание сайтов"
                   className="relative w-full rounded-3xl shadow-2xl"
                 />
               </div>
@@ -451,7 +451,7 @@ export default function Index() {
           <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
             {t.services.label}
           </p>
-          <h2 className="text-[56px] font-semibold text-center mb-12 text-foreground">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-12 text-foreground">
             {t.services.title}
           </h2>
 
@@ -526,7 +526,7 @@ export default function Index() {
           <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
             {t.pricing.label}
           </p>
-          <h2 className="text-[56px] font-semibold mb-3 text-center text-foreground">
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-3 text-center text-foreground">
             {t.pricing.title}
           </h2>
           <p className="text-center text-foreground/65 mb-12 max-w-md mx-auto text-[15px]">
@@ -680,7 +680,7 @@ export default function Index() {
                 <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3">
                   {t.contacts.label}
                 </p>
-                <h2 className="text-[56px] font-semibold mb-4 text-shimmer">{t.contacts.title}</h2>
+                <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-shimmer">{t.contacts.title}</h2>
                 <p className="text-[15px] text-foreground/65 leading-relaxed mb-8">
                   {t.contacts.subtitle}
                 </p>

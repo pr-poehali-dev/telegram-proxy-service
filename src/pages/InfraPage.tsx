@@ -141,7 +141,7 @@ export default function InfraPage() {
               <Icon name={service.icon} fallback="Circle" size={36} />
             </div>
 
-            <h1 className="font-semibold tracking-tight text-foreground text-[48px] md:text-[56px]">
+            <h1 className="font-extrabold tracking-tight text-foreground text-[48px] md:text-[56px]">
               {service.label}
             </h1>
             <p className="text-base md:text-lg text-foreground/70 max-w-xl mx-auto mt-4">

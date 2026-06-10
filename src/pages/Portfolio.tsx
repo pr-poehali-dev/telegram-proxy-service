@@ -311,7 +311,7 @@ export default function Portfolio() {
         <div className="bg-[#2d3a9e] text-white rounded-[2rem] px-8 py-16 md:py-20 text-center relative overflow-hidden">
           <div className="pointer-events-none absolute -top-10 -right-10 w-80 h-80 rounded-full bg-yellow-400/20 blur-3xl" />
           <div className="relative max-w-2xl mx-auto">
-            <h2 className="text-[56px] leading-[1.1] font-semibold mb-4">
+            <h2 className="text-3xl md:text-4xl leading-[1.1] font-extrabold mb-4">
               {t.portfolio.ctaTitle}
             </h2>
             <p className="text-white/70 mb-10 text-base md:text-lg">
