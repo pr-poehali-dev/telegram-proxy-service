@@ -121,7 +121,7 @@ export default function SiteHeader() {
           <LangSwitcher />
           <Link
             to="/#contacts"
-            className="btn-shine group relative inline-flex items-center gap-1.5 px-5 py-2.5 bg-foreground text-background text-sm font-bold rounded-full hover:scale-105 transition-all shadow-lg shadow-foreground/20"
+            className="btn-shine group relative inline-flex items-center gap-1.5 px-5 py-2.5 bg-accent text-white text-sm font-bold rounded-full hover:scale-105 transition-all shadow-lg shadow-accent/30"
           >
             <span className="relative z-10">{t.nav.order}</span>
             <Icon
@@ -150,7 +150,7 @@ export default function SiteHeader() {
           <Link
             to="/#contacts"
             onClick={() => setOpen(false)}
-            className="btn-shine group inline-flex items-center justify-center gap-2 px-5 py-3 bg-foreground text-background text-sm font-bold rounded-full"
+            className="btn-shine group inline-flex items-center justify-center gap-2 px-5 py-3 bg-accent text-white text-sm font-bold rounded-full"
           >
             <span className="relative z-10">{t.nav.order}</span>
             <Icon name="ArrowRight" size={14} className="relative z-10 group-hover:translate-x-0.5 transition-transform" />
