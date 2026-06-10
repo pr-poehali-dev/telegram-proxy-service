@@ -92,76 +92,116 @@ export default function Portfolio() {
       <SiteHeader />
 
       {/* HERO */}
-      <section className="pt-28 pb-12 px-4 max-w-7xl mx-auto">
-        <div className="relative rounded-[2rem] overflow-hidden px-6 py-20 md:py-24 text-center bg-gradient-to-br from-[#d6d8f7] via-[#e3e5fa] to-[#ecdcf2]">
-          <div className="pointer-events-none absolute -top-10 -right-10 w-80 h-80 rounded-full bg-yellow-200/60 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-20 -left-10 w-80 h-80 rounded-full bg-white/50 blur-3xl" />
+      <section className="pt-28 pb-8 px-4 max-w-7xl mx-auto">
+        <div className="relative rounded-[2rem] overflow-hidden bg-white shadow-[0_30px_80px_-30px_rgba(80,70,200,0.25)] px-6 md:px-12 py-12 md:py-16">
+          <div className="pointer-events-none absolute top-0 right-0 w-[40rem] h-[40rem] rounded-full bg-gradient-to-br from-[#ede9fe] to-[#faf5ff] blur-3xl opacity-70" />
 
-          <div className="relative max-w-3xl mx-auto">
-            <p className="text-xs font-bold text-accent uppercase tracking-widest mb-4">
-              {t.portfolio.label}
-            </p>
-            <h1 className="font-semibold tracking-tight text-foreground text-center text-[56px]">
-              {t.portfolio.titlePre}{" "}
-              <span className="text-accent">{t.portfolio.titleHi}</span>
-            </h1>
-            <p className="text-base md:text-lg text-foreground/65 max-w-lg mx-auto mt-6 leading-relaxed">
-              {t.portfolio.subtitle}
-            </p>
+          <div className="relative grid lg:grid-cols-2 gap-10 items-center">
+            {/* LEFT */}
+            <div className="text-center lg:text-left">
+              <p className="text-xs font-bold text-accent uppercase tracking-widest mb-5">
+                {t.portfolio.label}
+              </p>
+              <h1 className="font-extrabold tracking-tight text-foreground text-[44px] md:text-[64px] leading-[0.95]">
+                {t.portfolio.titlePre}{" "}
+                <span className="text-accent">{t.portfolio.titleHi}</span>
+              </h1>
+              <p className="text-base md:text-lg text-foreground/60 max-w-md mx-auto lg:mx-0 mt-6 leading-relaxed">
+                {t.portfolio.subtitle}
+              </p>
 
-            {/* PLATFORMS */}
-            <div className="flex flex-wrap justify-center gap-2 mt-6">
-              {[
-                { label: "Tilda", icon: "Layout", gradient: "from-[#fbbf24] to-[#fb923c]" },
-                { label: "WordPress", icon: "Globe", gradient: "from-[#60a5fa] to-[#818cf8]" },
-                { label: "Shopify", icon: "ShoppingBag", gradient: "from-[#34d399] to-[#22d3ee]" },
-                { label: "Bitrix", icon: "Briefcase", gradient: "from-[#f472b6] to-[#e879f9]" },
-              ].map((p) => (
-                <div
-                  key={p.label}
-                  className="group inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-md hover:scale-105 transition-transform"
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-8">
+                <Link
+                  to="/#contacts"
+                  className="px-7 py-4 bg-accent text-white text-sm font-bold rounded-2xl shadow-lg shadow-accent/30 hover:opacity-90 transition-opacity"
                 >
+                  {t.portfolio.ctaDiscuss}
+                </Link>
+                <Link
+                  to="/#pricing"
+                  className="px-7 py-4 bg-white text-foreground text-sm font-bold rounded-2xl border border-secondary hover:bg-secondary/40 transition-colors"
+                >
+                  {t.portfolio.ctaPricing}
+                </Link>
+              </div>
+
+              {/* PLATFORMS */}
+              <div className="flex flex-wrap justify-center lg:justify-start gap-2 mt-8">
+                {[
+                  { label: "Tilda", icon: "Layout", gradient: "from-[#fbbf24] to-[#fb923c]" },
+                  { label: "WordPress", icon: "Globe", gradient: "from-[#60a5fa] to-[#818cf8]" },
+                  { label: "Shopify", icon: "ShoppingBag", gradient: "from-[#34d399] to-[#22d3ee]" },
+                  { label: "Bitrix", icon: "Briefcase", gradient: "from-[#f472b6] to-[#e879f9]" },
+                ].map((p) => (
                   <div
-                    className={`w-6 h-6 rounded-lg bg-gradient-to-br ${p.gradient} text-white flex items-center justify-center shrink-0 group-hover:rotate-6 transition-transform`}
+                    key={p.label}
+                    className="group inline-flex items-center gap-2 px-3.5 py-2 bg-secondary/40 rounded-full hover:bg-white hover:shadow-md transition-all"
                   >
-                    <Icon name={p.icon} fallback="Circle" size={12} />
+                    <div
+                      className={`w-5 h-5 rounded-md bg-gradient-to-br ${p.gradient} text-white flex items-center justify-center shrink-0`}
+                    >
+                      <Icon name={p.icon} fallback="Circle" size={11} />
+                    </div>
+                    <span className="text-sm font-bold text-foreground">{p.label}</span>
                   </div>
-                  <span className="text-sm font-bold text-foreground">{p.label}</span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
-            {/* STATS */}
-            <p className="text-xs font-bold text-accent uppercase tracking-widest mt-12 mb-3">
-              {lang === "zh" ? "我们使用的工具" : "Инструменты, которые мы используем"}
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {STATS.map((s) => (
-                <div
-                  key={s.label}
-                  className="group relative bg-white rounded-3xl py-5 px-4 hover:-translate-y-1 hover:shadow-xl transition-all duration-500 overflow-hidden"
-                >
-                  <div
-                    className={`absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br ${s.gradient} opacity-15 blur-3xl group-hover:opacity-30 transition-opacity duration-500`}
-                  />
-                  <div
-                    className={`relative mx-auto w-10 h-10 rounded-2xl bg-gradient-to-br ${s.gradient} text-white flex items-center justify-center mb-2 shadow-md group-hover:scale-110 transition-transform`}
-                  >
-                    <Icon name={s.icon} fallback="Circle" size={18} />
-                  </div>
-                  <p className="relative text-lg md:text-xl font-semibold text-foreground">{s.value}</p>
-                  <p className="relative text-xs text-foreground/55 mt-1 font-bold uppercase tracking-wider">
-                    {s.label}
-                  </p>
-                </div>
-              ))}
+            {/* RIGHT — illustration */}
+            <div className="relative">
+              <div className="pointer-events-none absolute -top-8 -right-8 w-40 h-40 rounded-full bg-yellow-200/50 blur-2xl" />
+              <div className="pointer-events-none absolute -bottom-10 -left-6 w-48 h-48 rounded-full bg-[#ede9fe] blur-2xl" />
+              <img
+                src="https://cdn.poehali.dev/projects/ce65ddef-2217-4074-b035-2a6a61d819df/bucket/3ae0a300-d6df-4751-92b1-294863c80926.jpg"
+                alt="Modern Website Design"
+                className="relative w-full rounded-3xl shadow-2xl"
+              />
             </div>
           </div>
         </div>
       </section>
 
+      {/* TOOLS */}
+      <section className="px-4 max-w-7xl mx-auto pb-12">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">
+            {lang === "zh" ? "我们使用的工具" : "Инструменты, которые мы используем"}
+          </h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {STATS.map((s) => (
+            <div
+              key={s.label}
+              className="group relative bg-white rounded-3xl py-7 px-5 shadow-[0_20px_50px_-30px_rgba(80,70,200,0.4)] hover:-translate-y-1.5 hover:shadow-xl transition-all duration-500 overflow-hidden"
+            >
+              <div
+                className={`absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br ${s.gradient} opacity-15 blur-3xl group-hover:opacity-30 transition-opacity duration-500`}
+              />
+              <div
+                className={`relative w-12 h-12 rounded-2xl bg-gradient-to-br ${s.gradient} text-white flex items-center justify-center mb-4 shadow-md group-hover:scale-110 transition-transform`}
+              >
+                <Icon name={s.icon} fallback="Circle" size={20} />
+              </div>
+              <p className="relative text-lg md:text-xl font-bold text-foreground">{s.value}</p>
+              <p className="relative text-xs text-foreground/55 mt-1.5 font-bold uppercase tracking-wider">
+                {s.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* PROJECTS GRID */}
       <section className="px-4 max-w-7xl mx-auto pb-16">
+        <div className="text-center mb-8">
+          <p className="text-xs font-bold text-accent uppercase tracking-widest mb-2">
+            {lang === "zh" ? "我们的作品" : "Наши работы"}
+          </p>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">
+            {lang === "zh" ? "我们做的项目" : "Что мы создаём"}
+          </h2>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((p, idx) => {
             const Wrapper = p.url ? "a" : "article";
