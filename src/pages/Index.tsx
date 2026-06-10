@@ -256,7 +256,7 @@ function ProcessSection() {
   const { t } = useLang();
   return (
     <section ref={ref} className="py-12 px-4 max-w-7xl mx-auto">
-      <div className="bg-gradient-to-br from-[#d6d8f7] via-[#e3e5fa] to-[#ecdcf2] rounded-[2rem] px-6 md:px-16 py-16">
+      <div className="bg-white shadow-[0_30px_80px_-30px_rgba(80,70,200,0.2)] rounded-[2rem] px-6 md:px-16 py-16">
         <div className={`reveal-up ${inView ? "is-visible" : ""}`}>
           <p className="text-xs font-bold text-accent uppercase tracking-widest mb-3 text-center">
             {t.process.label}
@@ -271,7 +271,7 @@ function ProcessSection() {
             <div
               key={step.num}
               style={{ animationDelay: `${i * 100}ms` }}
-              className={`group relative bg-white rounded-3xl p-7 hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 overflow-hidden ${inView ? "animate-fade-up" : "opacity-0"}`}
+              className={`group relative bg-secondary/30 rounded-3xl p-7 hover:-translate-y-2 hover:bg-white hover:shadow-2xl transition-all duration-500 overflow-hidden ${inView ? "animate-fade-up" : "opacity-0"}`}
             >
               {/* Огромный номер на фоне */}
               <span
@@ -356,89 +356,85 @@ export default function Index() {
           style={{ transition: "opacity 0.7s ease, transform 0.7s ease" }}
           className={heroSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
         >
-          <div className="relative rounded-[2rem] overflow-hidden px-6 py-16 md:py-24 text-center bg-gradient-to-br from-[#d6d8f7] via-[#e3e5fa] to-[#ecdcf2]">
-            {/* Цветные градиентные пятна как в карточках */}
-            <div className="pointer-events-none absolute -top-32 -right-20 w-[420px] h-[420px] rounded-full bg-gradient-to-br from-[#fbbf24] to-[#fb923c] opacity-25 blur-3xl animate-float" />
-            <div className="pointer-events-none absolute -bottom-32 -left-20 w-[420px] h-[420px] rounded-full bg-gradient-to-br from-[#a78bfa] to-[#f472b6] opacity-25 blur-3xl animate-float" style={{ animationDelay: "1s" }} />
-            <div className="pointer-events-none absolute top-1/3 left-1/2 w-[300px] h-[300px] rounded-full bg-gradient-to-br from-[#34d399] to-[#22d3ee] opacity-15 blur-3xl" />
+          <div className="relative rounded-[2rem] overflow-hidden bg-white shadow-[0_30px_80px_-30px_rgba(80,70,200,0.25)] px-6 md:px-12 py-12 md:py-16">
+            <div className="pointer-events-none absolute top-0 right-0 w-[40rem] h-[40rem] rounded-full bg-gradient-to-br from-[#ede9fe] to-[#faf5ff] blur-3xl opacity-70" />
 
-            {/* Подписи в верхних углах */}
-            <div className="hidden lg:flex absolute left-8 top-8 items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-md animate-float" style={{ animationDelay: "0.4s" }}>
-              <Icon name="Sparkles" size={14} className="text-[#7c3aed]" />
-              <span className="text-xs font-bold text-foreground uppercase tracking-widest">Создаём сайт</span>
-            </div>
-            <div className="hidden lg:flex absolute right-8 top-8 items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-md animate-float" style={{ animationDelay: "1.2s" }}>
-              <Icon name="TrendingUp" size={14} className="text-[#ea580c]" />
-              <span className="text-xs font-bold text-foreground uppercase tracking-widest">Рекламируем в Яндексе</span>
-            </div>
+            <div className="relative grid lg:grid-cols-2 gap-10 items-center">
+              {/* LEFT */}
+              <div className="text-center lg:text-left">
+                <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-secondary/40 rounded-full animate-fade-up">
+                  <span className="relative flex w-2 h-2">
+                    <span className="absolute inline-flex w-full h-full rounded-full bg-green-400 opacity-75 animate-ping" />
+                    <span className="relative inline-flex w-2 h-2 rounded-full bg-green-500" />
+                  </span>
+                  <span className="text-xs font-bold text-foreground uppercase tracking-widest">Партнер Reg.ru</span>
+                </div>
 
-            <div className="relative max-w-3xl mx-auto">
-              {/* Бейдж как на карточках */}
-              <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white rounded-full shadow-md animate-fade-up">
-                <span className="relative flex w-2 h-2">
-                  <span className="absolute inline-flex w-full h-full rounded-full bg-green-400 opacity-75 animate-ping" />
-                  <span className="relative inline-flex w-2 h-2 rounded-full bg-green-500" />
-                </span>
-                <span className="text-xs font-bold text-foreground uppercase tracking-widest">Партнер Reg.ru</span>
-              </div>
+                <h1 className="font-extrabold tracking-tight text-foreground text-[44px] md:text-[64px] leading-[0.95]">
+                  <span className="animate-word-reveal inline-block">{t.hero.ready}</span>{" "}
+                  <span className="animate-word-reveal inline-block text-accent delay-150 relative">
+                    {t.hero.site}
+                    <span className="absolute -bottom-1 left-0 right-0 h-2 bg-yellow-300/60 -z-10 rounded-full" />
+                  </span>{" "}
+                  <span className="animate-word-reveal inline-block delay-300">{t.hero.inDays}</span>
+                </h1>
 
-              <h1 className="font-semibold tracking-tight text-foreground text-center my-[9px] py-0 text-[56px]">
-                <span className="animate-word-reveal inline-block">{t.hero.ready}</span>{" "}
-                <span className="animate-word-reveal inline-block text-accent delay-150 relative">
-                  {t.hero.site}
-                  <span className="absolute -bottom-1 left-0 right-0 h-2 bg-yellow-300/60 -z-10 rounded-full" />
-                </span>{" "}
-                <span className="animate-word-reveal inline-block delay-300">{t.hero.inDays}</span>
-              </h1>
+                <p className="text-base md:text-lg text-foreground/60 max-w-md mx-auto lg:mx-0 mt-6 leading-relaxed animate-fade-up delay-600">
+                  {t.hero.subtitle}
+                </p>
 
-              <p className="text-base md:text-lg text-foreground/70 max-w-lg mx-auto mt-6 mb-10 leading-relaxed animate-fade-up delay-600">
-                {t.hero.subtitle}
-              </p>
-
-              <div className="flex flex-wrap justify-center gap-3 mb-12 animate-fade-up delay-700">
-                <a
-                  href="#pricing"
-                  className="btn-shine animate-pulse-soft group inline-flex items-center gap-2 px-7 py-4 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 hover:scale-105 transition-all shadow-xl shadow-foreground/20"
-                >
-                  <span className="relative z-10">{t.hero.orderBtn}</span>
-                  <Icon name="ArrowRight" size={16} className="relative z-10 group-hover:translate-x-1 transition-transform" />
-                </a>
-                <a
-                  href="https://max.ru/@id752905383918_bot"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-shine group inline-flex items-center gap-2 px-7 py-4 bg-white text-foreground text-sm font-bold rounded-full hover:scale-105 transition-all shadow-lg shadow-black/5"
-                >
-                  <Icon name="MessageCircle" size={16} className="relative z-10 group-hover:rotate-12 transition-transform" />
-                  <span className="relative z-10">{t.hero.consultBtn}</span>
-                </a>
-              </div>
-
-              {/* Иконки сервисов в едином стиле карточек */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto items-stretch">
-                {[
-                  { label: "Домен", icon: "Globe", gradient: "from-[#fbbf24] to-[#fb923c]", accent: "#ea580c", to: "/infra/domen" },
-                  { label: "Хостинг", icon: "Server", gradient: "from-[#f472b6] to-[#e879f9]", accent: "#db2777", to: "/infra/hosting" },
-                  { label: "SSL", icon: "ShieldCheck", gradient: "from-[#a78bfa] to-[#818cf8]", accent: "#7c3aed", to: "/infra/ssl" },
-                  { label: "Почта на домене", icon: "Mail", gradient: "from-[#34d399] to-[#22d3ee]", accent: "#0891b2", to: "/infra/mail" },
-                ].map((m, i) => (
-                  <Link
-                    key={m.label}
-                    to={m.to}
-                    style={{ animationDelay: `${800 + i * 80}ms` }}
-                    className="group relative flex flex-col items-center justify-start text-center h-full bg-white rounded-2xl p-6 hover:-translate-y-1 hover:shadow-xl transition-all duration-500 overflow-hidden animate-fade-up"
+                <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-8 animate-fade-up delay-700">
+                  <a
+                    href="#pricing"
+                    className="btn-shine group inline-flex items-center gap-2 px-7 py-4 bg-accent text-white text-sm font-bold rounded-2xl shadow-lg shadow-accent/30 hover:opacity-90 hover:scale-105 transition-all"
                   >
-                    <div
-                      className={`absolute -top-8 -right-8 w-28 h-28 rounded-full bg-gradient-to-br ${m.gradient} opacity-15 blur-2xl group-hover:opacity-30 transition-opacity duration-500`}
-                    />
-                    <div
-                      className={`relative mx-auto w-12 h-12 rounded-2xl bg-gradient-to-br ${m.gradient} text-white flex items-center justify-center mb-3 shadow-md group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500`}
+                    <span className="relative z-10">{t.hero.orderBtn}</span>
+                    <Icon name="ArrowRight" size={16} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                  <a
+                    href="https://max.ru/@id752905383918_bot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-shine group inline-flex items-center gap-2 px-7 py-4 bg-white text-foreground text-sm font-bold rounded-2xl border border-secondary hover:bg-secondary/40 transition-all"
+                  >
+                    <Icon name="MessageCircle" size={16} className="relative z-10 group-hover:rotate-12 transition-transform" />
+                    <span className="relative z-10">{t.hero.consultBtn}</span>
+                  </a>
+                </div>
+
+                {/* Сервисы */}
+                <div className="flex flex-wrap justify-center lg:justify-start gap-2 mt-8">
+                  {[
+                    { label: "Домен", icon: "Globe", gradient: "from-[#fbbf24] to-[#fb923c]", to: "/infra/domen" },
+                    { label: "Хостинг", icon: "Server", gradient: "from-[#f472b6] to-[#e879f9]", to: "/infra/hosting" },
+                    { label: "SSL", icon: "ShieldCheck", gradient: "from-[#a78bfa] to-[#818cf8]", to: "/infra/ssl" },
+                    { label: "Почта", icon: "Mail", gradient: "from-[#34d399] to-[#22d3ee]", to: "/infra/mail" },
+                  ].map((m) => (
+                    <Link
+                      key={m.label}
+                      to={m.to}
+                      className="group inline-flex items-center gap-2 px-3.5 py-2 bg-secondary/40 rounded-full hover:bg-white hover:shadow-md transition-all"
                     >
-                      <Icon name={m.icon} fallback="Circle" size={22} />
-                    </div>
-                    <p className="relative text-sm font-bold text-foreground leading-snug">{m.label}</p>
-                  </Link>
-                ))}
+                      <div
+                        className={`w-5 h-5 rounded-md bg-gradient-to-br ${m.gradient} text-white flex items-center justify-center shrink-0`}
+                      >
+                        <Icon name={m.icon} fallback="Circle" size={11} />
+                      </div>
+                      <span className="text-sm font-bold text-foreground">{m.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* RIGHT — illustration */}
+              <div className="relative">
+                <div className="pointer-events-none absolute -top-8 -right-8 w-40 h-40 rounded-full bg-yellow-200/50 blur-2xl" />
+                <div className="pointer-events-none absolute -bottom-10 -left-6 w-48 h-48 rounded-full bg-[#ede9fe] blur-2xl" />
+                <img
+                  src="https://cdn.poehali.dev/projects/ce65ddef-2217-4074-b035-2a6a61d819df/bucket/3ae0a300-d6df-4751-92b1-294863c80926.jpg"
+                  alt="Modern Website Design"
+                  className="relative w-full rounded-3xl shadow-2xl"
+                />
               </div>
             </div>
           </div>
